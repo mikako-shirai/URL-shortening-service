@@ -6,16 +6,16 @@ A service which provides short aliases redirecting to long URLs using Python and
 
 ### Built with  
 This project is built using the following frameworks  
--Flask
--pytest  
+- Flask  
+- pytest  
 
 ## Getting Started  
 ### Prerequisites  
--Flask  
+- Flask  
 ```
 $ pip install Flask
 ```  
--pytest  
+- pytest  
 ```
 $ pip install pytest
 ```  
