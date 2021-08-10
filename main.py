@@ -1,6 +1,4 @@
-# POC
-from os import abort
-from flask import Flask, render_template, request,  redirect
+from flask import Flask, render_template, request,  redirect, abort
 import random, string
 import json
 from ast import literal_eval
@@ -52,7 +50,7 @@ def get_post():
 
 @app.route('/<string>')
 def redirect_to_URL(string):
-    if len(string) != 7:
+    if len(string) != key_length:
         abort(404)
     with open('database.json', "r") as f:
         db_read = f.read()
