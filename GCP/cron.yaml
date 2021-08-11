@@ -1,6 +1,7 @@
 cron:
 - description: "daily expiration check"
   url: /cron
-  schedule: every day 07:00
+  schedule: every day 9:00
+  # schedule: every 1 minutes from 00:00 to 23:59
   timezone: Asia/Tokyo
 
