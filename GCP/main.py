@@ -9,7 +9,7 @@ db = firestore.Client()
 app = Flask(__name__)
 
 key_length = 6
-GCP_URL = 'https://firestoretest-319604.an.r.appspot.com/'
+GCP_URL = 'https://short-321807.an.r.appspot.com/'
 
 # -----------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ def append_data(originalURL, generatedKey):
     originalURL = originalURL
     generatedURl = GCP_URL + generatedKey
     dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    expirationDate = dateCreated + datetime.timedelta(minutes=1)
+    expirationDate = dateCreated + datetime.timedelta(days=7)
     
     db.collection(u'URLs').document(generatedKey).set({
         u'originalURL': originalURL,
