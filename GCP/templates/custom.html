@@ -2,18 +2,16 @@
 {% extends "layout.html" %}
 {% block content %}
 <div align="center">
-	<h1>SHORT LINK GENERATOR</h1>
+	<h1>CUSTOM LINK GENERATOR</h1>
+	<p class="font_error">{{ message_error1 }}</p>
+	<p class="font_error">{{ message_error2 }}</p>
+</div>
+<div align="center">
 	<p>{{ message_get1 }}</p>
-	<p><a href="{{ url_for('custom_link') }}">{{ message_get2 }}</a></p>
-</div>
-<br>
-<div align="center">
-	<p>{{ message_get3 }}</p>
-	<p class="font_error">{{ message_error }}</p>
 </div>
 <div align="center">
-	<form action="/" method="POST" enctype="multipart/form-data">
-		<input type="text" name="originalURl">
+	<form action="/custom" method="POST" enctype="multipart/form-data">
+		<input type="text" name="key">
 		<input type="submit" value="generate">
 	</form>
 </div>

@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, abort
+from flask import Flask, render_template, request, redirect, abort, url_for
 import random, string
 import datetime
 import re
+# import os
 from google.cloud import firestore
 
 
@@ -55,10 +56,13 @@ def append_data(originalURL, generatedKey):
 # -----------------------------------------------------------------------------------
 
 @app.route('/', methods=["GET","POST"])
-def get_post():
+def short_link():
     if request.method == 'GET':
-        message = 'enter a URL to be shortened'
-        return render_template('index.html', message_get = message)
+        message1 = 'You can create a short link with randomly chosen 6 letters'
+        message2 = '...or create your own custom link here'
+        message3 = 'enter a URL to be shortened'
+        return render_template('index.html', message_get1 = message1, \
+                               message_get2 = message2, message_get3 = message3)
     else:
         originalURL = request.form.get('originalURl')
         if URL_check(originalURL):
@@ -71,6 +75,22 @@ def get_post():
         else:
             message_error = 'Please enter a valid URL'
             return render_template('index.html', message_error = message_error)
+
+# ----------------------------------------------------------------------------------------NEW
+@app.route('/custom', methods=["GET","POST"])
+def custom_link():
+    if request.method == 'GET':
+        message1 = 'enter a string you want to use'
+        return render_template('custom.html', message_get1 = message1)
+    else:
+        key = request.form.get('key')
+        if key == '':
+            message1 = 'Please enter a valid URL'
+            return render_template('custom.html', message_error1 = message1)
+        else:
+            message2 = 'This combination is already taken'
+            return render_template('custom.html', message_error2 = message2)
+# ----------------------------------------------------------------------------------------NEW
 
 @app.route('/<string>')
 def URL_redirect(string):
@@ -125,6 +145,23 @@ def expiration_check():
 def page_not_found(e):
     message = 'The requested URL was not found'
     return render_template('404.html', message = message), 404
+
+# -----------------------------------------------------------------------------------
+
+# @app.context_processor
+# def override_url_for():
+#     return dict(url_for=dated_url_for)
+
+# def dated_url_for(endpoint, **values):
+#     if endpoint == 'static':
+#         filename = values.get('filename', None)
+#         if filename:
+#             file_path = os.path.join(app.root_path,
+#                                      endpoint, filename)
+#             values['q'] = int(os.stat(file_path).st_mtime)
+#     return url_for(endpoint, **values)
+
+
 
 
 if __name__ == "__main__":
