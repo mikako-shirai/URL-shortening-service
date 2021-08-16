@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>URLshortener</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+  <!-- <link href="/static/style.css" rel="stylesheet"> -->
+</head>
+
+<body>
+  <header>
+		<div class="flex-box">
+			<div class="flex-item">
+        <h2>the shorter,<br>the better</h2>
+				<h5>URL shortening service which provides short aliases redirecting to long URLs</h5>
+    	</div>
+			<div class="flex-item">
+        <a href="{{ url_for('short_link') }}">short URL</a>
+    	</div>
+			<div class="flex-item">
+        <a href="{{ url_for('custom_link') }}">custom URL</a>
+    	</div>
+			<div class="flex-item">
+        <a href="{{ url_for('custom_link') }}">custom expiration time</a>
+    	</div>
+		</div>
+  </header>
+
+  <main>
+    <div style="display: flex; flex-direction: column; min-height: 80vh">
+      <div align="center">
+        {% block content %}
+        <!-- content -->
+        {% endblock %}
+      </div>
+    </div>
+  </main>
+
+	<footer>
+		<div align="center">
+			<p>Copyright &copy; 2021 Mikako Shirai - All Rights Reserved.</p>
+		</div>
+	</footer>
+</body>
+</html>
+
