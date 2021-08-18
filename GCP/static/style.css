@@ -3,7 +3,7 @@ body {
   background: #F7EAE5;
   font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
   font-weight: lighter;
-  padding: 13px;
+  padding: 20px;
   word-wrap: break-word;
   min-width: 0;
 }
@@ -28,7 +28,11 @@ header h5 {
 
 .flex-box {
   background-color: #F5BFA9;
-  padding:  15px;
+  /* padding:  15px; */
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 20px;
+  padding-bottom: 15px;
   display: flex;
   align-items: flex-end;
 }
@@ -36,8 +40,8 @@ header h5 {
 .flex-item {
   color: #ffffff;
   font-weight: lighter;
-  margin:  2px;
-  font-size: 12px;
+  margin:  3px;
+  font-size: 14px;
 }
 
 .flex-item:nth-child(1) {
@@ -54,7 +58,7 @@ header h5 {
   border-radius: 6px;
   text-align: center;
   height: 20px;
-  width: 150px;
+  width: 153px;
   background-color:  #E48E6D;
 }
 
@@ -63,7 +67,7 @@ header h5 {
   border-radius: 6px;
   text-align: center;
   height: 20px;
-  width: 150px;
+  width: 153px;
   background-color:  #E48E6D;
 }
 
@@ -72,17 +76,31 @@ header h5 {
   border-radius: 6px;
   text-align: center;
   height: 20px;
-  width: 150px;
+  width: 153px;
   background-color:  #E48E6D;
 }
 
-.flex-item:link, .flex-item:visited, .flex-item:active {
+.link_1:link, .link_1:visited, .link_1:active {
   color: #ffffff;
   text-decoration: none;
 }
-.flex-item:hover {
+.link_1:hover {
   color: #AD4720;
   text-decoration: none;
+}
+
+.link_2:link, .link_2:visited, .link_2:active {
+  color: #AD4720;
+  text-decoration: none;
+}
+.link_2:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+footer p {
+  /* background-color: #F5BFA9; */
+  color: #AD4720;
 }
 
 /* .button{
@@ -105,21 +123,7 @@ header h5 {
   border-top: 10px solid #F7EAE5;
 } */
 
-footer p {
-  /* background-color: #F5BFA9; */
-  color: #AD4720;
-}
-
-a:link, a:visited, a:active {
-  color: #AD4720;
-  text-decoration: none;
-}
-a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/*----------------------------------------------------
+/*---------------------------------------------------- */
 
 /* .container{
   width: 100%;
@@ -137,7 +141,7 @@ a:hover {
   min-width: 0;
 } */
 
-/*----------------------------------------------------
+/*---------------------------------------------------- */
 
 h1 {
   color: #423733;
@@ -160,8 +164,8 @@ p {
   font-weight: lighter;
 }
 
-.font-sample {
-  color: #000000;
+
+.color-sample {
   color: #423733;
   color: #843213;
   color: #AD4720;

@@ -4,7 +4,7 @@
 <div align="center">
 	<h1>SHORT LINK GENERATOR</h1>
 	<p>{{ message_get1 }}</p>
-	<p><a href="{{ url_for('custom_link') }}">{{ message_get2 }}</a></p>
+	<p><a href="{{ url_for('custom_link') }}" class="link_2">{{ message_get2 }}</a></p>
 </div>
 <br>
 <div align="center">
@@ -19,8 +19,8 @@
 </div>
 <br>
 <div align="center">
-	<p>{{ message_post1 }}<a href="{{ message_post2 }}">{{ message_post2 }}</a></p>
-	<p>{{ message_post3 }}<a href="{{ message_post4 }}">{{ message_post4 }}</a></p>
+	<p>{{ message_post1 }}<a href="{{ message_post2 }}" class="link_2">{{ message_post2 }}</a></p>
+	<p>{{ message_post3 }}<a href="{{ message_post4 }}" class="link_2">{{ message_post4 }}</a></p>
 </div>
 {% endblock %}
 
