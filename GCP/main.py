@@ -73,8 +73,11 @@ def short_link():
                                    message_post1 = message1, message_post2 = originalURL, \
                                    message_post3 = message3, message_post4 = generatedURL)
         else:
+            message1 = 'You can create a short link with randomly chosen 6 letters'
+            message2 = '...or create your own custom link here'
             message_error = 'Please enter a valid URL'
-            return render_template('index.html', message_error = message_error)
+            return render_template('index.html', message_get1 = message1, \
+                                   message_get2 = message2, message_error = message_error)
 
 # ----------------------------------------------------------------------------------------NEW
 @app.route('/custom', methods=["GET","POST"])
@@ -85,10 +88,10 @@ def custom_link():
     else:
         key = request.form.get('key')
         if key == '':
-            message1 = 'Please enter a valid URL'
+            message1 = 'Please enter a valid string'
             return render_template('custom.html', message_error1 = message1)
         else:
-            message2 = 'This combination is already taken'
+            message2 = 'Sorry, this combination is already taken'
             return render_template('custom.html', message_error2 = message2)
 # ----------------------------------------------------------------------------------------NEW
 
@@ -143,7 +146,7 @@ def expiration_check():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    message = 'The requested URL was not found'
+    message = 'Page not found'
     return render_template('404.html', message = message), 404
 
 # -----------------------------------------------------------------------------------
