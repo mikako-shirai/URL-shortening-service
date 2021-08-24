@@ -1,14 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URLshortener</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style-error.css') }}">
+</head>
 
-{% extends "layout.html" %}
-{% block content %}
-<div align="center">
-	<h1>SHORT LINK GENERATOR</h1>
-	<p>{{ message_get }}</p>
-	<p class="font_error">{{ message_error }}</p>
-</div>
-<div align="center">
-	<h2>{{ message }}</h2>
-	<p class="font_error"><a href="{{ url_for('short_link') }}" class="link_2">- make a new short link here -</a></p>
-</div>
-{% endblock %}
+<body>
+  <header>
+		<div class="flex-box">
+			<div class="flex-item">
+        <a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
+    	</div>
+			<div class="flex-item">
+        <a href="{{ url_for('custom_link') }}" class="link_1">custom URL</a>
+    	</div>
+			<div class="flex-item">
+        <a href="{{ url_for('custom_link') }}" class="link_1">custom expiration time</a>
+    	</div>
+		</div>
+  </header>
+
+  <main>
+    <div style="display: flex; flex-direction: column; min-height: 80vh">
+			<div align="center">
+				<br>
+				<br>
+				<p><font size="7">404</font><br>{{ message }}</p>
+				<br>
+				<p><a href="{{ url_for('short_link') }}" class="link_2">> make a new short link here <</a></p>
+			</div>
+    </div>
+  </main>
+
+	<footer>
+		<div align="center">
+			<p>Copyright &copy; 2021 Mikako Shirai - All Rights Reserved.</p>
+		</div>
+	</footer>
+</body>
+</html>
 
