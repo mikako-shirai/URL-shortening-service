@@ -2,38 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>URLshortener</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>URLshortener</title>
 	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style-error.css') }}">
 </head>
-
 <body>
-  <header>
+	<header>
 		<div class="flex-box">
 			<div class="flex-item">
-        <a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
-    	</div>
-			<div class="flex-item">
-        <a href="{{ url_for('custom_link') }}" class="link_1">custom URL</a>
-    	</div>
-			<div class="flex-item">
-        <a href="{{ url_for('custom_link') }}" class="link_1">custom expiration</a>
-    	</div>
-		</div>
-  </header>
-
-  <main>
-    <div style="display: flex; flex-direction: column; min-height: 80vh">
-			<div align="center">
-				<br>
-				<br>
-				<p><span>404</span><br>{{ message }}</p>
-				<br>
-				<p><a href="{{ url_for('short_link') }}" class="link_2">> make a new short link here <</a></p>
+				<a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
 			</div>
-    </div>
-  </main>
-
+			<div class="flex-item">
+				<a href="{{ url_for('custom_link') }}" class="link_1">custom URL</a>
+			</div>
+			<div class="flex-item">
+				<a href="{{ url_for('custom_link') }}" class="link_1">custom expiration</a>
+			</div>
+		</div>
+	</header>
+	<main>
+		<div align="center" style="display: flex; flex-direction: column; min-height: 80vh">
+			<br>
+			<p><span>404</span><br>{{ message }}</p>
+			<br>
+			<p><a href="{{ url_for('short_link') }}" class="link_2">> make a new short link here <</a></p>
+		</div>
+	</main>
 	<footer>
 		<div align="center">
 			<p>Copyright &copy; 2021 Mikako Shirai - All Rights Reserved.</p>
