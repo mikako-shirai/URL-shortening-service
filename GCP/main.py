@@ -9,7 +9,7 @@ from google.cloud import firestore
 db = firestore.Client()
 app = Flask(__name__)
 
-key_length = 6
+key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
 
 # -----------------------------------------------------------------------------------
@@ -57,42 +57,49 @@ def append_data(originalURL, generatedKey):
 
 @app.route('/', methods=["GET","POST"])
 def short_link():
+    message1 = 'You can create a short link with randomly chosen 5 letters'
+    message2 = '...or create '
+    message3 = 'a custom link'
+    message4 = ' with characters of your choice'
     if request.method == 'GET':
-        message1 = 'You can create a short link with randomly chosen 6 letters'
-        message2 = '...or create your own custom link here'
-        message3 = 'enter a URL to be shortened'
-        return render_template('index.html', message_get1 = message1, \
-                               message_get2 = message2, message_get3 = message3)
+        message5 = 'enter a URL to be shortened'
+        return render_template('index.html', message_get1 = message1, message_get2 = message2, \
+                               message_get3 = message3, message_get4 = message4, message_get5 = message5)
     else:
         originalURL = request.form.get('originalURl')
         if URL_check(originalURL):
             generatedURL = GCP_URL + DB_check(originalURL)
             message1 = 'original link  :   '
             message3 = 'short link  :  '
-            return render_template('index.html', \
+            return render_template('index.html', message_get1 = message1, message_get2 = message2, \
+                                   message_get3 = message3, message_get4 = message4,
                                    message_post1 = message1, message_post2 = originalURL, \
                                    message_post3 = message3, message_post4 = generatedURL)
         else:
-            message1 = 'You can create a short link with randomly chosen 6 letters'
-            message2 = '...or create your own custom link here'
             message_error = 'Please enter a valid URL'
-            return render_template('index.html', message_get1 = message1, \
-                                   message_get2 = message2, message_error = message_error)
+            return render_template('index.html', message_get1 = message1, message_get2 = message2, \
+                                   message_get3 = message3, message_get4 = message4, \
+                                   message_error = message_error)
 
 # ----------------------------------------------------------------------------------------NEW
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
+    message1 = 'You can create a custom link here using unique characters'
+    message2 = 'Input must be 6 to 20 characters long consisting of letters, numbers, or underscores'
     if request.method == 'GET':
-        message1 = 'enter a string you want to use'
-        return render_template('custom.html', message_get1 = message1)
+        message3 = 'enter characters you want to use'
+        return render_template('custom.html', message_get1 = message1, \
+                               message_get2 = message2, message_get3 = message3)
     else:
         key = request.form.get('key')
         if key == '':
             message1 = 'Please enter a valid string'
-            return render_template('custom.html', message_error1 = message1)
+            return render_template('custom.html', message_get1 = message1, \
+                                   message_get2 = message2, message_error1 = message1)
         else:
             message2 = 'Sorry, this combination is already taken'
-            return render_template('custom.html', message_error2 = message2)
+            return render_template('custom.html', message_get1 = message1, \
+                                   message_get2 = message2, message_error2 = message2)
 # ----------------------------------------------------------------------------------------NEW
 
 @app.route('/<string>')

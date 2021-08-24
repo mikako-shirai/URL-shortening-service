@@ -11,9 +11,6 @@
   <header>
 		<div class="flex-box">
 			<div class="flex-item">
-				<h5>URL shortening service which provides short aliases redirecting to long URLs</h5>
-    	</div>
-			<div class="flex-item">
         <a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
     	</div>
 			<div class="flex-item">
@@ -28,8 +25,9 @@
   <main>
     <div style="display: flex; flex-direction: column; min-height: 80vh">
 			<div align="center">
-				<h1>404</h1>
-				<p>{{ message }}</p>
+				<br>
+				<br>
+				<p><font size="7">404</font><br>{{ message }}</p>
 				<br>
 				<p><a href="{{ url_for('short_link') }}" class="link_2">> make a new short link here <</a></p>
 			</div>
