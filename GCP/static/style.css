@@ -1,5 +1,5 @@
 body {
-  background: #F7EAE5;
+  background: #F9EAE4;
   font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
   font-weight: lighter;
   padding: 20px;
@@ -9,8 +9,6 @@ body {
 
 header {
   padding: 15px;
-  color: #F7EAE5;
-  font-weight: lighter;
 }
 
 .flex-box {
@@ -25,14 +23,12 @@ header {
 
 .flex-item {
   color: #ffffff;
-  font-weight: lighter;
   margin:  3px;
   font-size: 14px;
 }
 
 .flex-item:nth-child(1) {
   flex-grow: 1;
-  font-weight: lighter;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 20px;
@@ -45,7 +41,7 @@ header {
   text-align: center;
   height: 20px;
   width: 153px;
-  background-color:  #E48E6D;
+  background-color:  #ECA281;
 }
 
 .flex-item:nth-child(3) {
@@ -54,7 +50,7 @@ header {
   text-align: center;
   height: 20px;
   width: 153px;
-  background-color:  #E48E6D;
+  background-color: #ECA281;
 }
 
 .flex-item:nth-child(4) {
@@ -63,7 +59,7 @@ header {
   text-align: center;
   height: 20px;
   width: 153px;
-  background-color:  #E48E6D;
+  background-color:  #ECA281;
 }
 
 .link_1:link, .link_1:visited, .link_1:active {
@@ -76,7 +72,7 @@ header {
 }
 
 .link_2:link, .link_2:visited, .link_2:active {
-  color: #AD4720;
+  color: #E48E6D;
   text-decoration: none;
 }
 .link_2:hover {
@@ -89,7 +85,6 @@ header {
 header h2 {
   font-size: 36px;
   color: #ffffff;
-  font-weight: lighter;
 }
 
 header h5 {
@@ -99,28 +94,26 @@ header h5 {
 }
 
 .font_error {
-  color: #AD4720;
+  color: #E48E6D;
   font-size: 20px;
-  font-weight: lighter;
 }
 
 footer p {
-  color: #AD4720;
+  color: #843213;
 }
 
 h1 {
-  color: #843213;
+  color: #AD4720;
   font-weight: lighter;
 }
 
 h2 {
-  color: #843213;
+  color: #AD4720;
   font-weight: lighter;
 }
 
 p {
-  color: #843213;
-  font-weight: lighter;
+  color: #AD4720;
 }
 
 
@@ -129,7 +122,7 @@ p {
   color: #843213;
   color: #AD4720;
   color: #E48E6D;
-  color: #F5BFA9;
+  color: #EC966F;
   color: #F5CFC1;
   color: #F9EAE4;
   color: #F7EAE5;

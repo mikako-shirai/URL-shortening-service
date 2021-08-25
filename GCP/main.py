@@ -57,20 +57,20 @@ def append_data(originalURL, generatedKey):
 
 @app.route('/', methods=["GET","POST"])
 def short_link():
-    message1 = 'You can create a short link with randomly chosen 5 letters'
+    message1 = 'You can create a short URL alias with randomly chosen 5 characters'
     message2 = '...or create '
-    message3 = 'a custom link'
-    message4 = ' with characters of your choice'
+    message3 = 'a custom URL'
+    message4 = ' with an alias of your choice'
     if request.method == 'GET':
-        message5 = 'enter a URL to be shortened'
+        # message5 = 'enter a URL to be shortened'
         return render_template('index.html', message_get1 = message1, message_get2 = message2, \
-                               message_get3 = message3, message_get4 = message4, message_get5 = message5)
+                               message_get3 = message3, message_get4 = message4)
     else:
         originalURL = request.form.get('originalURl')
         if URL_check(originalURL):
             generatedURL = GCP_URL + DB_check(originalURL)
-            message1 = 'original link  :   '
-            message3 = 'short link  :  '
+            message1 = 'the link  :   '
+            message3 = 'alias  :  '
             return render_template('index.html', message_get1 = message1, message_get2 = message2, \
                                    message_get3 = message3, message_get4 = message4,
                                    message_post1 = message1, message_post2 = originalURL, \
@@ -84,22 +84,21 @@ def short_link():
 # ----------------------------------------------------------------------------------------NEW
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
-    message1 = 'You can create a custom link here using unique characters'
-    message2 = 'Input must be 6 to 20 characters long consisting of letters, numbers, or underscores'
+    message1 = 'Enter a link and an alias you want to use'
+    message2 = 'note : the alias must be 6 to 20 characters long without forward and back slashes'
     if request.method == 'GET':
-        message3 = 'enter characters you want to use'
-        return render_template('custom.html', message_get1 = message1, \
-                               message_get2 = message2, message_get3 = message3)
+        return render_template('custom.html', message_get1 = message1, message_get2 = message2)
     else:
-        key = request.form.get('key')
-        if key == '':
-            message1 = 'Please enter a valid string'
+        originalURL = request.form.get('originalURl')
+        key = request.form.get('string')
+        if originalURL == '' or key == '' or ' ' in key or not URL_check(originalURL):
+            message_error = 'Please enter a valid URL and characters'
             return render_template('custom.html', message_get1 = message1, \
-                                   message_get2 = message2, message_error1 = message1)
+                                   message_get2 = message2, message_error1 = message_error)
         else:
-            message2 = 'Sorry, this combination is already taken'
+            message_error = 'Sorry, this alias is already taken'
             return render_template('custom.html', message_get1 = message1, \
-                                   message_get2 = message2, message_error2 = message2)
+                                   message_get2 = message2, message_error2 = message_error)
 # ----------------------------------------------------------------------------------------NEW
 
 @app.route('/<string>')
