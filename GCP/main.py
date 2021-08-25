@@ -22,6 +22,15 @@ def URL_check(originalURL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
     return True if re.match(validFormat, originalURL) else False
 
+def key_check(customKey):
+    if len(customKey) < 6 or len(customKey) > 30:
+        return False
+    invalid = '/ \\'
+    for char in customKey:
+        if char in invalid:
+            return False
+    return True
+
 # -----------------------------------------------------------------------------------
 
 def DB_check(originalURL):
@@ -69,12 +78,12 @@ def short_link():
         originalURL = request.form.get('originalURl')
         if URL_check(originalURL):
             generatedURL = GCP_URL + DB_check(originalURL)
-            message1 = 'the link  :   '
-            message3 = 'alias  :  '
+            message_post1 = 'link  :  '
+            message_post2 = 'alias  :  '
             return render_template('index.html', message_get1 = message1, message_get2 = message2, \
                                    message_get3 = message3, message_get4 = message4,
-                                   message_post1 = message1, message_post2 = originalURL, \
-                                   message_post3 = message3, message_post4 = generatedURL)
+                                   message_post1 = message_post1, message_post2 = message_post2, \
+                                   originalURL = originalURL, generatedURL = generatedURL)
         else:
             message_error = 'Please enter a valid URL'
             return render_template('index.html', message_get1 = message1, message_get2 = message2, \
@@ -85,13 +94,13 @@ def short_link():
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
     message1 = 'Enter a link and an alias you want to use'
-    message2 = 'note : the alias must be 6 to 20 characters long without forward and back slashes'
+    message2 = 'note : alias must be 6 to 30 characters long without forward and back slashes'
     if request.method == 'GET':
         return render_template('custom.html', message_get1 = message1, message_get2 = message2)
     else:
         originalURL = request.form.get('originalURl')
-        key = request.form.get('string')
-        if originalURL == '' or key == '' or ' ' in key or not URL_check(originalURL):
+        customKey = request.form.get('customKey')
+        if not URL_check(originalURL) or not key_check(customKey):
             message_error = 'Please enter a valid URL and characters'
             return render_template('custom.html', message_get1 = message1, \
                                    message_get2 = message2, message_error1 = message_error)
