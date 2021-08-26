@@ -61,6 +61,10 @@ def append_data(originalURL, generatedKey):
         u'originalURL': originalURL,
         u'pageViews': 0
     })
+    db.collection(u'random').document(u'random').update({
+        u'list': firestore.ArrayUnion([originalURL]),
+        u'total': firestore.Increment(1)
+    })
 
 # -----------------------------------------------------------------------------------
 
@@ -93,8 +97,8 @@ def short_link():
 # ----------------------------------------------------------------------------------------NEW
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
-    message1 = 'Enter a link and an alias you want to use'
-    message2 = 'note : alias must be 6 to 30 characters long without forward and back slashes'
+    message1 = 'Enter a link and characters you want to use'
+    message2 = 'note : input must be 6 to 30 characters long without forward and back slashes'
     if request.method == 'GET':
         return render_template('custom.html', message_get1 = message1, message_get2 = message2)
     else:
@@ -157,12 +161,20 @@ def expiration_check():
             db.collection(u'keys').document(URL.id).delete()
     return '', 200
 
+def random_page():
+    # if request.method == 'POST':
+    #     if request.form['send'] == 'abc':
+    dic = db.collection(u'random').document(u'random').to_dict()
+    total = dic['total']
+    URLs = dic['list']
+    randomNum = random.randrange(0, total)
+    return redirect(URLs[randomNum])
+
 # -----------------------------------------------------------------------------------
 
 @app.errorhandler(404)
 def page_not_found(e):
-    message = 'Page not found'
-    return render_template('404.html', message = message), 404
+    return render_template('404.html'), 404
 
 # -----------------------------------------------------------------------------------
 
