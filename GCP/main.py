@@ -22,6 +22,15 @@ def URL_check(originalURL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
     return True if re.match(validFormat, originalURL) else False
 
+def key_check(customKey):
+    if len(customKey) < 6 or len(customKey) > 30:
+        return False
+    invalid = '/ \\'
+    for char in customKey:
+        if char in invalid:
+            return False
+    return True
+
 # -----------------------------------------------------------------------------------
 
 def DB_check(originalURL):
@@ -52,6 +61,10 @@ def append_data(originalURL, generatedKey):
         u'originalURL': originalURL,
         u'pageViews': 0
     })
+    db.collection(u'random').document(u'random').update({
+        u'list': firestore.ArrayUnion([originalURL]),
+        u'total': firestore.Increment(1)
+    })
 
 # -----------------------------------------------------------------------------------
 
@@ -69,12 +82,12 @@ def short_link():
         originalURL = request.form.get('originalURl')
         if URL_check(originalURL):
             generatedURL = GCP_URL + DB_check(originalURL)
-            message1 = 'the link  :   '
-            message3 = 'alias  :  '
+            message_post1 = 'link  :  '
+            message_post2 = 'alias  :  '
             return render_template('index.html', message_get1 = message1, message_get2 = message2, \
                                    message_get3 = message3, message_get4 = message4,
-                                   message_post1 = message1, message_post2 = originalURL, \
-                                   message_post3 = message3, message_post4 = generatedURL)
+                                   message_post1 = message_post1, message_post2 = message_post2, \
+                                   originalURL = originalURL, generatedURL = generatedURL)
         else:
             message_error = 'Please enter a valid URL'
             return render_template('index.html', message_get1 = message1, message_get2 = message2, \
@@ -84,14 +97,14 @@ def short_link():
 # ----------------------------------------------------------------------------------------NEW
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
-    message1 = 'Enter a link and an alias you want to use'
-    message2 = 'note : the alias must be 6 to 20 characters long without forward and back slashes'
+    message1 = 'Enter a link and characters you want to use'
+    message2 = 'note : input must be 6 to 30 characters long without forward and back slashes'
     if request.method == 'GET':
         return render_template('custom.html', message_get1 = message1, message_get2 = message2)
     else:
         originalURL = request.form.get('originalURl')
-        key = request.form.get('string')
-        if originalURL == '' or key == '' or ' ' in key or not URL_check(originalURL):
+        customKey = request.form.get('customKey')
+        if not URL_check(originalURL) or not key_check(customKey):
             message_error = 'Please enter a valid URL and characters'
             return render_template('custom.html', message_get1 = message1, \
                                    message_get2 = message2, message_error1 = message_error)
@@ -148,12 +161,20 @@ def expiration_check():
             db.collection(u'keys').document(URL.id).delete()
     return '', 200
 
+def random_page():
+    # if request.method == 'POST':
+    #     if request.form['send'] == 'abc':
+    dic = db.collection(u'random').document(u'random').to_dict()
+    total = dic['total']
+    URLs = dic['list']
+    randomNum = random.randrange(0, total)
+    return redirect(URLs[randomNum])
+
 # -----------------------------------------------------------------------------------
 
 @app.errorhandler(404)
 def page_not_found(e):
-    message = 'Page not found'
-    return render_template('404.html', message = message), 404
+    return render_template('404.html'), 404
 
 # -----------------------------------------------------------------------------------
 
