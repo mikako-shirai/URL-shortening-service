@@ -25,68 +25,6 @@ body {
   }
 }
 
-.circle {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
-  text-align: center;
-}
-.circle-1, .circle-2, .circle-3 {
-  background: #F6C8B4;
-  opacity: 0.8;
-  padding: 8%;
-  width: 180px;
-  height: 180px;
-  margin: 0 -15px;
-  mix-blend-mode: multiply;
-}
-.circle-1 {
-  /* background: #f66; */
-  border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
-  /* animation: border-animation 6s infinite linear; */
-}
-.circle-2 {
-  /* background: #f92; */
-  border-radius: 80% 40% 50% 50%/50%;
-  /* animation: border-animation 4s infinite linear; */
-}
-.circle-3 {
-  /* background: #fc2; */
-  border-radius: 40% 40% 50% 40%/30% 50% 50% 50%;
-  /* animation: border-animation 3s infinite linear; */
-}
-/* @keyframes border-animation {
-  to { transform: rotate(360deg); }
-} */
-@media (min-width:768px) and (max-width:991px) {
-  .circle {
-    padding-top: 30px;
-  }
-}
-@media (max-width:767px) {
-  .circle {
-    flex-direction: column;
-    padding-top: 30px;
-    align-items: center;
-  }
-}
-@media (min-width:768px) and (max-width:991px) {
-  .circle-1, .circle-2, .circle-3 {
-    padding: 5%;
-    width: 140px;
-    height: 140px;
-    margin: 0 -5px;
-  }
-}
-@media (max-width:767px) {
-  .circle-1, .circle-2, .circle-3 {
-    padding: 40%;
-    width: 150px;
-    height: 10px;
-    margin: -4px 0;
-  }
-}
-
 /*---------------------------------------------------- header */
 
 .flex-header1 {
@@ -166,6 +104,7 @@ body {
 /*---------------------------------------------------- main */
 
 main {
+  margin-top: 30px;
   padding-left: 160px;
   padding-right: 160px;
   word-wrap: break-word;
@@ -179,6 +118,7 @@ main {
 }
 @media (max-width:767px) {
   main {
+    margin-top: 25px;
     padding-left: 27px;
     padding-right: 27px;
   }
@@ -294,6 +234,67 @@ footer p {
 @media (max-width:767px) {
   footer p {
     font-size: 11px;
+  }
+}
+
+/*---------------------------------------------------- */
+
+.circle {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  text-align: center;
+}
+.circle-1, .circle-2, .circle-3 {
+  background: #F6C8B4;
+  opacity: 0.8;
+  padding: 8%;
+  width: 180px;
+  height: 180px;
+  margin: 0 -15px;
+  mix-blend-mode: multiply;
+}
+.circle-1 {
+  border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
+  animation: border-animation 6s infinite linear;
+}
+.circle-2 {
+  border-radius: 80% 40% 50% 50%/50%;
+  animation: border-animation 4s infinite linear;
+}
+.circle-3 {
+  border-radius: 40% 40% 50% 40%/30% 50% 50% 50%;
+  animation: border-animation 3s infinite linear;
+}
+@keyframes border-animation {
+  to { transform: rotate(360deg); }
+}
+@media (min-width:768px) and (max-width:991px) {
+  .circle {
+    padding-top: 30px;
+  }
+}
+@media (max-width:767px) {
+  .circle {
+    flex-direction: column;
+    padding-top: 30px;
+    align-items: center;
+  }
+}
+@media (min-width:768px) and (max-width:991px) {
+  .circle-1, .circle-2, .circle-3 {
+    padding: 5%;
+    width: 140px;
+    height: 140px;
+    margin: 0 -5px;
+  }
+}
+@media (max-width:767px) {
+  .circle-1, .circle-2, .circle-3 {
+    padding: 40%;
+    width: 150px;
+    height: 10px;
+    margin: -4px 0;
   }
 }
 
