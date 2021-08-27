@@ -145,7 +145,6 @@ def expiration_check():
             data = db.collection(u'URLs').document(URL.id).get().to_dict()
             db.collection(u'expiredURLs').document(URL.id).set(data)
 
-            # deletion
             db.collection(u'URLs').document(URL.id).update({
                 u'originalURL': firestore.DELETE_FIELD,
                 u'generatedURL': firestore.DELETE_FIELD,
@@ -161,20 +160,16 @@ def expiration_check():
             db.collection(u'keys').document(URL.id).delete()
     return '', 200
 
-def random_page():
-    # if request.method == 'POST':
-    #     if request.form['send'] == 'abc':
-    dic = db.collection(u'random').document(u'random').to_dict()
-    total = dic['total']
-    URLs = dic['list']
-    randomNum = random.randrange(0, total)
-    return redirect(URLs[randomNum])
-
 # -----------------------------------------------------------------------------------
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    dic = db.collection(u'random').document(u'random').get().to_dict()
+    total = dic['total']
+    URLs = list(dic['list'])
+    randomNum = random.randrange(0, total)
+    URL = URLs[randomNum]
+    return render_template('404.html', URL = URL), 404
 
 # -----------------------------------------------------------------------------------
 
@@ -190,7 +185,6 @@ def dated_url_for(endpoint, **values):
                                      endpoint, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
-
 
 
 

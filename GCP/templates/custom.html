@@ -1,16 +1,16 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<div align="center">
+<div>
 	<h1>CUSTOM LINK GENERATOR</h1>
 	<p>{{ message_get1 }}</p>
 	<p>{{ message_get2 }}</p>
 </div>
 <br>
-<div align="center">
+<div">
 	<p class="font_error">{{ message_error1 }}</p>
 </div>
-<div align="center">
+<div>
 	<form action="/custom" method="POST" enctype="multipart/form-data">
 		<input type="text" name="originalURl" placeholder="link"><br>
 		<input type="text" name="customKey" placeholder="characters"><br><br>
@@ -18,7 +18,7 @@
 	</form>
 </div>
 <br>
-<div align="center">
+<div>
 	<p class="font_error">{{ message_error2 }}</p>
 	<p>{{ message_post1 }}<a href="{{ message_post2 }}" class="link_2">{{ message_post2 }}</a></p>
 	<p>{{ message_post3 }}<a href="{{ message_post4 }}" class="link_2">{{ message_post4 }}</a></p>

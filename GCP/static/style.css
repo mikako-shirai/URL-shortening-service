@@ -29,15 +29,13 @@ body {
   display: flex;
   justify-content: center;
   padding-top: 40px;
+  text-align: center;
 }
-.circle-1,
-.circle-2,
-.circle-3 {
-  color: #fff;
+.circle-1, .circle-2, .circle-3 {
   background: #F6C8B4;
   opacity: 0.8;
-  padding: 5%;
-  width: 300px;
+  padding: 8%;
+  width: 180px;
   height: 180px;
   margin: 0 -15px;
   mix-blend-mode: multiply;
@@ -60,6 +58,11 @@ body {
 /* @keyframes border-animation {
   to { transform: rotate(360deg); }
 } */
+@media (min-width:768px) and (max-width:991px) {
+  .circle {
+    padding-top: 30px;
+  }
+}
 @media (max-width:767px) {
   .circle {
     flex-direction: column;
@@ -67,23 +70,24 @@ body {
     align-items: center;
   }
 }
-/* @media (min-width:768px) and (max-width:991px) {
+@media (min-width:768px) and (max-width:991px) {
   .circle-1, .circle-2, .circle-3 {
-
+    padding: 5%;
+    width: 140px;
+    height: 140px;
+    margin: 0 -5px;
   }
 }
 @media (max-width:767px) {
   .circle-1, .circle-2, .circle-3 {
-
+    padding: 40%;
+    width: 150px;
+    height: 10px;
+    margin: -4px 0;
   }
-} */
+}
 
 /*---------------------------------------------------- header */
-
-/* header {
-  word-wrap: break-word;
-  min-width: 0;
-} */
 
 .flex-header1 {
   background: #F6C8B4;
@@ -95,7 +99,6 @@ body {
   margin-bottom:  1.3px;
 }
 .item-1 {
-  color: #ffffff;
   word-wrap: break-word;
   min-width: 0;
 }
@@ -108,8 +111,14 @@ body {
 @media (max-width:767px) {
   .item-1:nth-child(2) {
     display: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
+  }
+}
+@media (max-width:767px) {
+  .flex-header1 {
+    padding-top: 0.2px;
+    padding-bottom: 0.2px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
@@ -144,6 +153,15 @@ body {
 .item-2 .link_1 {
   display: block;
 }
+@media (max-width:767px) {
+  .item-2 {
+    height: 22px;
+    padding-top: 11px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
 
 /*---------------------------------------------------- main */
 
@@ -155,21 +173,20 @@ main {
 }
 @media (min-width:768px) and (max-width:991px) {
   main {
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 }
 @media (max-width:767px) {
   main {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 27px;
+    padding-right: 27px;
   }
 }
 
 /*---------------------------------------------------- link */
 
 .item-1:link, .item-1:visited, .item-1:active, .item-1:hover {
-  color: #ffffff;
   text-decoration: none;
 }
 
@@ -184,6 +201,16 @@ main {
 .link_1:hover, .link_1:active {
   color: #AD4720;
   text-decoration: none;
+}
+@media (max-width:767px) {
+  .link_1:link, .link_1:visited {
+    font-size: 11px;
+  }
+}
+@media (max-width:767px) {
+  .link_1:hover, .link_1:active {
+    font-size: 11px;
+  }
 }
 
 .circle-1:hover, .circle-2:hover, .circle-3:hover {
@@ -211,47 +238,73 @@ main {
 /*---------------------------------------------------- font */
 
 header h2 {
+  font-weight: lighter;
   font-size: 34px;
   color: #ffffff;
 }
+@media (max-width:767px) {
+  header h2 {
+    font-size: 24px;
+  }
+}
 
 header h5 {
+  font-weight: lighter;
   font-size: 16px;
   color: #ffffff;
+}
+
+main h1 {
+  color: #AD4720;
   font-weight: lighter;
+}
+@media (min-width:768px) and (max-width:991px) {
+  main h1 {
+    font-size: 23px;
+  }
+}
+@media (max-width:767px) {
+  main h1 {
+    font-size: 21px;
+  }
+}
+
+main p {
+  color: #AD4720;
+}
+@media (max-width:767px) {
+  main p {
+    font-size: 13px;
+  }
 }
 
 .font_error {
   color: #E48E6D;
-  font-size: 20px;
+}
+@media (max-width:767px) {
+  .font_error {
+    font-size: 12px;
+  }
 }
 
 footer p {
+  font-size: 15px;
   color: #843213;
 }
-
-h1 {
-  color: #AD4720;
-  font-weight: lighter;
-}
-
-h2 {
-  color: #AD4720;
-  font-weight: lighter;
-}
-
-p {
-  color: #AD4720;
+@media (max-width:767px) {
+  footer p {
+    font-size: 11px;
+  }
 }
 
 /*---------------------------------------------------- */
 
+/* PC
+@media (min-width:992px){} */
 /* tablet */
 @media (min-width:768px) and (max-width:991px){}
 /* phone */
 @media (max-width:767px){}
-/* PC */
-@media (min-width:992px){}
 
 
 .color-sample {
