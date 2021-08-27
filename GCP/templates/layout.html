@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		$('#nav li a').each(function(){
+		$(".item-2", "link_1").each(function(){
 			var $href = $(this).attr('href');
 			if(location.href.match($href)) {
 			$(this).addClass('active');
@@ -44,7 +44,7 @@
 	</header>
 
 	<main>
-		<div style="min-height: 80vh">
+		<div style="min-height: 65vh">
 			{% block content %}
 				<!-- content -->
 			{% endblock %}

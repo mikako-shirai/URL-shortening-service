@@ -1,21 +1,6 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<div class="circle">
-    <div class="circle-1">
-        <p>Praesent nec erat urna. Integer feugiat vel libero id porta. Aenean elementum lectus vitae est fringilla iaculis. Nulla aliquet sem pulvinar.</p>
-    </div>
-    
-    <div class="circle-2">
-        <p>Suspendisse eros augue, gravida sed interdum at, laoreet vel sem. Pellentesque auctor hendrerit, sit amet interdum nisl aliquam. Nunc vel porttitor augue.</p>
-    </div>
-    
-    <div class="circle-3">
-        <p>Integer ultrices a nulla sit amet aliquet. Praesent quis gravida turpis. Donec viverra venenatis pulvinar. Sed ut luctus mauris, in pulvinar turpis. Donec sodales velit consequat.</p>
-    </div>
-</div>
-
-
 <div>
 	<h1>SHORT LINK GENERATOR</h1>
 	<p>{{ message_get1 }}</p>
@@ -29,7 +14,7 @@
 
 <div>
 	<form action="/" method="POST" enctype="multipart/form-data">
-		<input type="text" name="originalURl" placeholder="link">
+		<input type="text" name="originalURl" placeholder="link"><br><br>
 		<input type="submit" value="shorten">
 	</form>
 </div>
@@ -39,5 +24,19 @@
 	<p>{{ message_post1 }}<a href="{{ originalURL }}" class="link_2">{{ originalURL }}</a></p>
 	<p>{{ message_post2 }}<a href="{{ generatedURL }}" class="link_2">{{ generatedURL }}</a></p>
 </div>
+
+<!-- <div class="circle">
+    <div class="circle-1">
+        <p>Praesent nec erat urna. Integer feugiat vel libero id porta. Aenean elementum lectus vitae est fringilla iaculis. Nulla aliquet sem pulvinar.</p>
+    </div>
+    
+    <div class="circle-2">
+        <p>Suspendisse eros augue, gravida sed interdum at, laoreet vel sem. Pellentesque auctor hendrerit, sit amet interdum nisl aliquam. Nunc vel porttitor augue.</p>
+    </div>
+    
+    <div class="circle-3">
+        <p>Integer ultrices a nulla sit amet aliquet. Praesent quis gravida turpis. Donec viverra venenatis pulvinar. Sed ut luctus mauris, in pulvinar turpis. Donec sodales velit consequat.</p>
+    </div>
+</div> -->
 {% endblock %}
 

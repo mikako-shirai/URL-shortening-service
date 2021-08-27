@@ -8,25 +8,14 @@
 </head>
 <body>
 	<header>
-		<div style="min-height: 10vh"></div>
-		<!-- <div class="flex-header">
-			<div class="item-1">
-				<a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
-			</div>
-			<div class="item-1">
-				<a href="{{ url_for('custom_link') }}" class="link_1">custom URL</a>
-			</div>
-			<div class="item-1">
-				<a href="{{ url_for('custom_link') }}" class="link_1">custom expiration</a>
-			</div>
-		</div> -->
+		<div style="min-height: 15vh"></div>
 	</header>
 
 	<main>
-		<div align="center" style="min-height: 70vh">
-			<div class="icon-404">
+		<div align="center" style="min-height: 75vh">
+			<div align="center">
 				<span>4</span>
-				<svg xmlns="http://www.w3.org/2000/svg" width="95" height="95" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
+				<svg class="icon-404" xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-emoji-dizzy" viewBox="0 0 16 16">
 					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 					<path d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
 				</svg>
@@ -35,18 +24,18 @@
 			<a>Page Not Found</a>
 
 			<div class="flex-main">
-				<div class="item-2">
-					<a href="{{ url_for('short_link') }}" class="link_2"><h4>< Back To Home</h4></a>
+				<div class="item-1">
+					<a href="{{ url_for('short_link') }}" class="link_2"><&nbsp;&nbsp;Back To Home</a>
 				</div>
-				<div class="item-2">
+				<div align="center" class="item-1">
 					<div class="icon-home">
-						<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="currentColor" class="bi bi-signpost-split" viewBox="0 0 16 16">
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-signpost-split" viewBox="0 0 16 16">
 							<path d="M7 7V1.414a1 1 0 0 1 2 0V2h5a1 1 0 0 1 .8.4l.975 1.3a.5.5 0 0 1 0 .6L14.8 5.6a1 1 0 0 1-.8.4H9v10H7v-5H2a1 1 0 0 1-.8-.4L.225 9.3a.5.5 0 0 1 0-.6L1.2 7.4A1 1 0 0 1 2 7h5zm1 3V8H2l-.75 1L2 10h6zm0-5h6l.75-1L14 3H8v2z"/>
 						</svg>
 					</div>
 				</div>
-				<div class="item-2">
-					<a href="{{ url_for('random_page') }}" class="link_2"></h4>Explore The World ></h4></a>
+				<div class="item-1">
+					<a href="{{ URL }}" class="link_2">Explore The World&nbsp;&nbsp;></a>
 				</div>
 			</div>
 		</div>
