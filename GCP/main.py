@@ -72,8 +72,8 @@ def append_data(originalURL, generatedKey):
 def short_link():
     message1 = 'You can create a short URL alias with randomly chosen 5 characters'
     message2 = '...or create '
-    message3 = 'a custom URL'
-    message4 = ' with an alias of your choice'
+    message3 = 'a custom URL alias'
+    message4 = ' of your choice'
     if request.method == 'GET':
         # message5 = 'enter a URL to be shortened'
         return render_template('index.html', message_get1 = message1, message_get2 = message2, \
