@@ -1,12 +1,34 @@
-/*---------------------------------------------------- body */
+/*---------------------------------------------------- body footer */
 
 body {
-  background: #F8F1EF;
+  background: #DAE5DD;
+  background: linear-gradient(-15deg, rgba(220, 206, 216, 0.8), rgba(206, 209, 220, 0.8), rgba(206, 220, 210, 0.8), rgba(220, 217, 206, 0.85));
+  animation: huerotator 4.5s infinite alternate;
   font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
   font-weight: lighter;
   padding-top: 20px;
   word-wrap: break-word;
   min-width: 0;
+}
+@keyframes huerotator {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
 }
 
 /*---------------------------------------------------- main */
@@ -60,15 +82,15 @@ body {
 
 .link_2:link, .link_2:visited, .link_2:active {
   font-size: 18px;
-  font-weight: 300;
-  color: #AD4720;
-  opacity: 0.6;
+  font-weight: 200;
+  color: #676E69;
+  opacity: 0.7;
   text-decoration: none;
 }
 .link_2:hover {
   font-size: 19px;
   font-weight: 300;
-  color: #E48E6D;
+  color: #FFFFFF;
   text-decoration: none;
 }
 @media (max-width:767px) {
@@ -84,12 +106,12 @@ body {
   }
 }
 
-.link_3:link, .link_3:visited, .link_3:active {
-  color: #843213;
+.GitHub:link, .GitHub:visited, .GitHub:active {
+  color: #676E69;
   text-decoration: none;
 }
-.link_3:hover {
-  color: #423733;
+.GitHub:hover {
+  color: #343735;
   text-decoration: none;
 }
 
@@ -98,12 +120,14 @@ body {
 main span {
   font-weight: 200;
   font-size: 100px;
-  color: #AD4720;
+  color: #676E69;
+  opacity: 1;
 }
 
 main a {
   font-size: 22px;
-  color: #AD4720;
+  color: #676E69;
+  opacity: 1;
 }
 @media (max-width:767px) {
   main a {
@@ -112,7 +136,8 @@ main a {
 }
 
 .icon-404 {
-  color: #AD4720;
+  color: #676E69;
+  opacity: 1;
   animation: icon-animation 9.3s infinite linear;
 }
 @keyframes icon-animation {
@@ -120,13 +145,12 @@ main a {
 }
 
 .icon-home {
-  color: #E48E6D;
-  opacity: 0.9;
+  color: #676E69;
 }
 
 footer p {
   font-size: 15px;
-  color: #843213;
+  color: #676E69;
 }
 @media (max-width:767px) {
   footer p {
@@ -144,16 +168,56 @@ footer p {
 @media (max-width:767px){}
 
 
-.color-sample {
-  color: #423733;
-  color: #665650;
-  color: #843213;
-  color: #AD4720;
-  color: #E48E6D;
-  color: #F0AF95;
-  color: #F6C8B4;
-  color: #F9EAE4;
-  color: #F7EAE5;
-  color: #F8F1EF;
+.color-sample2 {
+  color: #FFFFFF;
+  color: #F9FBF9; /* form inside */
+  color: #F3F6F4; /* */
+  color: #E7EDE9; /* */
+  color: #DAE5DD; /* .link_1:hover */
+  color: #D4E0D8; /* body background */
+  color: #CEDCD2; /* */
+  color: #B4C1B8; /* flex-header1 */
+  color: #9BA59E; /* (BELOW flex-header2) / form icon */
+  color: #818983; /* header2-1:hover / form button text */
+  color: #676E69; /* github / (BELOW main p) */
+  color: #4D524F; /* (BELOW main h1) */
+  color: #343735; /* github:hover */
+  color: #1A1B1A;
+  color: #898B8A;
+
+  color: #CEDCD2; /* ORIGINAL / body background */
+  color: #CED1DC;
+  color: #DCCED8; /*            body background */
+  color: #DCD9CE;
+
+  color: #B4C1B8; /* form button */
+  color: #B4B7C1;
+  color: #C1B4BD; /* form button */
+  color: #C1BEB4;
+
+  color: #9BA59E; /* header2-1 / form icon / form button:hover */
+  color: #9B9DA5; /* header2-2 / header2-2:hover / .link_2 */
+  color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form button:hover */
+  color: #A5A39B;
+
+  color: #676E69; /* main p */
+  color: #67696E; /* main p */
+  color: #6E676C; /* main p */
+  color: #6E6D67;
+
+  color: #4D524F; /* main h1 */
+  color: #4D4E52; /* main h1 */
+  color: #524D51; /* main h1 */
+  color: #52514D;
+}
+  
+.color-sample3 {
+  color: #FDFCFC;
+  color: #E3BBC4;
+  color: #E5C9D0;
+  color: #DCCED1;
+  color: #CEDCD2;
+  color: #CEDCD9;
+  color: #CED8DC;
 }
 

@@ -1,0 +1,37 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<div>
+	<h1>CUSTOM LINK GENERATOR</h1>
+	<p>{{ message_get1 }}</p>
+	<p>{{ message_get2 }}</p>
+</div>
+
+<br>
+<div>
+	<p class="font_error">{{ message_error1 }}</p>
+</div>
+
+<form class="flex-main2" action="/custom" method="POST" enctype="multipart/form-data">
+	<svg class="btn-2 icon-str" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" viewBox="0 0 16 16">
+		<path d="M2.244 13.081l.943-2.803H6.66l.944 2.803H8.86L5.54 3.75H4.322L1 13.081h1.244zm2.7-7.923L6.34 9.314H3.51l1.4-4.156h.034zm9.146 7.027h.035v.896h1.128V8.125c0-1.51-1.114-2.345-2.646-2.345-1.736 0-2.59.916-2.666 2.174h1.108c.068-.718.595-1.19 1.517-1.19.971 0 1.518.52 1.518 1.464v.731H12.19c-1.647.007-2.522.8-2.522 2.058 0 1.319.957 2.18 2.345 2.18 1.06 0 1.716-.43 2.078-1.011zm-1.763.035c-.752 0-1.456-.397-1.456-1.244 0-.65.424-1.115 1.408-1.115h1.805v.834c0 .896-.752 1.525-1.757 1.525z"></path>
+	</svg>
+	<input class="btn-2" type="text" name="customKey" placeholder="characters">
+</form>
+<form class="flex-main1" action="/custom" method="POST" enctype="multipart/form-data">
+	<svg class="btn-1 icon-link" xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" viewBox="0 0 16 16">
+		<path d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"></path>
+		<path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"></path>
+	</svg>
+	<input class="btn-1" type="text" name="originalURl" placeholder="link">
+	<input class="btn-1" type="submit" value="create">
+</form>
+
+<br>
+<div>
+	<p class="font_error">{{ message_error2 }}</p>
+	<p>{{ message_post1 }}<a href="{{ message_post2 }}" class="link_2">{{ message_post2 }}</a></p>
+	<p>{{ message_post3 }}<a href="{{ message_post4 }}" class="link_2">{{ message_post4 }}</a></p>
+</div>
+{% endblock %}
+
