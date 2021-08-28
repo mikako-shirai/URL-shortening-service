@@ -100,17 +100,17 @@ def custom_link():
     message1 = 'Enter a link and characters you want to use'
     message2 = 'note : input must be 6 to 30 characters long without forward and back slashes'
     if request.method == 'GET':
-        return render_template('custom.html', message_get1 = message1, message_get2 = message2)
+        return render_template('custom_link.html', message_get1 = message1, message_get2 = message2)
     else:
         originalURL = request.form.get('originalURl')
         customKey = request.form.get('customKey')
         if not URL_check(originalURL) or not key_check(customKey):
             message_error = 'Please enter a valid URL and characters'
-            return render_template('custom.html', message_get1 = message1, \
+            return render_template('custom_link.html', message_get1 = message1, \
                                    message_get2 = message2, message_error1 = message_error)
         else:
             message_error = 'Sorry, this alias is already taken'
-            return render_template('custom.html', message_get1 = message1, \
+            return render_template('custom_link.html', message_get1 = message1, \
                                    message_get2 = message2, message_error2 = message_error)
 # ----------------------------------------------------------------------------------------NEW
 
