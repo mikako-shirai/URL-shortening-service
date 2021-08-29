@@ -125,13 +125,13 @@ main span {
 }
 
 main a {
-  font-size: 22px;
+  font-size: 25px;
   color: #676E69;
   opacity: 1;
 }
 @media (max-width:767px) {
   main a {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
@@ -146,15 +146,21 @@ main a {
 
 .icon-home {
   color: #676E69;
+  opacity: 0.95;
 }
 
 footer p {
   font-size: 15px;
   color: #676E69;
 }
+@media (min-width:768px) and (max-width:991px) {
+  footer p {
+    font-size: 13px;
+  }
+}
 @media (max-width:767px) {
   footer p {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -169,45 +175,45 @@ footer p {
 
 
 .color-sample2 {
-  color: #FFFFFF;
-  color: #F9FBF9; /* form inside */
-  color: #F3F6F4; /* */
-  color: #E7EDE9; /* */
-  color: #DAE5DD; /* .link_1:hover */
-  color: #D4E0D8; /* body background */
-  color: #CEDCD2; /* */
-  color: #B4C1B8; /* flex-header1 */
-  color: #9BA59E; /* (BELOW flex-header2) / form icon */
-  color: #818983; /* header2-1:hover / form button text */
-  color: #676E69; /* github / (BELOW main p) */
-  color: #4D524F; /* (BELOW main h1) */
-  color: #343735; /* github:hover */
+  color: #FFFFFF; /* .link_2:hover */
+  color: #F9FBF9;
+  color: #F3F6F4;
+  color: #E7EDE9;
+  color: #DAE5DD; /* body background */
+  color: #D4E0D8;
+  color: #CEDCD2;
+  color: #B4C1B8;
+  color: #9BA59E;
+  color: #818983;
+  color: #676E69; /* .link_2 / .GitHub / main span / main a / .icon-404 / .icon-home / footer p */
+  color: #4D524F;
+  color: #343735; /* .GitHub:hover */
   color: #1A1B1A;
   color: #898B8A;
 
   color: #CEDCD2; /* ORIGINAL / body background */
   color: #CED1DC;
-  color: #DCCED8; /*            body background */
-  color: #DCD9CE;
+  color: #DCCED8;
+  color: #DCD9CE; /*            body background */
 
-  color: #B4C1B8; /* form button */
+  color: #B4C1B8;
   color: #B4B7C1;
-  color: #C1B4BD; /* form button */
+  color: #C1B4BD;
   color: #C1BEB4;
 
-  color: #9BA59E; /* header2-1 / form icon / form button:hover */
-  color: #9B9DA5; /* header2-2 / header2-2:hover / .link_2 */
-  color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form button:hover */
+  color: #9BA59E;
+  color: #9B9DA5;
+  color: #A59BA2;
   color: #A5A39B;
 
-  color: #676E69; /* main p */
-  color: #67696E; /* main p */
-  color: #6E676C; /* main p */
+  color: #676E69; /* .link_2 / .GitHub / main span / main a / .icon-404 / .icon-home / footer p */
+  color: #67696E;
+  color: #6E676C;
   color: #6E6D67;
 
-  color: #4D524F; /* main h1 */
-  color: #4D4E52; /* main h1 */
-  color: #524D51; /* main h1 */
+  color: #4D524F;
+  color: #4D4E52;
+  color: #524D51;
   color: #52514D;
 }
   

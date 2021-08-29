@@ -34,7 +34,7 @@ body {
 }
 @media (max-width:767px) {
   body {
-    padding-top: 5px;
+    /* padding-top: 5px; */
     padding-left: 9px;
     padding-right: 9px;
   }
@@ -44,7 +44,6 @@ body {
   
 .flex-header1 {
   background: #B4C1B8;
-  border-radius: 3px 3px 0px 0px;
   padding: 10px 50px 10px 50px;
   margin-bottom:  1.3px;
 }
@@ -94,7 +93,6 @@ body {
   text-align: center;
   margin-right:  0.4px;
   margin-left: 0.4px;
-  border-radius: 0px 0px 0px 0px;
 }
 .item-2:nth-child(3) {
   /* background: #A59BA2; */
@@ -384,12 +382,12 @@ main p {       /*      depends on page      */
 }
 @media (min-width:768px) and (max-width:991px) {
   main p {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 @media (max-width:767px) {
   main p {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
   
@@ -407,12 +405,12 @@ main p {       /*      depends on page      */
 }
 @media (min-width:768px) and (max-width:991px) {
   .font_error {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 @media (max-width:767px) {
   .font_error {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
   
@@ -427,7 +425,7 @@ footer p {
 }
 @media (max-width:767px) {
   footer p {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -444,11 +442,11 @@ footer p {
 .color-sample2 {
   color: #FFFFFF;
   color: #F9FBF9; /* form inside */
-  color: #F3F6F4; /* */
-  color: #E7EDE9; /* */
+  color: #F3F6F4;
+  color: #E7EDE9;
   color: #DAE5DD; /* .link_1:hover */
   color: #D4E0D8; /* body background */
-  color: #CEDCD2; /* */
+  color: #CEDCD2;
   color: #B4C1B8; /* flex-header1 */
   color: #9BA59E; /* (BELOW flex-header2) / form icon(short) */
   color: #818983; /* header2-1:hover / form button text */
@@ -468,7 +466,7 @@ footer p {
   color: #C1B4BD; /* form button */
   color: #C1BEB4;
 
-  color: #9BA59E; /* header2-1 / form icon / form button:hover */
+  color: #9BA59E; /* header2-1 / form icon(short) / form button:hover */
   color: #9B9DA5; /* header2-2 / header2-2:hover / .link_2 / form icon(custom_lk) */
   color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form button:hover */
   color: #A5A39B;
@@ -483,7 +481,7 @@ footer p {
   color: #524D51; /* main h1 */
   color: #52514D;
 }
-  
+
 .color-sample3 {
   color: #FDFCFC;
   color: #E3BBC4;
