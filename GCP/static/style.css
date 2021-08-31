@@ -159,10 +159,8 @@ footer {
 .btn-1:nth-child(1) {       /*      depends on page      */
   background: rgba(155, 165, 158, 0.45);
   text-align: center;
-  border-radius: 9px 0px 0px 9px;
+  border-radius: 6px 0px 0px 6px;
   width: 45px;
-  height: 33px;
-  padding-top: 7px;
         
   border-width: 0.7px;
   border-style: outset;
@@ -173,7 +171,7 @@ footer {
   color: #818983;
   font-weight: lighter;
   font-size: 18px;
-  border-radius: 0px 9px 9px 0px;
+  border-radius: 0px 6px 6px 0px;
   width: 500px;
   padding-left: 25px;
   margin-right: 20px;
@@ -188,7 +186,7 @@ footer {
   text-align: center;
   font-weight: lighter;
   font-size: 17px;
-  border-radius: 9px 9px 9px 9px;
+  border-radius: 6px 6px 6px 6px;
   width: 200px;
       
   border-width: 0.7px;
@@ -203,7 +201,6 @@ footer {
 	.btn-1:nth-child(1) {
 		width: 35px;
     height: 29px;
-    padding-top: 4px;
 	}
 }
 @media (max-width:767px) {
@@ -235,10 +232,8 @@ footer {
 .btn-2:nth-child(1) {       /*      depends on page      */
 	background: rgba(155, 157, 165, 0.45);
   text-align: center;
-  border-radius: 9px 0px 0px 9px;
+  border-radius: 6px 0px 0px 6px;
   width: 45px;
-  height: 33px;
-  padding-top: 7px;
         
   border-width: 0.7px;
   border-style: outset;
@@ -249,7 +244,7 @@ footer {
   color: #818983;
   font-weight: lighter;
   font-size: 18px;
-  border-radius: 0px 9px 9px 0px;
+  border-radius: 0px 6px 6px 0px;
   width: 500px;
   padding-left: 25px;
         
@@ -262,24 +257,95 @@ footer {
 	}
 }
 @media (max-width:767px) {
-	.btn-2:nth-child(1), .btn-2:nth-child(3) {
+	.btn-2:nth-child(1) {
 		width: 35px;
     height: 29px;
-    padding-top: 4px;
 	}
 }
 @media (max-width:767px) {
-	.btn-2:nth-child(2), .btn-2:nth-child(4) {
+	.btn-2:nth-child(2) {
 		font-size: 13px;
     width: 500px;
     padding-left: 12px;
     margin-right: 14px;
 	}
 }
+
+/*---------------------------------------------------- flex3 */
+
+.flex-main3 {
+  display: flex;
+  align-items: center;
+  padding-bottom: 9px;
+}
+.date-0 {
+	background: rgba(155, 157, 165, 0.45);
+  text-align: center;
+  border-radius: 6px 1px 1px 6px;
+  height: 40px;
+  width: 45px;
+  border-width: 0.7px;
+  border-style: outset;
+  border-color: initial;
+}
+.btn-3 {
+  background: #F9FBF9;
+  color: #818983;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 18px;
+  height: 40px;
+  margin-right: 5px;
+  padding-left: 15px;
+  -webkit-appearance:none;
+  border-radius: 6px 6px 6px 6px;
+  border-width: 0.7px;
+  border-style: inset;
+  border-color: initial;
+}
+.date-1 {
+  width: 99px;
+  border-radius: 1px 6px 6px 1px;
+}
+.date-2 {
+  width: 155px;
+}
+.date-3 {
+  width: 60px;
+  margin-right: 20px;
+}
+.date-4 {
+  width: 60px;
+}
+.date-5 {
+  width: 60px;
+}
+.date-lt {
+  align-items: center;
+  text-align: center;
+  color: #676E69;
+  font-size: 25px;
+  margin-left: 3px;
+  margin-right: 8px;
+}
 @media (max-width:767px) {
-	.btn-2:nth-child(5) {
-		font-size: 12px;
-    width: 110px;
+	.date-0 {
+    width: 35px;
+    height: 29px;
+	}
+}
+@media (max-width:767px) {
+	.btn-3 {
+    font-size: 13px;
+		height: 33px;
+    padding-left: 12px;
+	}
+}
+@media (max-width:767px) {
+	.date-lt {
+    font-size: 20px;
+    margin-left: 2px;
+    margin-right: 6px;
 	}
 }
 
@@ -394,8 +460,10 @@ main p {       /*      depends on page      */
 .icon-link {
   color: #ffffff;
 }
-
 .icon-str {
+  color: #ffffff;
+}
+.icon-date {
   color: #ffffff;
 }
   

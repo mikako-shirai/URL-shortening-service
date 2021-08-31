@@ -124,13 +124,16 @@ def custom_expiration():
     if request.method == 'GET':
         return render_template('custom_expiration.html')
 
+    inputYear = request.form.get('year')
+    inputMonth = request.form.get('month')
     inputDate = request.form.get('date')
-    inputTime = request.form.get('time')
+    inputHour = request.form.get('hour')
+    inputMinute = request.form.get('minute')
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
 
     generatedURL = GCP_URL + customKey
-    inputDate = inputDate + ' ' + inputTime
+    inputDate = inputYear + ' ' + inputMonth + ' ' + inputDate + ' ' + inputHour + ' ' + inputMinute
     message_post1 = 'link  :  '
     message_post2 = 'alias  :  '
     message_post3 = 'date  :  '
