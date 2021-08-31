@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
+keywords = ['custom', 'expiration', 'link', '404', 'cron']
 
 # -----------------------------------------------------------------------------------
 
@@ -33,31 +34,41 @@ def key_check(customKey):
 
 # -----------------------------------------------------------------------------------
 
-def DB_check(originalURL):
+def DB_generatedKey(originalURL):
     generatedKey = generate_key(key_length)
     keys = db.collection(u'keys').stream()
-    keyIDs = [key.id for key in keys]
-
+    keyIDs = [key.id for key in keys] + keywords
     while generatedKey in keyIDs:
         generatedKey = generate_key(key_length)
     append_data(originalURL, generatedKey)
     return generatedKey
 
-def append_data(originalURL, generatedKey):
-    generatedKey = generatedKey
+def DB_customKey(originalURL, customKey):
+    keys = db.collection(u'keys').stream()
+    keyIDs = [key.id for key in keys] + keywords
+    if customKey in keyIDs:
+        return False
+    append_data(originalURL, customKey)
+    return True
+
+def append_data(originalURL, key, expirationDate=None):
+    key = key
     originalURL = originalURL
-    generatedURl = GCP_URL + generatedKey
+    generatedURL = GCP_URL + key
     dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    expirationDate = dateCreated + datetime.timedelta(days=7)
+    if expirationDate:
+        pass
+    else:
+        expirationDate = dateCreated + datetime.timedelta(days=7)
     
-    db.collection(u'URLs').document(generatedKey).set({
+    db.collection(u'URLs').document(key).set({
         u'originalURL': originalURL,
-        u'generatedURL': generatedURl,
+        u'generatedURL': generatedURL,
         u'dateCreated': dateCreated,
         u'expirationDate': expirationDate,
         u'pageViews': 0
     })
-    db.collection(u'keys').document(generatedKey).set({
+    db.collection(u'keys').document(key).set({
         u'originalURL': originalURL,
         u'pageViews': 0
     })
@@ -72,46 +83,92 @@ def append_data(originalURL, generatedKey):
 def short_link():
     if request.method == 'GET':
         return render_template('index.html')
-    else:
-        originalURL = request.form.get('originalURl')
-        if URL_check(originalURL):
-            generatedURL = GCP_URL + DB_check(originalURL)
-            message_post1 = 'link  :  '
-            message_post2 = 'alias  :  '
-            return render_template('index.html', message_post1 = message_post1, message_post2 = message_post2, \
-                                   originalURL = originalURL, generatedURL = generatedURL)
-        else:
-            message_error = 'Please enter a valid URL'
-            return render_template('index.html', message_error = message_error)
 
-# ----------------------------------------------------------------------------------------NEW
+    originalURL = request.form.get('originalURl')
+    if URL_check(originalURL):
+        generatedURL = GCP_URL + DB_generatedKey(originalURL)
+        message_post1 = 'link  :  '
+        message_post2 = 'alias  :  '
+        return render_template('index.html', message_post1 = message_post1, message_post2 = message_post2, \
+                                originalURL = originalURL, generatedURL = generatedURL)
+    else:
+        message_error = 'Please enter a valid URL'
+        return render_template('index.html', message_error = message_error)
+
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
     if request.method == 'GET':
         return render_template('custom_link.html')
-    else:
-        originalURL = request.form.get('originalURl')
-        customKey = request.form.get('customKey')
-        if not URL_check(originalURL) or not key_check(customKey):
-            message_error = 'Please enter a valid URL and characters'
-            return render_template('custom_link.html', message_error1 = message_error)
+
+    customKey = request.form.get('customKey')
+    originalURL = request.form.get('originalURl')
+    if URL_check(originalURL) and key_check(customKey):
+        if DB_customKey(originalURL, customKey):
+            generatedURL = GCP_URL + customKey
+            message_post1 = 'link  :  '
+            message_post2 = 'alias  :  '
+            return render_template('custom_link.html', message_post1 = message_post1, message_post2 = message_post2, \
+                                   originalURL = originalURL, generatedURL = generatedURL)
         else:
-            message_error = 'Sorry, this alias is already taken'
-            return render_template('custom_link.html', message_error2 = message_error)
-# ----------------------------------------------------------------------------------------NEW
+            message_error1 = 'Sorry, this alias is already taken'
+            message_error2 = 'Please try different characters'
+            return render_template('custom_link.html', message_error1 = message_error1, message_error2 = message_error2)
+    else:
+        message_error1 = 'Please enter a valid URL and characters'
+        return render_template('custom_link.html', message_error1 = message_error1)
+
+# -----------------------------------------------------------------------------------------NEW
+
+@app.route('/custom/expiration', methods=["GET","POST"])
+def custom_expiration():
+    if request.method == 'GET':
+        return render_template('custom_expiration.html')
+
+    inputDate = request.form.get('date')
+    inputTime = request.form.get('time')
+    customKey = request.form.get('customKey')
+    originalURL = request.form.get('originalURl')
+
+    generatedURL = GCP_URL + customKey
+    inputDate = inputDate + ' ' + inputTime
+    message_post1 = 'link  :  '
+    message_post2 = 'alias  :  '
+    message_post3 = 'date  :  '
+    return render_template('custom_expiration.html', message_post1 = message_post1, message_post2 = message_post2, \
+                            message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, inputDate = inputDate)
+
+
+
+
+    # if URL_check(originalURL) and key_check(customKey):
+    #     if DB_customKey(originalURL, customKey):
+    #         generatedURL = GCP_URL + customKey
+    #         message_post1 = 'link  :  '
+    #         message_post2 = 'alias  :  '
+    #         return render_template('custom_expiration.html', message_post1 = message_post1, message_post2 = message_post2, \
+    #                                originalURL = originalURL, generatedURL = generatedURL)
+    #     else:
+    #         message_error1 = 'Sorry, this alias is already taken'
+    #         message_error2 = 'Please try different characters'
+    #         return render_template('custom_expiration.html', message_error1 = message_error1, message_error2 = message_error2)
+    # else:
+    #     message_error1 = 'Please enter a valid URL and characters'
+    #     return render_template('custom_expiration.html', message_error1 = message_error1)
+
+# -----------------------------------------------------------------------------------------NEW
 
 @app.route('/<string>')
 def URL_redirect(string):
-    generatedKey = string
-    if len(generatedKey) != key_length:
+    string = string
+    if len(string) < key_length or len(string) > 30:
         abort(404)
 
-    key = db.collection(u'keys').document(generatedKey).get()
+    key = db.collection(u'keys').document(string).get()
     if key.exists:
-        db.collection(u'URLs').document(generatedKey).update({
+        db.collection(u'URLs').document(string).update({
             u'pageViews': firestore.Increment(1)
         })
-        db.collection(u'keys').document(generatedKey).update({
+        db.collection(u'keys').document(string).update({
             u'pageViews': firestore.Increment(1)
         })
         originalURL = key.to_dict()['originalURL']
@@ -126,11 +183,12 @@ def expiration_check():
 
     for URL in URLs:
         expirationDate = URL.to_dict()['expirationDate']
-        if dateNow > expirationDate:
+        if dateNow == expirationDate or dateNow > expirationDate:
             # add expired URL information to 'expiredURLs' collection
             data = db.collection(u'URLs').document(URL.id).get().to_dict()
             db.collection(u'expiredURLs').document(URL.id).set(data)
 
+            # deletion
             db.collection(u'URLs').document(URL.id).update({
                 u'originalURL': firestore.DELETE_FIELD,
                 u'generatedURL': firestore.DELETE_FIELD,
@@ -144,6 +202,11 @@ def expiration_check():
                 u'pageViews': firestore.DELETE_FIELD
             })
             db.collection(u'keys').document(URL.id).delete()
+            originalURL = URL.to_dict()['originalURL']
+            db.collection(u'random').document(u'random').update({
+                u'list': firestore.ArrayRemove([originalURL]),
+                u'total': firestore.Increment(-1)
+            })
     return '', 200
 
 # -----------------------------------------------------------------------------------
@@ -152,9 +215,12 @@ def expiration_check():
 def page_not_found(e):
     dic = db.collection(u'random').document(u'random').get().to_dict()
     total = dic['total']
-    URLs = list(dic['list'])
-    randomNum = random.randrange(0, total)
-    URL = URLs[randomNum]
+    if total == 0:
+        URL = 'https://www.google.com/'
+    else:
+        URLs = list(dic['list'])
+        randomNum = random.randrange(0, total)
+        URL = URLs[randomNum]
     return render_template('404.html', URL = URL), 404
 
 # -----------------------------------------------------------------------------------
@@ -171,7 +237,6 @@ def dated_url_for(endpoint, **values):
                                      endpoint, filename)
             values['q'] = int(os.stat(file_path).st_mtime)
     return url_for(endpoint, **values)
-
 
 
 if __name__ == "__main__":
