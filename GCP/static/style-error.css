@@ -2,7 +2,7 @@
 
 body {
   background: #DAE5DD;
-  background: linear-gradient(-15deg, rgba(220, 206, 216, 0.8), rgba(206, 209, 220, 0.8), rgba(206, 220, 210, 0.8), rgba(220, 217, 206, 0.85));
+  background: linear-gradient(-15deg, rgba(220, 206, 216, 0.8), rgba(206, 209, 220, 0.8), rgba(206, 220, 210, 0.8), rgba(220, 217, 206, 0.8));
   animation: huerotator 4.5s infinite alternate;
   font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
   font-weight: lighter;

@@ -132,8 +132,8 @@ main {
 @media (max-width:767px) {
   main {
     margin-top: 30px;
-    padding-left: 27px;
-    padding-right: 27px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -161,13 +161,14 @@ footer {
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   width: 45px;
-        
+  height: 33px;
+  padding-top: 7px;
   border-width: 0.7px;
   border-style: outset;
   border-color: initial;
 }
 .btn-1:nth-child(2) {       /*      depends on page      */
-  background: #F9FBF9;
+  background: #F3F6F4;
   color: #818983;
   font-weight: lighter;
   font-size: 18px;
@@ -175,7 +176,6 @@ footer {
   width: 500px;
   padding-left: 25px;
   margin-right: 20px;
-        
   border-width: 0.7px;
   border-color: initial;
 }
@@ -188,7 +188,6 @@ footer {
   font-size: 17px;
   border-radius: 6px 6px 6px 6px;
   width: 200px;
-      
   border-width: 0.7px;
   border-color: initial;
 }
@@ -201,6 +200,9 @@ footer {
 	.btn-1:nth-child(1) {
 		width: 35px;
     height: 29px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 	}
 }
 @media (max-width:767px) {
@@ -234,20 +236,20 @@ footer {
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   width: 45px;
-        
+  height: 33px;
+  padding-top: 7px;
   border-width: 0.7px;
   border-style: outset;
   border-color: initial;
 }
 .btn-2:nth-child(2) {       /*      depends on page      */
-  background: #F9FBF9;
+  background: #F3F6F4;
   color: #818983;
   font-weight: lighter;
   font-size: 18px;
   border-radius: 0px 6px 6px 0px;
   width: 500px;
   padding-left: 25px;
-        
   border-width: 0.7px;
   border-color: initial;
 }
@@ -260,6 +262,9 @@ footer {
 	.btn-2:nth-child(1) {
 		width: 35px;
     height: 29px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 	}
 }
 @media (max-width:767px) {
@@ -284,12 +289,14 @@ footer {
   border-radius: 6px 1px 1px 6px;
   height: 40px;
   width: 45px;
+  height: 33px;
+  padding-top: 7px;
   border-width: 0.7px;
   border-style: outset;
   border-color: initial;
 }
 .btn-3 {
-  background: #F9FBF9;
+  background: #F3F6F4;
   color: #818983;
   text-align: center;
   font-weight: lighter;
@@ -330,22 +337,35 @@ footer {
 }
 @media (max-width:767px) {
 	.date-0 {
-    width: 35px;
+		width: 35px;
     height: 29px;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
 	}
 }
 @media (max-width:767px) {
 	.btn-3 {
     font-size: 13px;
 		height: 33px;
-    padding-left: 12px;
+    padding-left: 5px;
 	}
+}
+@media (max-width:767px) {
+	.date-2 {
+    width: 180px;
+  }
+}
+@media (max-width:767px) {
+	.date-3 {
+    margin-right: 10px;
+  }
 }
 @media (max-width:767px) {
 	.date-lt {
     font-size: 20px;
-    margin-left: 2px;
-    margin-right: 6px;
+    margin-left: 0px;
+    margin-right: 4px;
 	}
 }
 
