@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>URLshortening</title>
-  <link rel="stylesheet" href="/static/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>URLshortening</title>
+	<link rel="stylesheet" type= "text/css" href="/static/style.css">
 </head>
 <body>
-	<div align="center">
-		<h4>short link generator</h4>
-		<p>{{ message_get }}</p>
-	</div>
-	<div align="center">
-		<form action="/" method="POST" enctype="multipart/form-data">
-			<input type="text" name="originalURl">
-			<input type="submit" value="generate">
-		</form>
-	</div>
-	<div align="center">
-		<p>{{ message_post1 }}<a href="{{ message_post2 }}">{{ message_post2 }}</a></p>
-		<p>{{ message_post3 }}<a href="{{ message_post4 }}">{{ message_post4 }}</a></p>
+	<div class="wrapper">
+		<header>
+			<div align="center" class="header-back">
+				<h4>SHORT LINK GENERATOR</h4>
+			</div>
+		</header>
+		<main>
+			<div align="center" style="min-height: 65vh">
+				<div>
+					<p>Enter a URL to be shortened</p>
+					<p class="font-error">{{ message_error }}</p>
+				</div>
+				<div>
+					<form action="/" method="POST" enctype="multipart/form-data">
+						<input type="text" name="originalURl">
+						<input type="submit" value="generate">
+					</form>
+				</div>
+				<div>
+					<p>{{ message_post1 }}<a href="{{ originalURL }}">{{ originalURL }}</a></p>
+					<p>{{ message_post2 }}<a href="{{ generatedURL }}">{{ generatedURL }}</a></p>
+				</div>
+			</div>	
+		</main>
+		<footer>
+		</footer>
 	</div>
 </body>
 </html>
+

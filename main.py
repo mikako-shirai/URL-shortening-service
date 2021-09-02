@@ -1,15 +1,20 @@
 from flask import Flask, render_template, request,  redirect, abort
 import random, string
+import re
 import json
 from ast import literal_eval
 
 
 app = Flask(__name__)
 
-key_length = 7
+key_length = 6
 
 def generate_key(key_length):
     return ''.join([random.choice(string.ascii_letters + string.digits) for i in range(key_length)])
+
+def URL_check(originalURL):
+    validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
+    return True if re.match(validFormat, originalURL) else False
 
 def checkDB(originalURL):
     with open('random_check.txt', 'r') as f:
@@ -38,15 +43,18 @@ def append_data(originalURL, generatedKey):
 @app.route('/', methods=["GET","POST"])
 def get_post():
     if request.method == 'GET':
-        message = 'enter a URL to be shortened'
-        return render_template('index.html', message_get = message)
+        return render_template('index.html')
     else:
         originalURL = request.form.get('originalURl')
-        generatedURL = 'http://127.0.0.1:5000/' + checkDB(originalURL)
-        message1 = 'original link  :   '
-        message3 = 'short link  :  '
-        return render_template('index.html', message_post1 = message1, message_post2 = originalURL, \
-                               message_post3 = message3, message_post4 = generatedURL)
+        if URL_check(originalURL):
+            generatedURL = 'http://127.0.0.1:5000/' + checkDB(originalURL)
+            message1 = 'original link  :   '
+            message2 = 'new link  :  '
+            return render_template('index.html', message_post1 = message1, message_post2 = message2, \
+                                originalURL = originalURL, generatedURL = generatedURL)
+        else:
+            message_error = 'Please enter a valid URL'
+            return render_template('index.html', message_error = message_error)
 
 @app.route('/<string>')
 def redirect_to_URL(string):
