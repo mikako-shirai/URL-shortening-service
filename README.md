@@ -51,11 +51,14 @@ This project is built using the following frameworks/services
 $ pip install Flask
 ```  
 - [Firestore][Firestore]  
-follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
+
+&ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
 - [App Engine][App Engine]  
-follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
+
+&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
 - [App Engine][App Engine] Cron Service  
-follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
+
+&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
 - [pytest][pytest]  
 ```
 $ pip install pytest
@@ -107,7 +110,7 @@ $ gcloud app deploy
 ```  
 5. go to https://YOUR_PROJECT_ID.an.r.appspot.com/ to view the application  
   
-  
+
 ## Usage  
 ### initial version example  
 ![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/initial.png)  
