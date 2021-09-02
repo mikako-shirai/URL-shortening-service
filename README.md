@@ -69,7 +69,7 @@ $ git clone https://github.com/mikako-shirai/URL-shortening-service.git
 $ python3 -m venv venv
 $ . venv/bin/activate
 ```  
-&ensp;&ensp;(to deactivate)  
+(to deactivate)  
 ```
 (venv)$ deactivate
 ```  
@@ -92,9 +92,10 @@ $ git clone https://github.com/mikako-shirai/URL-shortening-service.git
 ```
 $ export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```  
-&ensp;&ensp;*replace KEY_PATH with the path of the JSON file that contains your service account key  
+*replace KEY_PATH with the path of the JSON file that contains your service account key  
 
 3. upload cron jobs to App Engine  
+```
 $ gcloud app deploy cron.yaml
 ```  
 4. deploy the application to App Engine  
