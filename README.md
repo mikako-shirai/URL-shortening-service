@@ -47,7 +47,7 @@ $ pip install Flask
 ```  
 - [Firestore][Firestore]  
 follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
-- [Firestore][Firestore]  
+- [App Engine][App Engine]  
 follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
 - App Engine Cron Service  
 follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
@@ -71,7 +71,7 @@ $ . venv/bin/activate
 ```
 (venv)$ deactivate
 ```  
-1. install [Flask][Flask] in the virtual environment  
+1. install Flask in the virtual environment  
 ```
 (venv)$ python3 -m pip install flask
 ```  
