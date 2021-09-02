@@ -152,7 +152,7 @@ def custom_link():
 @app.route('/custom/expiration', methods=["GET","POST"])
 def custom_expiration():
     year1 = get_date()
-    year2 = year1 + 1
+    # year2 = year1 + 1
     if request.method == 'GET':
         return render_template('custom_expiration.html', year1 = year1, year2 = year2)
 

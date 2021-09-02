@@ -10,7 +10,7 @@
 	// get pathname
 	const path = window.location.pathname;
 	if (path === "/") {
-		const element = document.getElementById("shorten_header");  // --------------------------------------------------- set id to the element to be changed-->
+		const element = document.getElementById("shorten_header");
 		if (element) {
 			element.classList.add("active");
 		}
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="flex-header2">
-			<div class="item-2" id="shorten_header">    <!-- ------------------------------------------------------------- set id to the element to be changed-->
+			<div class="item-2">
 				<a href="{{ url_for('short_link') }}" class="link_1">short URL</a>
 			</div>
 			<div class="item-2">
