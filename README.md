@@ -95,6 +95,7 @@ $ export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 &ensp;&ensp;*replace KEY_PATH with the path of the JSON file that contains your service account key  
 
 3. upload cron jobs to App Engine  
+```
 $ gcloud app deploy cron.yaml
 ```  
 4. deploy the application to App Engine  
