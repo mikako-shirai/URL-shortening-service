@@ -13,7 +13,8 @@
     - [Prerequisites](#Prerequisites)  
     - [Installation](#Installation)  
 - [Usage](#Usage)  
-
+  
+  
 ## About this Project  
 URL shortening web service which provides short aliases and custom aliases redirecting to original URLs.  
 
@@ -32,14 +33,16 @@ Users can create a custom URL alias with characters of their choice and can also
 Instead of using JSON, it uses a NoSQL document database [GCP Firestore][Firestore] to manage all the data by deploying the application to [GCP App Engine][App Engine].  
 
 (to see an example : https://short-321807.an.r.appspot.com/)  
+  
 
 ## Built with  
 This project is built using the following frameworks/services  
 - [Flask][Flask]  
-- [GCP App Engine][App Engine]  
 - [GCP Firestore][Firestore]  
+- [GCP App Engine][App Engine]  
 - ~~[pytest][pytest]~~ (work in progress)  
 - ~~[gRPC][gRPC]~~ (work in progress)  
+  
 
 ## Getting Started  
 ### Prerequisites  
@@ -81,7 +84,7 @@ $ . venv/bin/activate
 ```
 (venv)$ pytho3 main.py
 ```  
-5. go to http://127.0.0.1:5000/ to view the web application  
+5. go to http://127.0.0.1:5000/ to view the application  
 
 #### GCP version  
 1. clone this repository  
@@ -102,7 +105,9 @@ $ gcloud app deploy cron.yaml
 ```
 $ gcloud app deploy
 ```  
-
+5. go to https://YOUR_PROJECT_ID.an.r.appspot.com/ to view the application  
+  
+  
 ## Usage  
 ### initial version example  
 ![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/initial.png)  
