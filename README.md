@@ -23,7 +23,7 @@ Initial code only uses
 - Python  
 - [Flask][Flask]  
 
-and is a very simple web application which shortens a URL and creates a short URL alias with a 6 characters long generated key.  
+and is a very simple web application which shortens a URL by creating a short URL alias with a 6 characters long generated key.  
 Instead of using a Web database, it stores all the information (original URLs and aliases) to a JSON file and uses a text file to check existing keys to avoid duplication.  
 
 ### GCP version  
