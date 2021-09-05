@@ -23,7 +23,7 @@ Initial code only uses
 - Python  
 - [Flask][Flask]  
 
-and is a very simple web application which shortens a URL and creates a short URL alias with a 6 characters long generated key.  
+and is a very simple web application which shortens a URL by creating a short URL alias with a 6 characters long generated key.  
 Instead of using a Web database, it stores all the information (original URLs and aliases) to a JSON file and uses a text file to check existing keys to avoid duplication.  
 
 ### GCP version  
@@ -59,6 +59,10 @@ $ pip install Flask
 - [App Engine][App Engine] Cron Service  
 
 &ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
+- [python-dateutil][python-dateutil]  
+```
+$ pip install python-dateutil
+```  
 - [pytest][pytest]  
 ```
 $ pip install pytest
@@ -123,6 +127,7 @@ $ gcloud app deploy
 [Flask]: https://flask.palletsprojects.com/en/2.0.x/  
 [Firestore]: https://cloud.google.com/firestore/  
 [App Engine]: https://cloud.google.com/appengine/  
+[python-dateutil]: https://pypi.org/project/python-dateutil/  
 [pytest]: https://docs.pytest.org/en/6.2.x/  
 [gRPC]: https://grpc.io/  
 
