@@ -144,7 +144,7 @@ def custom_link():
             message_error2 = 'Please try different characters'
             return render_template('custom_link.html', message_error1 = message_error1, message_error2 = message_error2)
     else:
-        message_error1 = 'Please enter a valid URL and characters'
+        message_error1 = 'Please enter valid characters and URL'
         return render_template('custom_link.html', message_error1 = message_error1)
 
 # -----------------------------------------------------------------------------------------NEW
@@ -152,7 +152,7 @@ def custom_link():
 @app.route('/custom/expiration', methods=["GET","POST"])
 def custom_expiration():
     year1 = get_date()
-    # year2 = year1 + 1
+    year2 = year1 + 1
     if request.method == 'GET':
         return render_template('custom_expiration.html', year1 = year1, year2 = year2)
 
@@ -164,8 +164,10 @@ def custom_expiration():
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
     dateSet = year + '/' + month + '/' + date + ' ' + hour + ':' + minute
+
+
     if date_check(dateSet) and URL_check(originalURL) and key_check(customKey):
-        # expirationDate = datetime.datetime.strptime(dateSet+':00+0900', '%Y/%m/%d %H:%M:%S%z')
+        expirationDate = datetime.datetime.strptime(dateSet+':00+0900', '%Y/%m/%d %H:%M:%S%z')
         # if DB_customKey(originalURL, customKey, expirationDate):
         generatedURL = GCP_URL + customKey
         message_post1 = 'link  :  '
@@ -174,12 +176,12 @@ def custom_expiration():
         return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
                                message_post1 = message_post1, message_post2 = message_post2, message_post3 = message_post3, \
                                originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet)
-
-    message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
-    message_error2 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
-    message_error3 = 'Please enter valid characters' if not key_check(customKey) else ''
-    return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
-                           message_error1 = message_error1, message_error2 = message_error2, message_error3 = message_error3)
+    else:
+        message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
+        message_error2 = 'Please enter valid characters' if not key_check(customKey) else ''
+        message_error3 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
+        return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
+                            message_error1 = message_error1, message_error2 = message_error2, message_error3 = message_error3)
 
 # -----------------------------------------------------------------------------------------NEW
 

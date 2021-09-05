@@ -8,7 +8,6 @@ body {
   font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
   font-weight: lighter;
   margin-top: 0px;
-	/* padding-top: 8px; */
   padding-left: 80px;
   padding-right: 80px;
   word-wrap: break-word;
@@ -284,7 +283,7 @@ footer {
   padding-bottom: 9px;
 }
 .date-0 {
-	background: rgba(155, 157, 165, 0.45);
+	background: rgba(165, 155, 162, 0.45);
   text-align: center;
   border-radius: 6px 1px 1px 6px;
   height: 40px;
@@ -544,19 +543,19 @@ footer p {
   color: #1A1B1A;
   color: #898B8A;
 
-  color: #CEDCD2; /* ORIGINAL / body background */
+  color: #CEDCD2; /* ORIGINAL / body background -> */
   color: #CED1DC;
-  color: #DCCED8; /*            body background */
+  color: #DCCED8; /*            body background <- */
   color: #DCD9CE;
 
-  color: #B4C1B8; /* form button */
+  color: #B4C1B8; /* form button -> */
   color: #B4B7C1;
-  color: #C1B4BD; /* form button */
+  color: #C1B4BD; /* form buttonr <- */
   color: #C1BEB4;
 
-  color: #9BA59E; /* header2-1 / form icon(short) / form button:hover */
+  color: #9BA59E; /* header2-1 / form icon(short) / form button:hover -> */
   color: #9B9DA5; /* header2-2 / header2-2:hover / .link_2 / form icon(custom_lk) */
-  color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form button:hover */
+  color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form icon(custom_exp) / form button:hover <- */
   color: #A5A39B;
 
   color: #676E69; /* main p */
