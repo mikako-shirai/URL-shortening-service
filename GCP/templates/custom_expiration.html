@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div>
-	<h1>CUSTOM EXPIRATION DATE</h1>
+	<h1>CUSTOM EXPIRATION</h1>
 	<p>Set an expiration date to a short link</p>
 	<p>Set an expiration date to a custom link</p>
 	<p>note : maximum expiration date is 6 months from now</p>
@@ -135,9 +135,9 @@
 
 <br>
 <div>
-	<p>{{ message_post1 }}<a href="{{ originalURL }}" class="link_2">{{ originalURL }}</a></p>
-	<p>{{ message_post2 }}<a href="{{ generatedURL }}" class="link_2">{{ generatedURL }}</a></p>
-	<p>{{ message_post3 }}<a href="{{ dateSet }}" class="link_2">{{ dateSet }}</a></p>
+	<p>{{ message_post1 }}<a href="{{ originalURL }}" class="link_main">{{ originalURL }}</a></p>
+	<p>{{ message_post2 }}<a href="{{ generatedURL }}" class="link_main">{{ generatedURL }}</a></p>
+	<p>{{ message_post3 }}<span class="dateSet">{{ dateSet }}</span></p>
 </div>
 {% endblock %}
 

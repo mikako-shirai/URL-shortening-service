@@ -46,8 +46,7 @@ def key_check(customKey):
 
 def date_check(dateSet):
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    date6months = dateNow + relativedelta(months=6, days=-1)
-    dateSet = dateSet + ':00+0900'
+    date6months = dateNow + relativedelta(months=+6, minutes=-30)
     try:
         expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
     except ValueError:
@@ -67,8 +66,8 @@ def DB_generatedKey(originalURL, expirationDate=None):
     if expirationDate:
         append_data(originalURL, generatedKey, expirationDate)
     else:
-        append_data(originalURL, generatedKey)
-    return generatedKey
+        expirationDate = append_data(originalURL, generatedKey)
+    return [generatedKey, expirationDate]
 
 def DB_customKey(originalURL, customKey, expirationDate=None):
     keys = db.collection(u'keys').stream()
@@ -78,18 +77,14 @@ def DB_customKey(originalURL, customKey, expirationDate=None):
     if expirationDate:
         append_data(originalURL, customKey, expirationDate)
     else:
-        append_data(originalURL, customKey)
-    return True
+        expirationDate = append_data(originalURL, customKey)
+    return expirationDate
 
 def append_data(originalURL, key, expirationDate=None):
-    key = key
-    originalURL = originalURL
     generatedURL = GCP_URL + key
     dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    if expirationDate:
-        pass
-    else:
-        expirationDate = dateCreated + datetime.timedelta(days=7)
+    if not expirationDate:
+        expirationDate = dateCreated + datetime.timedelta(days=14)
     
     db.collection(u'URLs').document(key).set({
         u'originalURL': originalURL,
@@ -106,6 +101,7 @@ def append_data(originalURL, key, expirationDate=None):
         u'list': firestore.ArrayUnion([originalURL]),
         u'total': firestore.Increment(1)
     })
+    return expirationDate
 
 # -----------------------------------------------------------------------------------
 
@@ -116,11 +112,17 @@ def short_link():
 
     originalURL = request.form.get('originalURl')
     if URL_check(originalURL):
-        generatedURL = GCP_URL + DB_generatedKey(originalURL)
+        result = DB_generatedKey(originalURL)
+        generatedKey, dateSet = result[0], result[1]
+        generatedURL = GCP_URL + generatedKey
+        dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
         message_post1 = 'link  :  '
         message_post2 = 'alias  :  '
+        message_post3 = 'expires on  :  '
+        copy = 'copy'
         return render_template('index.html', message_post1 = message_post1, message_post2 = message_post2, \
-                                originalURL = originalURL, generatedURL = generatedURL)
+                               message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
+                               dateSet = dateSet, copy = copy)
     else:
         message_error = 'Please enter a valid URL'
         return render_template('index.html', message_error = message_error)
@@ -133,12 +135,16 @@ def custom_link():
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
     if URL_check(originalURL) and key_check(customKey):
-        if DB_customKey(originalURL, customKey):
+        dateSet = DB_customKey(originalURL, customKey)
+        if dateSet:
             generatedURL = GCP_URL + customKey
+            dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
             message_post1 = 'link  :  '
             message_post2 = 'alias  :  '
+            message_post3 = 'expires on  :  '
             return render_template('custom_link.html', message_post1 = message_post1, message_post2 = message_post2, \
-                                   originalURL = originalURL, generatedURL = generatedURL)
+                                   message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
+                                   dateSet = dateSet)
         else:
             message_error1 = 'Sorry, this alias is already taken'
             message_error2 = 'Please try different characters'
@@ -163,31 +169,36 @@ def custom_expiration():
     minute = request.form.get('minute')
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
-    dateSet = year + '/' + month + '/' + date + ' ' + hour + ':' + minute
-
+    dateSet = year + '/' + month + '/' + date + ' ' + hour + ':' + minute + ':00+0900'
 
     if date_check(dateSet) and URL_check(originalURL) and key_check(customKey):
-        expirationDate = datetime.datetime.strptime(dateSet+':00+0900', '%Y/%m/%d %H:%M:%S%z')
-        # if DB_customKey(originalURL, customKey, expirationDate):
-        generatedURL = GCP_URL + customKey
-        message_post1 = 'link  :  '
-        message_post2 = 'alias  :  '
-        message_post3 = 'date  :  '
-        return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
-                               message_post1 = message_post1, message_post2 = message_post2, message_post3 = message_post3, \
-                               originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet)
+        expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
+        dateSet = DB_customKey(originalURL, customKey, expirationDate)
+        if dateSet:
+            generatedURL = GCP_URL + customKey
+            dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
+            message_post1 = 'link  :  '
+            message_post2 = 'alias  :  '
+            message_post3 = 'expires on  :  '
+            return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_post1 = message_post1, \
+                                message_post2 = message_post2, message_post3 = message_post3, \
+                                originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet)
+        else:
+            message_error1 = 'Sorry, this alias is already taken'
+            message_error2 = 'Please try different characters'
+            return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
+                                   message_error1 = message_error1, message_error2 = message_error2)
     else:
         message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
         message_error2 = 'Please enter valid characters' if not key_check(customKey) else ''
         message_error3 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
-        return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
-                            message_error1 = message_error1, message_error2 = message_error2, message_error3 = message_error3)
+        return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
+                               message_error2 = message_error2, message_error3 = message_error3)
 
 # -----------------------------------------------------------------------------------------NEW
 
 @app.route('/<string>')
 def URL_redirect(string):
-    string = string
     if len(string) < key_length or len(string) > 30:
         abort(404)
 

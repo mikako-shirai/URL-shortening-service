@@ -100,7 +100,7 @@ body {
   margin-left: 1px;
   border-radius: 0px 0px 3px 0px;
 }
-.item-2 .link_1 {
+.item-2 .link_header {
   display: block;
 }
 @media (max-width:767px) {
@@ -160,8 +160,8 @@ footer {
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   width: 45px;
-  height: 33px;
-  padding-top: 7px;
+  height: 32px;
+  padding-top: 8px;
   border-width: 0.7px;
   border-style: outset;
   border-color: initial;
@@ -185,7 +185,7 @@ footer {
   text-align: center;
   font-weight: lighter;
   font-size: 17px;
-  border-radius: 6px 6px 6px 6px;
+  border-radius: 6px;
   width: 200px;
   border-width: 0.7px;
   border-color: initial;
@@ -198,10 +198,10 @@ footer {
 @media (max-width:767px) {
 	.btn-1:nth-child(1) {
 		width: 35px;
-    height: 29px;
-    padding-top: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
+    height: 27px;
+    padding-top: 6px;
+    padding-left: 5.5px;
+    padding-right: 5.5px;
 	}
 }
 @media (max-width:767px) {
@@ -235,8 +235,8 @@ footer {
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   width: 45px;
-  height: 33px;
-  padding-top: 7px;
+  height: 32px;
+  padding-top: 8px;
   border-width: 0.7px;
   border-style: outset;
   border-color: initial;
@@ -304,7 +304,7 @@ footer {
   margin-right: 5px;
   padding-left: 15px;
   -webkit-appearance:none;
-  border-radius: 6px 6px 6px 6px;
+  border-radius: 6px;
   border-width: 0.7px;
   border-style: inset;
   border-color: initial;
@@ -386,28 +386,32 @@ footer {
   /* background: #A59BA2; */
   background: rgba(165, 155, 162, 1);
 }
-.link_1:link, .link_1:visited, .link_1:active {
+.link_header:link, .link_header:visited, .link_header:active {
   color: #ffffff;
   text-decoration: none;
 }
-.link_1:hover {
+.link_header:hover {
   color: #DAE5DD;
   text-decoration: none;
 }
 @media (max-width:767px) {
-  .link_1 {
+  .link_header {
     font-size: 11px;
   }
 }
   
-.link_2:link, .link_2:visited, .link_2:active {
+.link_main:link, .link_main:visited, .link_main:active {
   font-weight: 200;
   color: #9B9DA5;
   text-decoration: none;
 }
-.link_2:hover {
+.link_main:hover {
   color: #ffffff;
   text-decoration: none;
+}
+.dateSet {
+  font-weight: 200;
+  color: #9B9DA5;
 }
   
 .btn-1:nth-child(3):hover, .btn-2:nth-child(5):hover {
@@ -475,7 +479,10 @@ main p {       /*      depends on page      */
     font-size: 15px;
   }
 }
-  
+
+.icon-internal {
+  color: #ffffff;
+}
 .icon-link {
   color: #ffffff;
 }
@@ -517,6 +524,27 @@ footer p {
 }
 
 /*---------------------------------------------------- */
+
+/* コピーボタン */
+.copy_btn {
+  background:linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);
+  color: #9B9DA5;
+  font-weight: lighter;
+  border: solid 2px linear-gradient(-18deg, #B4C1B8, #B4B7C1, #C1B4BD);
+  border-radius: 6px;
+  width: 80px;
+  padding: 10px;
+  margin-left: 5px;
+  transition: .4s;
+  text-align: center;
+}
+.copy_btn:hover {
+  background: #F3F6F4;
+  color: #9B9DA5;
+  cursor: pointer;
+}
+
+/*---------------------------------------------------- */
   
 /* PC
 @media (min-width:992px){} */
@@ -528,10 +556,10 @@ footer p {
   
 .color-sample2 {
   color: #FFFFFF;
-  color: #F9FBF9; /* form inside */
-  color: #F3F6F4;
+  color: #F9FBF9;
+  color: #F3F6F4; /* form inside / copy_btn:hover */
   color: #E7EDE9;
-  color: #DAE5DD; /* .link_1:hover */
+  color: #DAE5DD; /* .link_header:hover */
   color: #D4E0D8; /* body background */
   color: #CEDCD2;
   color: #B4C1B8; /* flex-header1 */
@@ -542,6 +570,12 @@ footer p {
   color: #343735; /* github:hover */
   color: #1A1B1A;
   color: #898B8A;
+
+
+  color: #DAE5DD; /* copy_btn -> */
+  color: #DADCE5;
+  color: #E5DAE2; /* copy_btn <- */
+  color: #E5E3DA;
 
   color: #CEDCD2; /* ORIGINAL / body background -> */
   color: #CED1DC;
@@ -554,7 +588,7 @@ footer p {
   color: #C1BEB4;
 
   color: #9BA59E; /* header2-1 / form icon(short) / form button:hover -> */
-  color: #9B9DA5; /* header2-2 / header2-2:hover / .link_2 / form icon(custom_lk) */
+  color: #9B9DA5; /* header2-2 / header2-2:hover / .link_main / form icon(custom_lk) */
   color: #A59BA2; /* header2-3 / header2-3:hover / .font_error / form icon(custom_exp) / form button:hover <- */
   color: #A5A39B;
 
