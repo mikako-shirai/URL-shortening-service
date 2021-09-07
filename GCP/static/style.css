@@ -157,10 +157,10 @@ footer {
   background: rgba(155, 165, 158, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
-  min-width: 45px;
+  min-width: 40px;
   height: 32px;
   padding-top: 8px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-style: outset;
   border-color: initial;
 }
@@ -170,11 +170,11 @@ footer {
   font-weight: lighter;
   font-size: 18px;
   border-radius: 0px 6px 6px 0px;
-  width: 500px;
+  width: 600px;
   padding-left: 25px;
   padding-right: 23px;
   margin-right: 20px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-color: initial;
 }
 .btn-1:nth-child(3) {
@@ -186,17 +186,23 @@ footer {
   font-weight: lighter;
   font-size: 17px;
   border-radius: 6px;
-  width: 200px;
-  border-width: 0.7px;
+  width: 160px;
+  border-width: 0.5px;
   border-color: initial;
 }
 @media (min-width:768px) and (max-width:991px) {
   .btn-1:nth-child(2) {
     font-size: 16px;
-    width: 460px;
+    width: 500px;
     padding-left: 12px;
     padding-right: 10px;
     margin-right: 14px;
+  }
+}
+@media (min-width:768px) and (max-width:991px) {
+  .btn-1:nth-child(3) {
+    font-size: 15px;
+    width: 120px;
   }
 }
 @media (max-width:767px) {
@@ -206,7 +212,7 @@ footer {
 }
 @media (max-width:767px) {
 	.btn-1:nth-child(1) {
-		min-width: 35px;
+		min-width: 30px;
     height: 27px;
     padding-top: 6px;
     padding-left: 4px;
@@ -216,7 +222,7 @@ footer {
 @media (max-width:767px) {
 	.btn-1:nth-child(2) {
 		font-size: 13px;
-    width: 346px;
+    width: 400px;
     padding-left: 12px;
     padding-right: 10px;
     margin-right: 14px;
@@ -225,7 +231,7 @@ footer {
 @media (max-width:767px) {
 	.btn-1:nth-child(3) {
 		font-size: 12px;
-    width: 110px;
+    width: 80px;
 	}
 }
 
@@ -244,10 +250,10 @@ footer {
 	background: rgba(155, 157, 165, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
-  min-width: 45px;
+  min-width: 40px;
   height: 32px;
   padding-top: 8px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-style: outset;
   border-color: initial;
 }
@@ -257,16 +263,16 @@ footer {
   font-weight: lighter;
   font-size: 18px;
   border-radius: 0px 6px 6px 0px;
-  width: 500px;
+  width: 600px;
   padding-left: 25px;
   padding-right: 23px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-color: initial;
 }
 @media (min-width:768px) and (max-width:991px) {
   .btn-2:nth-child(2) {
     font-size: 16px;
-    width: 460px;
+    width: 500px;
     padding-left: 12px;
     padding-right: 10px;
   }
@@ -278,7 +284,7 @@ footer {
 }
 @media (max-width:767px) {
 	.btn-2:nth-child(1) {
-		min-width: 35px;
+		min-width: 30px;
     height: 29px;
     padding-top: 4px;
     padding-left: 4px;
@@ -288,7 +294,7 @@ footer {
 @media (max-width:767px) {
 	.btn-2:nth-child(2) {
 		font-size: 13px;
-    width: 346px;
+    width: 400px;
     padding-left: 12px;
     padding-right: 10px;
 	}
@@ -309,10 +315,10 @@ footer {
 	background: rgba(155, 157, 165, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
-  min-width: 45px;
+  min-width: 40px;
   height: 32px;
   padding-top: 8px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-style: outset;
   border-color: initial;
 }
@@ -321,12 +327,12 @@ footer {
   color: #818983;
   font-weight: lighter;
   font-size: 16px;
-  width: 283px;
+  width: 119px;
   /* flex-basis:  283px; */
   padding-left: 25px;
   padding-right: 0px;
   border-radius: 0px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-color: initial;
   border-right:0px;
   margin-left: 0px;
@@ -337,12 +343,12 @@ footer {
   color: #818983;
   font-weight: lighter;
   font-size: 18px;
-  width: 217px;
+  width: 481px;
   /* flex-basis:  auto; */
   padding-left: 0px;
   padding-right: 23px;
   border-radius: 0px 6px 6px 0px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-color: initial;
   border-left:0px;
   margin-left: 0px;
@@ -350,7 +356,7 @@ footer {
 @media (min-width:768px) and (max-width:991px) {
   .btn-22:nth-child(2) {
     font-size: 14px;
-    width: 253px;
+    width: 105px;
     /* flex-basis:  253px; */
     padding-left: 12px;
     padding-right: 0px;
@@ -359,7 +365,7 @@ footer {
 @media (min-width:768px) and (max-width:991px) {
   .btn-22:nth-child(3) {
     font-size: 16px;
-    width: 207px;
+    width: 395px;
     /* flex-basis:  auto; */
     padding-left: 0px;
     padding-right: 10px;
@@ -372,7 +378,7 @@ footer {
 }
 @media (max-width:767px) {
 	.btn-22:nth-child(1) {
-		min-width: 35px;
+		min-width: 30px;
     height: 29px;
     padding-top: 4px;
     padding-left: 4px;
@@ -381,8 +387,8 @@ footer {
 }
 @media (max-width:767px) {
 	.btn-22:nth-child(2) {
-		font-size: 11px;
-    width: 205px;
+		font-size: 12px;
+    width: 92px;
     /* flex-basis:  205px; */
     padding-left: 12px;
     padding-right: 0px;
@@ -391,7 +397,7 @@ footer {
 @media (max-width:767px) {
 	.btn-22:nth-child(3) {
 		font-size: 13px;
-    width: 141px;
+    width: 308px;
     /* flex-basis:  auto; */
     padding-left: 0px;
     padding-right: 10px;
@@ -409,10 +415,10 @@ footer {
 	background: rgba(165, 155, 162, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
-  min-width: 45px;
+  min-width: 40px;
   height: 31px;
   padding-top: 7px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-style: outset;
   border-color: initial;
 }
@@ -423,36 +429,35 @@ footer {
   font-weight: lighter;
   font-size: 18px;
   height: 40px;
-  margin-right: 5px;
-  padding-left: 15px;
-  padding-right: 14px;
+  padding-left: 16px;
+  padding-right: 15px;
   -webkit-appearance:none;
   border-radius: 6px;
-  border-width: 0.7px;
+  border-width: 0.5px;
   border-style: inset;
   border-color: initial;
 }
 .date-1 {
-  width: 104px;
+  width: 145px;
   border-radius: 0px 6px 6px 0px;
 }
 .date-2 {
-  width: 158px;
+  width: 183px;
 }
 .date-3 {
-  width: 60px;
-  margin-right: 27px;
+  width: 66px;
+  margin-right: 36px;
 }
 .date-4, .date-5 {
-  width: 60px;
+  width: 66px;
 }
 .date-letter {
   align-items: center;
   text-align: center;
   color: #676E69;
-  font-size: 25px;
-  margin-left: 5px;
-  margin-right: 9px;
+  font-size: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 @media (min-width:768px) and (max-width:991px) {
   .btn-3 {
@@ -463,35 +468,35 @@ footer {
 }
 @media (min-width:768px) and (max-width:991px) {
   .date-1 {
-    width: 104px;
+    width: 118px;
   }
 }
 @media (min-width:768px) and (max-width:991px) {
   .date-2 {
-    width: 158px;
+    width: 161px;
   }
 }
 @media (min-width:768px) and (max-width:991px) {
   .date-3 {
-    width: 45px;
-    margin-right: 25px;
+    width: 46px;
+    margin-right: 26px;
   }
 }
 @media (min-width:768px) and (max-width:991px) {
   .date-4, .date-5 {
-    width: 45px;
+    width: 46px;
   }
 }
 @media (min-width:768px) and (max-width:991px) {
   .date-letter {
-    font-size: 24px;
-    margin-left: 2px;
-    margin-right: 6px;
+    font-size: 25px;
+    margin-left: 9;
+    margin-right: 9px;
   }
 }
 @media (max-width:767px) {
 	.date-0 {
-		min-width: 35px;
+		min-width: 30px;
     height: 27px;
     padding-top: 4px;
     padding-left: 4px;
@@ -508,30 +513,30 @@ footer {
 }
 @media (max-width:767px) {
   .date-1 {
-    width: 69px;
+    width: 81px;
   }
 }
 @media (max-width:767px) {
   .date-2 {
-    width: 103px;
+    width: 115px;
   }
 }
 @media (max-width:767px) {
   .date-3 {
-    width: 42px;
-    margin-right: 17px;
+    width: 45px;
+    margin-right: 25px;
   }
 }
 @media (max-width:767px) {
   .date-4, .date-5 {
-    width: 42px;
+    width: 45px;
   }
 }
 @media (max-width:767px) {
 	.date-letter {
-    font-size: 20px;
-    margin-left: 1px;
-    margin-right: 6px;
+    font-size: 21px;
+    margin-left: 8px;
+    margin-right: 8px;
 	}
 }
 
@@ -622,17 +627,18 @@ footer {
   text-decoration: none;
 }
 .dateSet {
+  font-size: 19px;
   font-weight: 200;
   color: #9B9DA5;
 }
 @media (min-width:768px) and (max-width:991px) {
   .link_main, .dateSet {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 @media (max-width:767px) {
   .link_main, .dateSet {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
@@ -703,7 +709,7 @@ main p {       /*      depends on page      */
 }
 
 .font-back {
-  background-color: linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);
+  background-color: #D4E0D8;
 }
 
 .icon-internal {

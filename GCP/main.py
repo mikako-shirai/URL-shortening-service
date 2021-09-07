@@ -12,7 +12,8 @@ app = Flask(__name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
-keywords = ['custom', 'expiration', 'link', '404', 'cron']
+keywords = ['custom', 'short', 'expiration', 'link', '404', 'cron', \
+            'index', 'custom_exp', 'short_exp', 'result']
 
 # -----------------------------------------------------------------------------------
 
@@ -134,7 +135,7 @@ def short_link():
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
     if request.method == 'GET':
-        return render_template('custom_link.html')
+        return render_template('custom.html')
 
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
@@ -147,7 +148,7 @@ def custom_link():
             message_post2 = 'alias  :  '
             message_post3 = 'expires on  :  '
             flg = True
-            return render_template('custom_link.html', message_post1 = message_post1, message_post2 = message_post2, \
+            return render_template('custom.html', message_post1 = message_post1, message_post2 = message_post2, \
                                    message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
                                    dateSet = dateSet, flg = flg)
         else:
@@ -156,15 +157,15 @@ def custom_link():
     else:
         message_error1 = 'Please enter valid characters and URL'
         message_error2 = ''
-    return render_template('custom_link.html', message_error1 = message_error1, message_error2 = message_error2)
+    return render_template('custom.html', message_error1 = message_error1, message_error2 = message_error2)
 
-# -----------------------------------------------------------------------------------------NEW
+# -----------------------------------------------------------------------------------
 
-@app.route('/custom/expiration', methods=["GET","POST"])
+@app.route('/expiration/custom', methods=["GET","POST"])
 def custom_expiration():
     year1, year2 = get_date()
     if request.method == 'GET':
-        return render_template('custom_expiration.html', year1 = year1, year2 = year2)
+        return render_template('custom_exp.html', year1 = year1, year2 = year2)
 
     year = request.form.get('year')
     month = request.form.get('month')
@@ -185,7 +186,7 @@ def custom_expiration():
             message_post2 = 'alias  :  '
             message_post3 = 'expires on  :  '
             flg = True
-            return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_post1 = message_post1, \
+            return render_template('custom_exp.html', year1 = year1, year2 = year2, message_post1 = message_post1, \
                                    message_post2 = message_post2, message_post3 = message_post3, \
                                    originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet, flg = flg)
         else:
@@ -196,10 +197,18 @@ def custom_expiration():
         message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
         message_error2 = 'Please enter valid characters' if not key_check(customKey) else ''
         message_error3 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
-    return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
+    return render_template('custom_exp.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
                            message_error2 = message_error2, message_error3 = message_error3)
 
 # -----------------------------------------------------------------------------------------NEW
+
+@app.route('/expiration', methods=["GET","POST"])
+def short_expiration():
+    year1, year2 = get_date()
+    # if request.method == 'GET':
+    return render_template('custom_exp.html', year1 = year1, year2 = year2)
+
+# -----------------------------------------------------------------------------------
 
 @app.route('/<string>')
 def URL_redirect(string):
