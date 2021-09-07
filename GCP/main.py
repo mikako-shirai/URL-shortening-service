@@ -30,7 +30,7 @@ def get_date():
         year2 = year1 + 1
     else:
         year2 = None
-    return year1, year2
+    return [year1, year2]
 
 def URL_check(originalURL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
@@ -68,7 +68,7 @@ def DB_generatedKey(originalURL, expirationDate=None):
         append_data(originalURL, generatedKey, expirationDate)
     else:
         expirationDate = append_data(originalURL, generatedKey)
-    return [generatedKey, expirationDate]
+    return generatedKey, expirationDate
 
 def DB_customKey(originalURL, customKey, expirationDate=None):
     keys = db.collection(u'keys').stream()
@@ -115,58 +115,87 @@ def short_link():
     if request.method == 'GET':
         return render_template('index.html')
 
+    dicData, errors, flg = {}, [], False
     originalURL = request.form.get('originalURl')
+
     if URL_check(originalURL):
-        result = DB_generatedKey(originalURL)
-        generatedKey, dateSet = result[0], result[1]
+        generatedKey, dateSet = DB_generatedKey(originalURL)
         generatedURL = GCP_URL + generatedKey
         dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
-        message_post1 = 'link  :  '
-        message_post2 = 'alias  :  '
-        message_post3 = 'expires on  :  '
         flg = True
-        return render_template('index.html', message_post1 = message_post1, message_post2 = message_post2, \
-                               message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
-                               dateSet = dateSet, flg = flg)
+        dicData['URL'] = originalURL
+        dicData['alias'] = generatedURL
+        dicData['expiration'] = dateSet
     else:
-        message_error = 'Please enter a valid URL'
-        return render_template('index.html', message_error = message_error)
+        errors.append('Please enter a valid URL')
+    return render_template('index.html', dicData = dicData, errors = errors, flg = flg)
 
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
     if request.method == 'GET':
         return render_template('custom.html')
 
+    dicData, errors, flg = {}, [], False
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
-    if URL_check(originalURL) and key_check(customKey):
+
+    if key_check(customKey) and URL_check(originalURL):
         dateSet = DB_customKey(originalURL, customKey)
         if dateSet:
             generatedURL = GCP_URL + customKey
             dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
-            message_post1 = 'link  :  '
-            message_post2 = 'alias  :  '
-            message_post3 = 'expires on  :  '
             flg = True
-            return render_template('custom.html', message_post1 = message_post1, message_post2 = message_post2, \
-                                   message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
-                                   dateSet = dateSet, flg = flg)
+            dicData['URL'] = originalURL
+            dicData['alias'] = generatedURL
+            dicData['expiration'] = dateSet
         else:
-            message_error1 = 'Sorry, this alias is already taken'
-            message_error2 = 'Please try different characters'
+            errors.append('Sorry, this alias is already taken')
+            errors.append('Please try different characters')
     else:
-        message_error1 = 'Please enter valid characters and URL'
-        message_error2 = ''
-    return render_template('custom.html', message_error1 = message_error1, message_error2 = message_error2)
+        if not key_check(customKey): errors.append('Please enter valid characters')
+        if not URL_check(originalURL): errors.append('Please enter a valid URL')
+    return render_template('custom.html', dicData = dicData, errors = errors, flg = flg)
+
+# -----------------------------------------------------------------------------------
+
+@app.route('/expiration', methods=["GET","POST"])
+def short_expiration():
+    years = get_date()
+    if request.method == 'GET':
+        return render_template('index_exp.html', years = years)
+
+    dicData, errors, flg = {}, [], False
+    year = request.form.get('year')
+    month = request.form.get('month')
+    date = request.form.get('date')
+    hour = request.form.get('hour')
+    minute = request.form.get('minute')
+    originalURL = request.form.get('originalURl')
+    dateSet = year + '/' + month + '/' + date + ' ' + hour + ':' + minute + ':00+0900'
+
+    if date_check(dateSet) and URL_check(originalURL):
+        expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
+        generatedKey, dateSet = DB_generatedKey(originalURL, expirationDate)
+        generatedURL = GCP_URL + generatedKey
+        dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
+        flg = True
+        dicData['URL'] = originalURL
+        dicData['alias'] = generatedURL
+        dicData['expiration'] = dateSet
+    else:
+        if not date_check(dateSet): errors.append('Please enter a valid date')
+        if not URL_check(originalURL): errors.append('Please enter a valid URL')
+    return render_template('index_exp.html', years = years, dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 
 @app.route('/expiration/custom', methods=["GET","POST"])
 def custom_expiration():
-    year1, year2 = get_date()
+    years = get_date()
     if request.method == 'GET':
-        return render_template('custom_exp.html', year1 = year1, year2 = year2)
+        return render_template('custom_exp.html', years = years)
 
+    dicData, errors, flg = {}, [], False
     year = request.form.get('year')
     month = request.form.get('month')
     date = request.form.get('date')
@@ -176,37 +205,24 @@ def custom_expiration():
     originalURL = request.form.get('originalURl')
     dateSet = year + '/' + month + '/' + date + ' ' + hour + ':' + minute + ':00+0900'
 
-    if date_check(dateSet) and URL_check(originalURL) and key_check(customKey):
+    if date_check(dateSet) and key_check(customKey) and URL_check(originalURL):
         expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
         dateSet = DB_customKey(originalURL, customKey, expirationDate)
         if dateSet:
             generatedURL = GCP_URL + customKey
             dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
-            message_post1 = 'link  :  '
-            message_post2 = 'alias  :  '
-            message_post3 = 'expires on  :  '
             flg = True
-            return render_template('custom_exp.html', year1 = year1, year2 = year2, message_post1 = message_post1, \
-                                   message_post2 = message_post2, message_post3 = message_post3, \
-                                   originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet, flg = flg)
+            dicData['URL'] = originalURL
+            dicData['alias'] = generatedURL
+            dicData['expiration'] = dateSet
         else:
-            message_error1 = 'Sorry, this alias is already taken'
-            message_error2 = 'Please try different characters'
-            message_error3 = ''
+            errors.append('Sorry, this alias is already taken')
+            errors.append('Please try different characters')
     else:
-        message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
-        message_error2 = 'Please enter valid characters' if not key_check(customKey) else ''
-        message_error3 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
-    return render_template('custom_exp.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
-                           message_error2 = message_error2, message_error3 = message_error3)
-
-# -----------------------------------------------------------------------------------------NEW
-
-@app.route('/expiration', methods=["GET","POST"])
-def short_expiration():
-    year1, year2 = get_date()
-    # if request.method == 'GET':
-    return render_template('custom_exp.html', year1 = year1, year2 = year2)
+        if not date_check(dateSet): errors.append('Please enter a valid date')
+        if not key_check(customKey): errors.append('Please enter valid characters')
+        if not URL_check(originalURL): errors.append('Please enter a valid URL')
+    return render_template('custom_exp.html', years = years, dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 

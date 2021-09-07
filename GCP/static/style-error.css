@@ -15,7 +15,6 @@ body {
     -webkit-filter: hue-rotate(0deg);
     filter: hue-rotate(0deg);
   }
-  
   100% {
     -webkit-filter: hue-rotate(360deg);
     filter: hue-rotate(360deg);
@@ -33,74 +32,74 @@ footer {
 
 /*---------------------------------------------------- main */
 
-.flex-main {
+.main-jump {
   display: flex;
   align-items: center;
   padding-top: 140px;
   justify-content: center;
 }
-.item-1 {
+.jump {
   height: 40px;
   word-wrap: break-word;
 }
-.item-1:nth-child(1) {
+.jump:nth-child(1) {
   border-radius: 15px 2px 2px 15px;
   text-align: right;
   padding-top: 34px;
   width: 200px
 }
-.item-1:nth-child(2) {
+.jump:nth-child(2) {
   padding-left: 20px;
   padding-right: 20px;
 }
-.item-1:nth-child(3) {
+.jump:nth-child(3) {
   border-radius: 2px 15px 15px 2px;
   text-align: left;
   padding-top: 4px;
   width: 200px
 }
-.item-1 .link_2 {
+.jump .link-main {
   display: block;
 }
 @media (max-width:767px) {
-  .flex-main {
+  .main-jump {
     padding-top: 100px;
   }
 }
 @media (max-width:767px) {
-  .item-1:nth-child(1) {
+  .jump:nth-child(1) {
     padding-top: 35px;
   }
 }
 @media (max-width:767px) {
-  .item-1:nth-child(3) {
+  .jump:nth-child(3) {
     padding-top: 5px;
   }
 }
 
-/*---------------------------------------------------- link */
+/*---------------------------------------------------- link hover */
 
-.link_2:link, .link_2:visited, .link_2:active {
+.link-main:link, .link-main:visited, .link-main:active {
   font-size: 18px;
   font-weight: 200;
   color: #676E69;
   opacity: 0.7;
   text-decoration: none;
 }
-.link_2:hover {
+.link-main:hover {
   font-size: 19px;
   font-weight: 300;
   color: #FFFFFF;
   text-decoration: none;
 }
 @media (max-width:767px) {
-  .link_2:link, .link_2:visited, .link_2:active {
+  .link-main:link, .link-main:visited, .link-main:active {
     font-size: 13px;
     font-weight: 200;
   }
 }
 @media (max-width:767px) {
-  .link_2:hover {
+  .link-main:hover {
     font-size: 14px;
     font-weight: 200;
   }
@@ -124,13 +123,14 @@ main span {
   opacity: 1;
 }
 
-main a {
+main p {
+  display: inline;
   font-size: 25px;
   color: #676E69;
   opacity: 1;
 }
 @media (max-width:767px) {
-  main a {
+  main p {
     font-size: 20px;
   }
 }
@@ -143,7 +143,6 @@ main a {
 @keyframes icon-animation {
   to { transform: rotate(360deg); }
 }
-
 .icon-home {
   color: #676E69;
   opacity: 0.95;
@@ -166,16 +165,8 @@ footer p {
 
 /*---------------------------------------------------- */
 
-/* PC
-@media (min-width:992px){} */
-/* tablet */
-@media (min-width:768px) and (max-width:991px){}
-/* phone */
-@media (max-width:767px){}
-
-
 .color-sample2 {
-  color: #FFFFFF; /* .link_2:hover */
+  color: #FFFFFF; /* link-main:hover */
   color: #F9FBF9;
   color: #F3F6F4;
   color: #E7EDE9;
@@ -185,9 +176,9 @@ footer p {
   color: #B4C1B8;
   color: #9BA59E;
   color: #818983;
-  color: #676E69; /* .link_2 / .GitHub / main span / main a / .icon-404 / .icon-home / footer p */
+  color: #676E69; /* link-main / GitHub / main span / main a / icon-404 / icon-home / footer p */
   color: #4D524F;
-  color: #343735; /* .GitHub:hover */
+  color: #343735; /* GitHub:hover */
   color: #1A1B1A;
   color: #898B8A;
 
@@ -206,7 +197,7 @@ footer p {
   color: #A59BA2;
   color: #A5A39B;
 
-  color: #676E69; /* .link_2 / .GitHub / main span / main a / .icon-404 / .icon-home / footer p */
+  color: #676E69; /* link-main / GitHub / main span / main a / icon-404 / icon-home / footer p */
   color: #67696E;
   color: #6E676C;
   color: #6E6D67;
