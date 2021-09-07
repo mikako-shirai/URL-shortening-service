@@ -22,14 +22,14 @@ def generate_key(key_length):
 
 def get_date():
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    string = dateNow.strftime('%Y%m%d')
-    year = int(string[:4])
-    # month = int(string[4:6])
-    # if month >= 7:
-    #     year = [year, year+1]
-    # else:
-    #     year = [year]
-    return year
+    string = dateNow.strftime('%Y%m')
+    year1 = int(string[:4])
+    month = int(string[4:])
+    if month >= 7:
+        year2 = year1 + 1
+    else:
+        year2 = None
+    return year1, year2
 
 def URL_check(originalURL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
@@ -97,10 +97,14 @@ def append_data(originalURL, key, expirationDate=None):
         u'originalURL': originalURL,
         u'pageViews': 0
     })
-    db.collection(u'random').document(u'random').update({
-        u'list': firestore.ArrayUnion([originalURL]),
-        u'total': firestore.Increment(1)
-    })
+
+    dic = db.collection(u'random').document(u'random').get().to_dict()
+    URLs = list(dic['list'])
+    if originalURL not in URLs:
+        db.collection(u'random').document(u'random').update({
+            u'list': firestore.ArrayUnion([originalURL]),
+            u'total': firestore.Increment(1)
+        })
     return expirationDate
 
 # -----------------------------------------------------------------------------------
@@ -119,10 +123,10 @@ def short_link():
         message_post1 = 'link  :  '
         message_post2 = 'alias  :  '
         message_post3 = 'expires on  :  '
-        copy = 'copy'
+        flg = True
         return render_template('index.html', message_post1 = message_post1, message_post2 = message_post2, \
                                message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
-                               dateSet = dateSet, copy = copy)
+                               dateSet = dateSet, flg = flg)
     else:
         message_error = 'Please enter a valid URL'
         return render_template('index.html', message_error = message_error)
@@ -142,23 +146,23 @@ def custom_link():
             message_post1 = 'link  :  '
             message_post2 = 'alias  :  '
             message_post3 = 'expires on  :  '
+            flg = True
             return render_template('custom_link.html', message_post1 = message_post1, message_post2 = message_post2, \
                                    message_post3 = message_post3, originalURL = originalURL, generatedURL = generatedURL, \
-                                   dateSet = dateSet)
+                                   dateSet = dateSet, flg = flg)
         else:
             message_error1 = 'Sorry, this alias is already taken'
             message_error2 = 'Please try different characters'
-            return render_template('custom_link.html', message_error1 = message_error1, message_error2 = message_error2)
     else:
         message_error1 = 'Please enter valid characters and URL'
-        return render_template('custom_link.html', message_error1 = message_error1)
+        message_error2 = ''
+    return render_template('custom_link.html', message_error1 = message_error1, message_error2 = message_error2)
 
 # -----------------------------------------------------------------------------------------NEW
 
 @app.route('/custom/expiration', methods=["GET","POST"])
 def custom_expiration():
-    year1 = get_date()
-    year2 = year1 + 1
+    year1, year2 = get_date()
     if request.method == 'GET':
         return render_template('custom_expiration.html', year1 = year1, year2 = year2)
 
@@ -180,20 +184,20 @@ def custom_expiration():
             message_post1 = 'link  :  '
             message_post2 = 'alias  :  '
             message_post3 = 'expires on  :  '
+            flg = True
             return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_post1 = message_post1, \
-                                message_post2 = message_post2, message_post3 = message_post3, \
-                                originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet)
+                                   message_post2 = message_post2, message_post3 = message_post3, \
+                                   originalURL = originalURL, generatedURL = generatedURL, dateSet = dateSet, flg = flg)
         else:
             message_error1 = 'Sorry, this alias is already taken'
             message_error2 = 'Please try different characters'
-            return render_template('custom_expiration.html', year1 = year1, year2 = year2, \
-                                   message_error1 = message_error1, message_error2 = message_error2)
+            message_error3 = ''
     else:
         message_error1 = 'Please enter a valid date' if not date_check(dateSet) else ''
         message_error2 = 'Please enter valid characters' if not key_check(customKey) else ''
         message_error3 = 'Please enter a valid URL' if not URL_check(originalURL) else ''
-        return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
-                               message_error2 = message_error2, message_error3 = message_error3)
+    return render_template('custom_expiration.html', year1 = year1, year2 = year2, message_error1 = message_error1, \
+                           message_error2 = message_error2, message_error3 = message_error3)
 
 # -----------------------------------------------------------------------------------------NEW
 

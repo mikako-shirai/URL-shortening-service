@@ -3,9 +3,9 @@
 {% block content %}
 <div>
 	<h1>CUSTOM EXPIRATION</h1>
-	<p>Set an expiration date to a short link</p>
-	<p>Set an expiration date to a custom link</p>
-	<p>note : maximum expiration date is 6 months from now</p>
+	<p>https&#x3a;//short-321807.an.r.appspot.com/ +&nbsp;<span class="dateSet font-back" style="background-color: linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);">PATH_of_your_choice</span></p>
+	<p>Path must consist of 6 to 30 characters without both forward and back slashes</p>
+	<p>Maximum expiration date is 6 months from now</p>
 </div>
 
 <br>
@@ -16,102 +16,14 @@
 </div>
 
 <form action="/custom/expiration" method="POST" enctype="multipart/form-data">
-	<div class="flex-main2 flex-main3">
+	<div class="flex-main3">
 		<div class="date-0">
 			<svg class="icon-date" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
 				<path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
 				<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 			</svg>
 		</div>
-        <select class="btn-3 date-1" name="year">
-			<!-- <option value="" disabled>--year--</option> -->
-            <option value="{{ year1 }}">{{ year1 }}</option>
-            <option value="{{ year2 }}">{{ year2 }}</option>
-        </select>
-		<span class="date-lt">/</span>
-        <select class="btn-3 date-2" name="month">
-			<!-- <option value="" disabled>--month--</option> -->
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-		<span class="date-lt">/</span>
-        <select class="btn-3 date-3" name="date">
-			<!-- <option value="" disabled>--date--</option> -->
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-        </select>
-        <select class="btn-3 date-4" name="hour">
-			<!-- <option value="" disabled>--hour--</option> -->
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-        </select>
-		<span class="date-lt">:</span>
-        <select class="btn-3 date-5" name="minute">
-			<!-- <option value="" disabled>--minute--</option> -->
-            <option value="0">00</option>
-            <option value="30">30</option>
-        </select>			
+        {% include "selector.html" %}			
 	</div>
 	<div class="flex-main2">
 		<div class="btn-2">
@@ -119,8 +31,23 @@
 				<path d="M2.244 13.081l.943-2.803H6.66l.944 2.803H8.86L5.54 3.75H4.322L1 13.081h1.244zm2.7-7.923L6.34 9.314H3.51l1.4-4.156h.034zm9.146 7.027h.035v.896h1.128V8.125c0-1.51-1.114-2.345-2.646-2.345-1.736 0-2.59.916-2.666 2.174h1.108c.068-.718.595-1.19 1.517-1.19.971 0 1.518.52 1.518 1.464v.731H12.19c-1.647.007-2.522.8-2.522 2.058 0 1.319.957 2.18 2.345 2.18 1.06 0 1.716-.43 2.078-1.011zm-1.763.035c-.752 0-1.456-.397-1.456-1.244 0-.65.424-1.115 1.408-1.115h1.805v.834c0 .896-.752 1.525-1.757 1.525z"></path>
 			</svg>
 		</div>
-		<input class="btn-2" type="text" name="customKey" placeholder="characters">
+		<input class="btn-2" type="text" name="customKey" placeholder="path" minlength="6" maxlength="30" required>
     </div>
+
+
+	
+	<div class="flex-main22">
+		<div class="btn-22">
+			<svg class="icon-str" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewBox="0 0 16 16">
+				<path d="M2.244 13.081l.943-2.803H6.66l.944 2.803H8.86L5.54 3.75H4.322L1 13.081h1.244zm2.7-7.923L6.34 9.314H3.51l1.4-4.156h.034zm9.146 7.027h.035v.896h1.128V8.125c0-1.51-1.114-2.345-2.646-2.345-1.736 0-2.59.916-2.666 2.174h1.108c.068-.718.595-1.19 1.517-1.19.971 0 1.518.52 1.518 1.464v.731H12.19c-1.647.007-2.522.8-2.522 2.058 0 1.319.957 2.18 2.345 2.18 1.06 0 1.716-.43 2.078-1.011zm-1.763.035c-.752 0-1.456-.397-1.456-1.244 0-.65.424-1.115 1.408-1.115h1.805v.834c0 .896-.752 1.525-1.757 1.525z"></path>
+			</svg>
+		</div>
+		<input class="btn-22" type="text" value="https&#x3a;//short-321807.an.r.appspot.com/" readonly>
+		<input class="btn-22" type="text" name="customKey" placeholder="path" minlength="6" maxlength="30" required>
+    </div>
+
+
+
 	<div class="flex-main1">
 		<div class="btn-1">
 			<svg class="icon-link" xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" viewBox="0 0 16 16">
@@ -128,16 +55,25 @@
 				<path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"></path>
 			</svg>
 		</div>
-		<input class="btn-1" type="text" name="originalURl" placeholder="link">
+		{% if not flg %}
+		<input class="btn-1" type="text" name="originalURl" placeholder="URL" required>
+		{% else %}
+		<input class="btn-1" type="text" name="originalURl" placeholder="{{ generatedURL }}" required>
+		{% endif %}
 		<input class="btn-1" type="submit" value="create">
 	</div>
 </form>
 
-<br>
 <div>
-	<p>{{ message_post1 }}<a href="{{ originalURL }}" class="link_main">{{ originalURL }}</a></p>
-	<p>{{ message_post2 }}<a href="{{ generatedURL }}" class="link_main">{{ generatedURL }}</a></p>
-	<p>{{ message_post3 }}<span class="dateSet">{{ dateSet }}</span></p>
+	<p>Want a&nbsp;<a href="{{ url_for('short_link') }}" class="link_main">Shortest Solution</a>?
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down-left" viewBox="0 0 16 16">
+		<path fill-rule="evenodd" d="M9.636 2.5a.5.5 0 0 0-.5-.5H2.5A1.5 1.5 0 0 0 1 3.5v10A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5V6.864a.5.5 0 0 0-1 0V13.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+		<path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H6.707l8.147-8.146a.5.5 0 0 0-.708-.708L6 9.293V5.5a.5.5 0 0 0-1 0v5z"/>
+	</svg>
+	</p>
 </div>
+
+{% include "result.html" %}
+
 {% endblock %}
 

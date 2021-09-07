@@ -3,13 +3,7 @@
 {% block content %}
 <div>
 	<h1>SHORT LINK GENERATOR</h1>
-	<p>You can create a short URL alias with randomly chosen 5 characters</p>
-	<p>...or create&nbsp;<a href="{{ url_for('custom_link') }}" class="link_main">a custom URL alias
-	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down-left" viewBox="0 0 16 16">
-		<path fill-rule="evenodd" d="M9.636 2.5a.5.5 0 0 0-.5-.5H2.5A1.5 1.5 0 0 0 1 3.5v10A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5V6.864a.5.5 0 0 0-1 0V13.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-		<path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H6.707l8.147-8.146a.5.5 0 0 0-.708-.708L6 9.293V5.5a.5.5 0 0 0-1 0v5z"/>
-	</svg>
-	</a>&nbsp;of your choice</p>
+	<p>Hit the button to&nbsp;<span style="background-color: linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);">shorten</span>&nbsp;URL</p>
 </div>
 
 <br>
@@ -25,16 +19,25 @@
                 <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"/>
             </svg>
         </div>
-		<input class="btn-1" type="text" name="originalURl" placeholder="link">
+		{% if not flg %}
+		<input class="btn-1" type="text" name="originalURl" placeholder="URL to shorten" required>
+		{% else %}
+		<input class="btn-1" type="text" name="originalURl" placeholder="{{ generatedURL }}" required>
+		{% endif %}
 		<input class="btn-1" type="submit" value="shorten">
 	</form>
 </div>
 
-<br>
 <div>
-	<p>{{ message_post1 }}<a href="{{ originalURL }}" class="link_main">{{ originalURL }}</a></p>
-	<p>{{ message_post2 }}<a href="{{ generatedURL }}" class="link_main">{{ generatedURL }}</a><span class="copy_btn" data-clipboard-text="{{ generatedURL }}">{{ copy }}</span></p>
-	<p>{{ message_post3 }}<span class="dateSet">{{ dateSet }}</span></p>
+	<p>Want to&nbsp;<a href="{{ url_for('custom_link') }}" class="link_main">Customize Your Link</a>?
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down-left" viewBox="0 0 16 16">
+		<path fill-rule="evenodd" d="M9.636 2.5a.5.5 0 0 0-.5-.5H2.5A1.5 1.5 0 0 0 1 3.5v10A1.5 1.5 0 0 0 2.5 15h10a1.5 1.5 0 0 0 1.5-1.5V6.864a.5.5 0 0 0-1 0V13.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+		<path fill-rule="evenodd" d="M5 10.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H6.707l8.147-8.146a.5.5 0 0 0-.708-.708L6 9.293V5.5a.5.5 0 0 0-1 0v5z"/>
+	</svg>
+    </p>
 </div>
+
+{% include "result.html" %}
+
 {% endblock %}
 
