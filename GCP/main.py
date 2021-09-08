@@ -47,7 +47,7 @@ def key_check(customKey):
 
 def date_check(dateSet):
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    date6months = dateNow + relativedelta(months=+6, minutes=-30)
+    date6months = dateNow + relativedelta(months=+6, minutes=-1)
     try:
         expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
     except ValueError:
@@ -129,6 +129,8 @@ def short_link():
     else:
         errors.append('Please enter a valid URL')
     return render_template('index.html', dicData = dicData, errors = errors, flg = flg)
+
+# -----------------------------------------------------------------------------------
 
 @app.route('/custom', methods=["GET","POST"])
 def custom_link():
@@ -241,8 +243,7 @@ def URL_redirect(string):
         })
         originalURL = key.to_dict()['originalURL']
         return redirect(originalURL)
-    else:
-        abort(404)
+    abort(404)
 
 @app.route('/cron', methods=['GET'])
 def expiration_check():
@@ -286,7 +287,8 @@ def page_not_found(e):
     if total == 0:
         URL = 'https://www.google.com/'
     else:
-        URLs = list(dic['list'])
+        # URLs = list(dic['list'])
+        URLs = dic['list']
         randomNum = random.randrange(0, total)
         URL = URLs[randomNum]
     return render_template('404.html', URL = URL), 404

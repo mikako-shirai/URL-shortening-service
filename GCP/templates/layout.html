@@ -19,15 +19,9 @@
 			</div>
 		</div>
 		<div class="header-menu">
-			<div class="menu">
-				<a href="{{ url_for('short_link') }}" class="link-menu">short URL</a>
-			</div>
-			<div class="menu">
-				<a href="{{ url_for('custom_link') }}" class="link-menu">custom URL</a>
-			</div>
-			<div class="menu">
-				<a href="{{ url_for('custom_expiration') }}" class="link-menu">custom expiration</a>
-			</div>
+			<a href="{{ url_for('short_link') }}" class="menu link-menu">short URL</a>
+			<a href="{{ url_for('custom_link') }}" class="menu link-menu">custom URL</a>
+			<a href="{{ url_for('custom_expiration') }}" class="menu link-menu">custom expiration</a>
 		</div>
 	</header>
 
