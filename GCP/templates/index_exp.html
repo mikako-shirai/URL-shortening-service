@@ -3,7 +3,6 @@
 {% block content %}
 <div>
 	<h1 class="font-back">CUSTOM EXPIRATION</h1>
-	<p>Maximum expiration date is 6 months from now</p>
 </div>
 
 <br>
@@ -39,6 +38,15 @@
 	</div>
 </form>
 
+{% include "result.html" %}
+
+<br>
+<div>
+    <p>https&#x3a;//short-321807.an.r.appspot.com/ +&nbsp;<span class="link-main">5_characters</span></p>
+    <p>Maximum expiration date is&nbsp;<span class="link-main">6</span>&nbsp;months from now</p>
+    <p>Click&nbsp;<a href="{{ url_for('short_link') }}" class="link-main">here</a>&nbsp;to set the expiration time to default&nbsp;<span class="link-main">14</span>&nbsp;days</p>
+</div>
+<br>
 <div>
 	<p>Want to&nbsp;<a href="{{ url_for('custom_expiration') }}" class="link-main">Customize Your Link</a>?
 	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-down-left" viewBox="0 0 16 16">
@@ -47,8 +55,5 @@
 	</svg>
     </p>
 </div>
-
-{% include "result.html" %}
-
 {% endblock %}
 
