@@ -41,7 +41,7 @@
 		{% if not flg %}
 		<input class="url" type="text" name="originalURl" placeholder="URL" required>
 		{% else %}
-		<input class="url" type="text" name="originalURl" placeholder="{{ dicData['alias'] }}" required>
+		<input class="url" type="text" name="originalURl" placeholder="{{ dicData['URL'] }}" required>
 		{% endif %}
 		<input class="url" type="submit" value="create">
 	</div>
@@ -50,11 +50,11 @@
 {% include "result.html" %}
 
 <br>
-<div>
+<div class="main-pdng">
 	<p>https&#x3a;//short-321807.an.r.appspot.com/ +&nbsp;<span class="link-main">PATH_of_your_choice</span></p>
-	<p>Path must consist of 6 to 30 characters without both forward and back slashes</p>
-	<p>Maximum expiration date is&nbsp;<span class="link-main">6</span>&nbsp;months from now</p>
-    <p>Click&nbsp;<a href="{{ url_for('custom_link') }}" class="link-main">here</a>&nbsp;to set the expiration time to default&nbsp;<span class="link-main">14</span>&nbsp;days</p>
+	<!-- <p>Path must consist of 6 to 30 characters without both forward and back slashes</p> -->
+	<p>Maximum expiration date is&nbsp;<span class="link-main">6</span>&nbsp;months from now.
+	   &nbsp;Click&nbsp;<a href="{{ url_for('custom_link') }}" class="link-main">here</a>&nbsp;to use default expiration time.</p>
 </div>
 <br>
 <div>
