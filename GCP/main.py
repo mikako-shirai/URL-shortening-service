@@ -100,7 +100,7 @@ def append_data(originalURL, key, expirationDate=None):
     })
 
     dic = db.collection(u'random').document(u'random').get().to_dict()
-    URLs = list(dic['list'])
+    URLs = dic['list']
     if originalURL not in URLs:
         db.collection(u'random').document(u'random').update({
             u'list': firestore.ArrayUnion([originalURL]),
@@ -287,7 +287,6 @@ def page_not_found(e):
     if total == 0:
         URL = 'https://www.google.com/'
     else:
-        # URLs = list(dic['list'])
         URLs = dic['list']
         randomNum = random.randrange(0, total)
         URL = URLs[randomNum]
