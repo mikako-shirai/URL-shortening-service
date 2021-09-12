@@ -40,7 +40,7 @@ This project is built using the following frameworks/services
 - [Flask][Flask]  
 - [GCP Firestore][Firestore]  
 - [GCP App Engine][App Engine]  
-- ~~[pytest][pytest]~~ (work in progress)  
+- [unittest][unittest] (work in progress)  
 - ~~[gRPC][gRPC]~~ (work in progress)  
   
 
@@ -63,7 +63,7 @@ $ pip install Flask
 ```
 $ pip install python-dateutil
 ```  
-- [pytest][pytest]  
+- ~~[pytest][pytest]~~  
 ```
 $ pip install pytest
 ```  
@@ -128,6 +128,7 @@ $ gcloud app deploy
 [Firestore]: https://cloud.google.com/firestore/  
 [App Engine]: https://cloud.google.com/appengine/  
 [python-dateutil]: https://pypi.org/project/python-dateutil/  
+[unittest]: https://docs.python.org/3/library/unittest.html  
 [pytest]: https://docs.pytest.org/en/6.2.x/  
 [gRPC]: https://grpc.io/  
 
