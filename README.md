@@ -46,12 +46,18 @@ This project is built using the following frameworks/services
 
 ## Getting Started  
 ### Prerequisites  
+- [python-dateutil][python-dateutil]  
+```
+$ pip install python-dateutil
+```  
 - [Flask][Flask]  
 ```
 $ pip install Flask
 ```  
 - [Firestore][Firestore]  
-
+```
+$ pip install --upgrade google-cloud-firestore
+```  
 &ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
 - [App Engine][App Engine]  
 
@@ -59,14 +65,10 @@ $ pip install Flask
 - [App Engine][App Engine] Cron Service  
 
 &ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
-- [python-dateutil][python-dateutil]  
-```
-$ pip install python-dateutil
-```  
-- ~~[pytest][pytest]~~  
+<!-- - [pytest][pytest]  
 ```
 $ pip install pytest
-```  
+```   -->
   
 ### Installation  
 #### initial version  
