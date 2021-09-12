@@ -55,10 +55,10 @@ $ pip install python-dateutil
 $ pip install Flask
 ```  
 - [Firestore][Firestore]  
+&ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
 ```
 $ pip install --upgrade google-cloud-firestore
 ```  
-&ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
 - [App Engine][App Engine]  
 
 &ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
