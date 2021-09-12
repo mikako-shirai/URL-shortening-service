@@ -55,16 +55,17 @@ $ pip install python-dateutil
 $ pip install Flask
 ```  
 - [Firestore][Firestore]  
-&ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup  
+
+&ensp;&ensp;&ensp;follow this [document](https://cloud.google.com/firestore/docs/quickstart-servers) for setup
 ```
 $ pip install --upgrade google-cloud-firestore
 ```  
 - [App Engine][App Engine]  
 
-&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
+&ensp;&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/python3/quickstart) for setup  
 - [App Engine][App Engine] Cron Service  
 
-&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
+&ensp;&ensp;&ensp;follow this [document](https://cloud.google.com/appengine/docs/standard/go/scheduling-jobs-with-cron-yaml) for setup  
 <!-- - [pytest][pytest]  
 ```
 $ pip install pytest
