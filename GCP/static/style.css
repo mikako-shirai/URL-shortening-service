@@ -1,4 +1,4 @@
-/*---------------------------------------------------- body */
+/*----------------------------------------------------------------------- body */
 
 body {
   /* background: #D4E0D8; */
@@ -24,7 +24,7 @@ body {
   }
 }
 
-/*---------------------------------------------------- header main footer */
+/*----------------------------------------------------------------------- header main footer */
 
 .wrapper {
   display: flex;
@@ -93,8 +93,9 @@ main {
 footer {
   margin-top: auto;
 }
-  
-/*---------------------------------------------------- header flex */
+
+/*----------------------------------------------------------------------- HEADER FLEX */
+/*----------------------------------------------------------------------- header-title */
   
 .header-title {
   background: #B4C1B8;
@@ -126,54 +127,69 @@ footer {
     display: none;
   }
 }
-  
+
+/*----------------------------------------------------------------------- header-menu */
+
+ul {
+  padding: 0px;
+}
 .header-menu {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  margin: 0 auto;
+/*   height: 2.5rem; */ /* mainを固定 */
 }
-.menu {
-  color: #FFFFFF;
+.header-menu > li {
   flex: 1;
-  padding: 10px;
-  word-wrap: break-word;
-  min-width: 0;
 }
-.menu:nth-child(1) {
-  /* background: #9BA59E; */
+.header-menu li { /* 全てのリスト・リンク共通 */
+  list-style: none;
+}
+.header-menu li a {
+  display: block;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  height: 2.5rem;
+  line-height: 2.5rem; /* textを上下の真ん中に */
+  margin-bottom:  1.3px;
+}
+.header-menu li li { /* 子階層共通 */
+  height: 0; /* 隠す */
+  margin-bottom:  1.3px;
+  overflow: hidden;
+  transition: .5s;
+}
+.header-menu li:hover > ul > li {
+  height: 2.5rem; /* hover時全表示 */
+  overflow: visible;
+}
+.menu1 {
   background: rgba(155, 165, 158, 0.95);
-  text-align: center;
   margin-right:  1px;
-  border-radius: 0px 0px 0px 3px;
 }
-.menu:nth-child(2) {
-  /* background: #9B9DA5; */
+.menu2 {
   background: rgba(155, 157, 165, 0.8);
-  text-align: center;
   margin-right:  0.4px;
   margin-left: 0.4px;
 }
-.menu:nth-child(3) {
-  /* background: #A59BA2; */
+.menu3 {
   background: rgba(165, 155, 162, 0.8);
-  text-align: center;
   margin-left: 1px;
-  border-radius: 0px 0px 3px 0px;
-}
-.menu .link-menu {
-  display: block;
 }
 @media (max-width:767px) {
-  .menu {
-    height: 22px;
-    padding-top: 11px;
-    padding-bottom: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+  .header-menu li a {
+    height: 2rem;
+    line-height: 2rem;
+  }
+}
+@media (max-width:767px) {
+  .header-menu li:hover > ul > li {
+    height: 2rem;
   }
 }
 
-/*---------------------------------------------------- form-url */
+/*----------------------------------------------------------------------- MAIN FLEX */
+/*----------------------------------------------------------------------- form-url */
 
 .form-url {
   display: flex;
@@ -264,7 +280,7 @@ footer {
 	}
 }
 
-/*---------------------------------------------------- form-path */
+/*----------------------------------------------------------------------- form-path */
 
 .form-path {
   display: flex;
@@ -368,7 +384,7 @@ footer {
 	}
 }
 
-/*---------------------------------------------------- form-exp */
+/*----------------------------------------------------------------------- form-exp */
 
 .form-exp {
   display: flex;
@@ -505,7 +521,7 @@ footer {
 	}
 }
 
-/*---------------------------------------------------- copy-btn */
+/*----------------------------------------------------------------------- copy-btn */
 
 .main-copy {
   display: flex;
@@ -601,40 +617,45 @@ footer {
     padding-top: 9px;
 	}
 }
- 
-/*---------------------------------------------------- link hover */
+
+/*----------------------------------------------------------------------- HOVER FONT */
+/*----------------------------------------------------------------------- hover */
 
 .title:link, .title:visited, .title:active, .title:hover {
   text-decoration: none;
 }
   
-.menu:nth-child(1):hover {
+.menu1:hover {
   /* background: #818983; */
   background: rgba(129, 137, 131, 0.8);
 }
-.menu:nth-child(2):hover {
+.menu2:hover {
   /* background: #9B9DA5; */
   background: rgba(155, 157, 165, 1);
 }
-.menu:nth-child(3):hover {
+.menu3:hover {
   /* background: #A59BA2; */
   background: rgba(165, 155, 162, 1);
 }
-.link-menu:link, .link-menu:visited, .link-menu:active {
-  color: #FFFFFF;
-  text-decoration: none;
-}
-.link-menu:hover {
+.link-menu1:hover {
   color: #DAE5DD;
   text-decoration: none;
 }
+.link-menu2:hover {
+  color: #DADCE5;
+  text-decoration: none;
+}
+.link-menu3:hover {
+  color: #E5DAE2;
+  text-decoration: none;
+}
 @media (max-width:767px) {
-  .link-menu {
+  .link-menu1, .link-menu2, .link-menu3 {
     font-size: 11px;
   }
 }
 
-.link-main  {       /*      depends on page      */
+.link-main  {
   color: #9B9DA5;
   font-size: 20px;
   font-weight: 200;
@@ -679,7 +700,7 @@ footer {
   text-decoration: none;
 }
   
-/*---------------------------------------------------- font */
+/*----------------------------------------------------------------------- font */
   
 header h2 {
   font-weight: lighter;
@@ -703,7 +724,7 @@ header h5 {
   color: #FFFFFF;
 }
   
-main h1 {       /*      depends on page      */
+main h1 {
   font-weight: lighter;
   font-size: 26px;
   color: #4D524F;
@@ -719,7 +740,7 @@ main h1 {       /*      depends on page      */
   }
 }
   
-main p {       /*      depends on page      */
+main p {
   font-size: 19px;
   color: #676E69;
   line-height: 100%;
@@ -740,6 +761,7 @@ main p {       /*      depends on page      */
 }
   
 .font-error {
+  font-weight: 200;
   font-size: 18px;
   color: #A59BA2;
 }
@@ -785,14 +807,14 @@ footer p {
   }
 }
 
-/*---------------------------------------------------- */
+/*----------------------------------------------------------------------- */
 
 .color-sample {
   color: #FFFFFF;
   color: #F9FBF9;
   color: #F3F6F4; /* (BELOW form input) */
   color: #E7EDE9;
-  color: #DAE5DD; /* link-menu:hover / main-back -> */
+  color: #DAE5DD; /* link-menu:hover / main-back -> / link-menu1:hover */
   color: #D4E0D8; /* font-back */
   color: #CEDCD2; /* body background -> / copy icon -> / copy btn -> */
   color: #B4C1B8; /* header-title / form button -> */
@@ -809,9 +831,9 @@ footer p {
   color: #F3F4F6; /* form input (path) */
   color: #F6F3F5; /* form input (exp) */
 
-  color: #DAE5DD; /* main-back -> */
-  color: #DADCE5;
-  color: #E5DAE2; /* main-back <- */
+  color: #DAE5DD; /* main-back -> / link-menu1:hover */
+  color: #DADCE5; /*              / link-menu2:hover */
+  color: #E5DAE2; /* main-back <- / link-menu3:hover */
 
   color: #CEDCD2; /* ORIGINAL / body background -> / copy icon -> / copy btn -> */
   color: #CED1DC;

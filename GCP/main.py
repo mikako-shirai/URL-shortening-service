@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
-keywords = ['custom', 'short', 'expiration', 'link', '404', 'cron', \
+keywords = ['custom', 'short', 'expiration', 'analytics', 'link', '404', 'cron', \
             'index', 'custom_exp', 'short_exp', 'result']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 # dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
@@ -124,8 +124,8 @@ def short_link():
         generatedKey = DB_generatedKey(originalURL)
         generatedURL = GCP_URL + generatedKey
         flg = True
-        dicData['URL'] = originalURL
-        dicData['alias'] = generatedURL
+        dicData['originalURL'] = originalURL
+        dicData['generatedURL'] = generatedURL
     else:
         errors.append('Please enter a valid URL')
     return render_template('index.html', dicData = dicData, errors = errors, flg = flg)
@@ -145,8 +145,8 @@ def custom_link():
         if DB_customKey(originalURL, customKey):
             generatedURL = GCP_URL + customKey
             flg = True
-            dicData['URL'] = originalURL
-            dicData['alias'] = generatedURL
+            dicData['originalURL'] = originalURL
+            dicData['generatedURL'] = generatedURL
         else:
             errors.append('Sorry, this alias is already taken')
             errors.append('Please try different characters')
@@ -177,9 +177,9 @@ def short_expiration():
         generatedKey = DB_generatedKey(originalURL, expirationDate)
         generatedURL = GCP_URL + generatedKey
         flg = True
-        dicData['URL'] = originalURL
-        dicData['alias'] = generatedURL
-        dicData['expiration'] = {'year': year, 'month': months[int(month)-1], 'date': date, 'hour': hour, 'minute': minute}
+        dicData['originalURL'] = originalURL
+        dicData['generatedURL'] = generatedURL
+        dicData['expirationDate'] = {'year': year, 'month': months[int(month)-1], 'date': date, 'hour': hour, 'minute': minute}
     else:
         if not date_check(dateSet): errors.append('Please enter a valid date')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
@@ -187,7 +187,7 @@ def short_expiration():
 
 # -----------------------------------------------------------------------------------
 
-@app.route('/expiration/custom', methods=["GET","POST"])
+@app.route('/custom/expiration', methods=["GET","POST"])
 def custom_expiration():
     years = get_date()
     if request.method == 'GET':
@@ -208,9 +208,9 @@ def custom_expiration():
         if DB_customKey(originalURL, customKey, expirationDate):
             generatedURL = GCP_URL + customKey
             flg = True
-            dicData['URL'] = originalURL
-            dicData['alias'] = generatedURL
-            dicData['expiration'] = {'year': year, 'month': month, 'date': date, 'hour': hour, 'minute': minute}
+            dicData['originalURL'] = originalURL
+            dicData['generatedURL'] = generatedURL
+            dicData['expirationDate'] = {'year': year, 'month': month, 'date': date, 'hour': hour, 'minute': minute}
         else:
             errors.append('Sorry, this alias is already taken')
             errors.append('Please try different characters')
@@ -219,6 +219,47 @@ def custom_expiration():
         if not key_check(customKey): errors.append('Please enter valid characters')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
     return render_template('custom_exp.html', years = years, months = months, dicData = dicData, errors = errors, flg = flg, GCP_URL = GCP_URL)
+
+# -----------------------------------------------------------------------------------
+
+@app.route('/analytics', methods=["GET","POST"])
+def short_link():
+    if request.method == 'GET':
+        return render_template('analytics.html')
+
+    dicData, errors, flg = {}, [], False
+    generatedURL = request.form.get('generatedURL')
+    key = generatedURL[38:]
+
+    URLActive = db.collection(u'URLs').document(key).get()
+    URLOld = db.collection(u'expiredURLs').document(key).get()
+    if URLActive.exists:
+        URLActive = URLActive.to_dict()
+        dateCreated = URLActive['dateCreated']
+        expirationDate = URLActive['expirationDate']
+        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
+        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+        flg = True
+        dicData['expired'] = 'No'
+        dicData['originalURL'] = URLActive['originalURL']
+        dicData['dateCreated'] = dateCreated
+        dicData['expirationDate'] = expirationDate
+        dicData['pageViews'] = URLActive['pageViews']
+    elif URLOld.exists:
+        URLOld = URLOld.to_dict()
+        dateCreated = URLOld['dateCreated']
+        expirationDate = URLOld['expirationDate']
+        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
+        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+        flg = True
+        dicData['expired'] = 'Yes'
+        dicData['originalURL'] = URLOld['originalURL']
+        dicData['dateCreated'] = dateCreated
+        dicData['expirationDate'] = expirationDate
+        dicData['pageViews'] = URLOld['pageViews']
+    else:
+        errors.append('The requested link was not found')
+    return render_template('analytics.html', dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 

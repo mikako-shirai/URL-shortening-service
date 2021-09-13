@@ -11,7 +11,7 @@
 	<header>
 		<div class="wrapper-header">
 			<div class="header-title">
-				<div class="title">
+				<div>
 					<a href="{{ url_for('short_link') }}" class="title"><h2>the shorter,<br>the better</h2></a>
 				</div>
 				<div class="title">
@@ -21,11 +21,26 @@
 					</h5>
 				</div>
 			</div>
-			<div class="header-menu">
-				<a href="{{ url_for('short_link') }}" class="menu link-menu">short URL</a>
-				<a href="{{ url_for('custom_link') }}" class="menu link-menu">custom URL</a>
-				<a href="{{ url_for('custom_expiration') }}" class="menu link-menu">custom expiration</a>
-			</div>
+
+			<ul class="header-menu">
+                <li>
+                    <a class="menu1">Short Links</a>
+                    <ul>
+                        <li><a href="/" class="menu1 link-menu1">Short Links</a></li>
+                        <li><a href="/expiration" class="menu1 link-menu1">+ Custom Expiration</a></li>
+                    </ul>    
+                </li>
+                <li>
+                    <a class="menu2">Custom Links</a>
+                    <ul>
+                        <li><a href="/custom" class="menu2 link-menu2">Custom Links</a></li>
+                        <li><a href="/custom/expiration" class="menu2 link-menu2">+ Custom Expiration</a></li>
+                    </ul>    
+                </li>
+                <li>
+					<a href="/analytics" class="menu3 link-menu3">Link Analytics</a>
+				</li>
+			</ul>
 		</div>
 	</header>
 
