@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
-keywords = ['custom', 'short', 'expiration', 'analytics', 'link', '404', 'cron', \
+keywords = ['custom', 'short', 'expiration', 'analysis', 'link', '404', 'cron', \
             'index', 'custom_exp', 'short_exp', 'result']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -220,16 +220,16 @@ def custom_expiration():
 
 # -----------------------------------------------------------------------------------
 
-@app.route('/analytics', methods=["GET","POST"])
-def link_analytics():
+@app.route('/analysis', methods=["GET","POST"])
+def link_analysis():
     if request.method == 'GET':
-        return render_template('analytics.html')
+        return render_template('analysis.html')
 
     generatedURL = request.form.get('generatedURL')
     key = generatedURL[38:]
-
     URLActive = db.collection(u'URLs').document(key).get()
     URLOld = db.collection(u'expiredURLs').document(key).get()
+
     if URLActive.exists:
         URLActive = URLActive.to_dict()
         dateCreated = URLActive['dateCreated']
@@ -242,6 +242,7 @@ def link_analytics():
         dicData['dateCreated'] = dateCreated
         dicData['expirationDate'] = expirationDate
         dicData['pageViews'] = URLActive['pageViews']
+
     elif URLOld.exists:
         URLOld = URLOld.to_dict()
         dateCreated = URLOld['dateCreated']
@@ -254,9 +255,10 @@ def link_analytics():
         dicData['dateCreated'] = dateCreated
         dicData['expirationDate'] = expirationDate
         dicData['pageViews'] = URLOld['pageViews']
+        
     else:
         errors.append('The requested link was not found')
-    return render_template('analytics.html', dicData = dicData, errors = errors, flg = flg)
+    return render_template('analysis.html', dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 

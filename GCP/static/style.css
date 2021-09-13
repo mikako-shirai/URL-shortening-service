@@ -194,6 +194,7 @@ ul {
 .form-url {
   display: flex;
   align-items: center;
+  padding-bottom: 9px;
 }
 .url {
   height: 40px;
@@ -526,7 +527,7 @@ ul {
 .main-copy {
   display: flex;
   align-items: center;
-  margin-top: 9px;
+  padding-bottom: 9px;
 }
 .copy, .copy-btn {
   height: 40px;
@@ -650,7 +651,7 @@ ul {
   text-decoration: none;
 }
 @media (max-width:767px) {
-  .link-menu1, .link-menu2, .link-menu3 {
+  .link-menu, .link-menu1, .link-menu2, .link-menu3 {
     font-size: 11px;
   }
 }
