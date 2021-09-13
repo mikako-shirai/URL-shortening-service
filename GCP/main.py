@@ -15,7 +15,6 @@ GCP_URL = 'https://short-321807.an.r.appspot.com/'
 keywords = ['custom', 'short', 'expiration', 'analytics', 'link', '404', 'cron', \
             'index', 'custom_exp', 'short_exp', 'result']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-# dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
 
 # -----------------------------------------------------------------------------------
 
@@ -218,12 +217,12 @@ def custom_expiration():
         if not date_check(dateSet): errors.append('Please enter a valid date')
         if not key_check(customKey): errors.append('Please enter valid characters')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
-    return render_template('custom_exp.html', years = years, months = months, dicData = dicData, errors = errors, flg = flg, GCP_URL = GCP_URL)
+    return render_template('custom_exp.html', years = years, months = months, dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 
 @app.route('/analytics', methods=["GET","POST"])
-def short_link():
+def link_analytics():
     if request.method == 'GET':
         return render_template('analytics.html')
 
