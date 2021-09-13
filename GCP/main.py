@@ -178,7 +178,7 @@ def short_expiration():
         flg = True
         dicData['originalURL'] = originalURL
         dicData['generatedURL'] = generatedURL
-        dicData['expirationDate'] = {'year': year, 'month': months[int(month)-1], 'date': date, 'hour': hour, 'minute': minute}
+        dicData['expirationDate'] = {'year': year, 'month': month, 'date': date, 'hour': hour, 'minute': minute}
     else:
         if not date_check(dateSet): errors.append('Please enter a valid date')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
