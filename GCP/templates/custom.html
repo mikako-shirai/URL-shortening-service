@@ -22,7 +22,7 @@
 		{% if not flg %}
 		<input class="path" type="text" name="customKey" placeholder="PATH&nbsp;&nbsp;*6 to 30 characters without slashes" minlength="6" maxlength="30" required>
 		{% else %}
-		<input class="path" type="text" name="customKey" placeholder="{{ dicData.alias[38:] }}" minlength="6" maxlength="30" required>
+		<input class="path" type="text" name="customKey" placeholder="{{ dicData.generatedURL }}" minlength="6" maxlength="30" required>
 		{% endif %}
     </div>
 	<div class="form-url">
@@ -35,7 +35,7 @@
 		{% if not flg %}
 		<input class="url" type="text" name="originalURl" placeholder="URL" required>
 		{% else %}
-		<input class="url" type="text" name="originalURl" placeholder="{{ dicData.URL }}" required>
+		<input class="url" type="text" name="originalURl" placeholder="{{ dicData.originalURL }}" required>
 		{% endif %}
 		<input class="url" type="submit" value="create">
 	</div>
