@@ -1,94 +1,63 @@
 
 {% block selector %}
-{% if years[1] %}
-<select class="exp exp2" name="year">
-    <option value="{{ years[0] }}">{{ years[0] }}</option>
-    <option value="{{ years[1] }}">{{ years[1] }}</option>
-</select>
+{% if flg %}
+    <select class="exp exp2" name="year">
+        {% for year in years %}
+        <option value="{{ year }}" {{ 'selected' if year|string == dicData.expiration.year else '' }}>{{ year }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">/</span>
+    <select class="exp exp3" name="month">
+        {% for el in months %}
+        <option value="{{ loop.index }}" {{ 'selected' if loop.index|string == dicData.expiration.month else '' }}>{{ el }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">/</span>
+    <select class="exp exp4" name="date">
+        {% for i in range(1, 32) %}
+        <option value="{{ i }}" {{ 'selected' if i|string == dicData.expiration.date else '' }}>{{ i }}</option>
+        {% endfor %}
+    </select>
+    <select class="exp exp5" name="hour">
+        {% for i in range(24) %}
+        <option value="{{ i }}" {{ 'selected' if i|string == dicData.expiration.hour else '' }}>{{ i }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">:</span>
+    <select class="exp exp6" name="minute">
+        {% for el in ['00', '30'] %}
+        <option value="{{ el }}" {{ 'selected' if el == dicData.expiration.minute else '' }}>{{ el }}</option>
+        {% endfor %}
+    </select>
 {% else %}
-<select class="exp exp2" name="year">
-    <option value="{{ years[0] }}">{{ years[0] }}</option>
-</select>
+    <select class="exp exp2" name="year">
+        {% for year in years %}
+        <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">/</span>
+    <select class="exp exp3" name="month">
+        {% for el in months %}
+        <option value="{{ loop.index }}">{{ el }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">/</span>
+    <select class="exp exp4" name="date">
+        {% for i in range(1, 32) %}
+        <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+    <select class="exp exp5" name="hour">
+        {% for i in range(24) %}
+        <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+    </select>
+    <span class="exp-letter">:</span>
+    <select class="exp exp6" name="minute">
+        {% for el in ['00', '30'] %}
+        <option value="{{ el }}">{{ el }}</option>
+        {% endfor %}
+    </select>
 {% endif %}
-<span class="exp-letter">/</span>
-<select class="exp exp3" name="month">
-    <option value="1">January</option>
-    <option value="2">February</option>
-    <option value="3">March</option>
-    <option value="4">April</option>
-    <option value="5">May</option>
-    <option value="6">June</option>
-    <option value="7">July</option>
-    <option value="8">August</option>
-    <option value="9">September</option>
-    <option value="10">October</option>
-    <option value="11">November</option>
-    <option value="12">December</option>
-</select>
-<span class="exp-letter">/</span>
-<select class="exp exp4" name="date">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-    <option value="24">24</option>
-    <option value="25">25</option>
-    <option value="26">26</option>
-    <option value="27">27</option>
-    <option value="28">28</option>
-    <option value="29">29</option>
-    <option value="30">30</option>
-    <option value="31">31</option>
-</select>
-<select class="exp exp5" name="hour">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-</select>
-<span class="exp-letter">:</span>
-<select class="exp exp6" name="minute">
-    <option value="0">00</option>
-    <option value="30">30</option>
-</select>
 {% endblock %}
 

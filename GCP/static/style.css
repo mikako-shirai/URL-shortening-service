@@ -81,7 +81,7 @@ main {
   }
 }
 
-.main-pdng {
+.main-back {
   background: linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);
   border-radius: 3px;
   padding-top: 10px;
@@ -463,8 +463,8 @@ footer {
 	.exp {
     font-size: 13px;
 		height: 33px;
-    padding-left: 12px;
-    padding-right: 11px;
+    padding-left: 9px;
+    padding-right: 8px;
 	}
 }
 @media (max-width:767px) {
@@ -505,10 +505,9 @@ footer {
 	}
 }
 
-/*---------------------------------------------------- copy button / result */
+/*---------------------------------------------------- copy-btn */
 
-
-.main-copy2 {
+.main-copy {
   display: flex;
   align-items: center;
   margin-top: 9px;
@@ -525,9 +524,8 @@ footer {
   height: 28px;
   padding-top: 12px;
   border-width: 0.3px;
- border-style: outset;
+  border-style: outset;
   border-color: initial;
-/*   border-right: none; */
 }
 .copy:nth-child(2) {
   background: #FFFFFF;
@@ -542,7 +540,6 @@ footer {
   border-width: 0.3px;
   border-style: inset;
   border-color: initial;
-/*   border-left: none; */
 }
 .copy-btn {
   background: linear-gradient(-15deg, #CEDCD2, #CED1DC, #DCCED8);
@@ -604,53 +601,6 @@ footer {
     padding-top: 9px;
 	}
 }
-
-/* .main-copy {
-  background: linear-gradient(-15deg, #CEDCD2, #CED1DC, #DCCED8);
-  color: #FFFFFF;
-  text-align: center;
-  font-weight: lighter;
-  font-size: 17px;
-  border-radius: 6px;
-  height: 33px;
-  width: 100%;
-  padding-top: 10px;
-  margin-top: 15px;
-  margin-bottom: 7px;
-  border-width: 0.3px;
-  border-color: initial;
-}
-
-.main-result {
-  background: linear-gradient(-18deg, #DAE5DD, #DADCE5, #E5DAE2);
-  color: #9B9DA5;
-  display: flex;
-  word-wrap: break-word;
-  min-width: 0;
-}
-.result {
-  flex: 1;
-  min-width: 0;
-  padding: 30px;
-}å
-.result2 {
-  flex: 1;
-  min-width: 0;
-}
-.result:nth-child(1) {
-  padding-left: 60px;
-}
-.result:nth-child(2) {
-  text-align: right;
-  padding-right: 60px;
-}
-.result2:nth-child(1) {
-  padding-left: 80px;
-}
-.result2:nth-child(2) {
-  text-align: right;
-  padding-left: 500px;
-} */
  
 /*---------------------------------------------------- link hover */
 
@@ -715,15 +665,10 @@ footer {
 }
 
 .copy-btn:hover {
-  background: #F3F6F4;
+  background: #FFFFFF;
   color: #9B9DA5;
   cursor: pointer;
 }
-/* .main-copy:hover {
-  background: #F3F6F4;
-  color: #9B9DA5;
-  cursor: pointer;
-} */
   
 .GitHub:link, .GitHub:visited, .GitHub:active {
   color: #676E69;
@@ -810,7 +755,6 @@ main p {       /*      depends on page      */
 }
 
 .icon-internal {
-  color: #FFFFFF;
   color: #A59BA2;
 }
 .icon-url {
@@ -824,12 +768,6 @@ main p {       /*      depends on page      */
 }
 .icon-copy {
   color: #FFFFFF;
-}
-.icon-arrow-up {
-  color: #9B9DA5;
-}
-.icon-arrow-both {
-  color: #9B9DA5;
 }
   
 footer p {
@@ -852,42 +790,42 @@ footer p {
 .color-sample {
   color: #FFFFFF;
   color: #F9FBF9;
-  color: #F3F6F4; /* (BELOW form input) / main-copy:hover */
+  color: #F3F6F4; /* (BELOW form input) */
   color: #E7EDE9;
-  color: #DAE5DD; /* link-menu:hover */
-  color: #D4E0D8; /* body background / font-back */
-  color: #CEDCD2;
-  color: #B4C1B8; /* header-title */
+  color: #DAE5DD; /* link-menu:hover / main-back -> */
+  color: #D4E0D8; /* font-back */
+  color: #CEDCD2; /* body background -> / copy icon -> / copy btn -> */
+  color: #B4C1B8; /* header-title / form button -> */
   color: #9BA59E; /* (BELOW header-menu) / form icon(url) */
   color: #818983; /* menu-1:hover / form input font */
-  color: #676E69; /* github / (BELOW main p) */
+  color: #676E69; /* github / (BELOW main p) / footer p */
   color: #4D524F; /* (BELOW main h1) */
   color: #343735; /* github:hover */
   color: #1A1B1A;
   color: #898B8A;
 
 
-  color: #F3F6F4; /* form input (url) / main-copy:hover */
+  color: #F3F6F4; /* form input (url) */
   color: #F3F4F6; /* form input (path) */
   color: #F6F3F5; /* form input (exp) */
 
-  color: #DAE5DD; /* main-copy -> */
+  color: #DAE5DD; /* main-back -> */
   color: #DADCE5;
-  color: #E5DAE2; /* main-copy <- */
+  color: #E5DAE2; /* main-back <- */
 
-  color: #CEDCD2; /* ORIGINAL / body background -> */
+  color: #CEDCD2; /* ORIGINAL / body background -> / copy icon -> / copy btn -> */
   color: #CED1DC;
-  color: #DCCED8; /*            body background <- */
+  color: #DCCED8; /*            body background <- / copy icon <- / copy btn <- */
 
   color: #B4C1B8; /* form button -> */
   color: #B4B7C1;
   color: #C1B4BD; /* form button <- */
 
   color: #9BA59E; /* menu-1 / form icon(url) / form button:hover -> */
-  color: #9B9DA5; /* menu-2 / menu-2:hover / link-main / form icon(path) / main-copy font */
-  color: #A59BA2; /* menu-3 / menu-3:hover / font-error / form icon(exp) / form button:hover <- */
+  color: #9B9DA5; /* menu-2 / menu-2:hover / link-main / form icon(path) */
+  color: #A59BA2; /* menu-3 / menu-3:hover / font-error / form icon(exp) / icon-internal / form button:hover <- */
 
-  color: #676E69; /* main p */
+  color: #676E69; /* GitHub / main p / footer p */
   color: #67696E; /* main p */
   color: #6E676C; /* main p */
 
@@ -895,69 +833,4 @@ footer p {
   color: #4D4E52; /* main h1 */
   color: #524D51; /* main h1 */
 }
-
-/*---------------------------------------------------- form-path2 */
-
-/* .form-path2 {
-  display: flex;
-  align-items: center;
-  padding-bottom: 9px;
-}
-.path2 {
-  height: 40px;
-  padding: 0px;
-}
-.path2:nth-child(1) {
-	background: rgba(155, 157, 165, 0.45);
-  text-align: center;
-  border-radius: 6px 0px 0px 6px;
-  min-width: 40px;
-  height: 32px;
-  padding-top: 8px;
-  border-width: 0.3px;
-  border-style: outset;
-  border-color: initial;
-}
-.path2:nth-child(2) {
-  background: #F3F4F6;
-  color: #818983;
-  font-weight: lighter;
-  font-size: 18px;
-  border-radius: 0px 6px 6px 0px;
-  width: 600px;
-  padding-left: 25px;
-  padding-right: 23px;
-  border-width: 0.3px;
-  border-color: initial;
-}
-@media (min-width:768px) and (max-width:991px) {
-  .path2:nth-child(2) {
-    font-size: 16px;
-    width: 500px;
-    padding-left: 12px;
-    padding-right: 10px;
-  }
-}
-@media (max-width:767px) {
-	.path2 {
-		height: 33px;
-	}
-}
-@media (max-width:767px) {
-	.path2:nth-child(1) {
-		min-width: 30px;
-    height: 29px;
-    padding-top: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
-	}
-}
-@media (max-width:767px) {
-	.path2:nth-child(2) {
-		font-size: 13px;
-    width: 400px;
-    padding-left: 12px;
-    padding-right: 10px;
-	}
-} */
 

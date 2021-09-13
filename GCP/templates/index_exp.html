@@ -4,7 +4,6 @@
 <div>
 	<h1 class="font-back">CUSTOM EXPIRATION</h1>
 </div>
-
 <br>
 <div>
 	{% for error in errors %}
@@ -32,16 +31,18 @@
 		{% if not flg %}
 		<input class="url" type="text" name="originalURl" placeholder="URL" required>
 		{% else %}
-		<input class="url" type="text" name="originalURl" placeholder="{{ dicData['URL'] }}" required>
+		<input class="url" type="text" name="originalURl" placeholder="{{ dicData.URL }}" required>
 		{% endif %}
 		<input class="url" type="submit" value="create">
 	</div>
 </form>
 
+{% if flg %}
 {% include "result.html" %}
+{% endif %}
 
 <br>
-<div class="main-pdng">
+<div class="main-back">
     <p>https&#x3a;//short-321807.an.r.appspot.com/ +&nbsp;<span class="link-main">5_characters</span></p>
     <p>Maximum expiration date is&nbsp;<span class="link-main">6</span>&nbsp;months from now.
        &nbsp;Click&nbsp;<a href="{{ url_for('short_link') }}" class="link-main">here</a>&nbsp;to use default expiration time.</p>
