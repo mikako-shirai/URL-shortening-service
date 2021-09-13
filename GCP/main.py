@@ -16,6 +16,10 @@ keywords = ['custom', 'short', 'expiration', 'analytics', 'link', '404', 'cron',
             'index', 'custom_exp', 'short_exp', 'result']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
+dicData = {}
+errors = []
+flg = False
+
 # -----------------------------------------------------------------------------------
 
 def generate_key(key_length):
@@ -68,7 +72,7 @@ def DB_generatedKey(originalURL, expirationDate=None):
     if expirationDate:
         append_data(originalURL, generatedKey, expirationDate)
     else:
-        expirationDate = append_data(originalURL, generatedKey)
+        append_data(originalURL, generatedKey)
     return generatedKey
 
 def DB_customKey(originalURL, customKey, expirationDate=None):
@@ -79,7 +83,7 @@ def DB_customKey(originalURL, customKey, expirationDate=None):
     if expirationDate:
         append_data(originalURL, customKey, expirationDate)
     else:
-        expirationDate = append_data(originalURL, customKey)
+        append_data(originalURL, customKey)
     return True
 
 def append_data(originalURL, key, expirationDate=None):
@@ -107,7 +111,6 @@ def append_data(originalURL, key, expirationDate=None):
             u'list': firestore.ArrayUnion([originalURL]),
             u'total': firestore.Increment(1)
         })
-    return expirationDate
 
 # -----------------------------------------------------------------------------------
 
@@ -116,7 +119,6 @@ def short_link():
     if request.method == 'GET':
         return render_template('index.html')
 
-    dicData, errors, flg = {}, [], False
     originalURL = request.form.get('originalURl')
 
     if URL_check(originalURL):
@@ -136,7 +138,6 @@ def custom_link():
     if request.method == 'GET':
         return render_template('custom.html')
 
-    dicData, errors, flg = {}, [], False
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
 
@@ -162,7 +163,6 @@ def short_expiration():
     if request.method == 'GET':
         return render_template('index_exp.html', years = years, months = months)
 
-    dicData, errors, flg = {}, [], False
     year = request.form.get('year')
     month = request.form.get('month')
     date = request.form.get('date')
@@ -192,7 +192,6 @@ def custom_expiration():
     if request.method == 'GET':
         return render_template('custom_exp.html', years = years, months = months)
 
-    dicData, errors, flg = {}, [], False
     year = request.form.get('year')
     month = request.form.get('month')
     date = request.form.get('date')
@@ -226,7 +225,6 @@ def link_analytics():
     if request.method == 'GET':
         return render_template('analytics.html')
 
-    dicData, errors, flg = {}, [], False
     generatedURL = request.form.get('generatedURL')
     key = generatedURL[38:]
 
