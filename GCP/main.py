@@ -14,6 +14,8 @@ key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
 keywords = ['custom', 'short', 'expiration', 'link', '404', 'cron', \
             'index', 'custom_exp', 'short_exp', 'result']
+months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+# dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
 
 # -----------------------------------------------------------------------------------
 
@@ -24,13 +26,13 @@ def generate_key(key_length):
 def get_date():
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
     string = dateNow.strftime('%Y%m')
-    year1 = int(string[:4])
+    year = int(string[:4])
     month = int(string[4:])
     if month >= 7:
-        year2 = year1 + 1
+        years = [str(year), str(year + 1)]
     else:
-        year2 = None
-    return [year1, year2]
+        years = [str(year)]
+    return years
 
 def URL_check(originalURL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
@@ -68,7 +70,7 @@ def DB_generatedKey(originalURL, expirationDate=None):
         append_data(originalURL, generatedKey, expirationDate)
     else:
         expirationDate = append_data(originalURL, generatedKey)
-    return generatedKey, expirationDate
+    return generatedKey
 
 def DB_customKey(originalURL, customKey, expirationDate=None):
     keys = db.collection(u'keys').stream()
@@ -79,7 +81,7 @@ def DB_customKey(originalURL, customKey, expirationDate=None):
         append_data(originalURL, customKey, expirationDate)
     else:
         expirationDate = append_data(originalURL, customKey)
-    return expirationDate
+    return True
 
 def append_data(originalURL, key, expirationDate=None):
     generatedURL = GCP_URL + key
@@ -119,13 +121,11 @@ def short_link():
     originalURL = request.form.get('originalURl')
 
     if URL_check(originalURL):
-        generatedKey, dateSet = DB_generatedKey(originalURL)
+        generatedKey = DB_generatedKey(originalURL)
         generatedURL = GCP_URL + generatedKey
-        dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
         flg = True
         dicData['URL'] = originalURL
         dicData['alias'] = generatedURL
-        dicData['expiration'] = dateSet
     else:
         errors.append('Please enter a valid URL')
     return render_template('index.html', dicData = dicData, errors = errors, flg = flg)
@@ -142,14 +142,11 @@ def custom_link():
     originalURL = request.form.get('originalURl')
 
     if key_check(customKey) and URL_check(originalURL):
-        dateSet = DB_customKey(originalURL, customKey)
-        if dateSet:
+        if DB_customKey(originalURL, customKey):
             generatedURL = GCP_URL + customKey
-            dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
             flg = True
             dicData['URL'] = originalURL
             dicData['alias'] = generatedURL
-            dicData['expiration'] = dateSet
         else:
             errors.append('Sorry, this alias is already taken')
             errors.append('Please try different characters')
@@ -164,7 +161,7 @@ def custom_link():
 def short_expiration():
     years = get_date()
     if request.method == 'GET':
-        return render_template('index_exp.html', years = years)
+        return render_template('index_exp.html', years = years, months = months)
 
     dicData, errors, flg = {}, [], False
     year = request.form.get('year')
@@ -177,17 +174,16 @@ def short_expiration():
 
     if date_check(dateSet) and URL_check(originalURL):
         expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
-        generatedKey, dateSet = DB_generatedKey(originalURL, expirationDate)
+        generatedKey = DB_generatedKey(originalURL, expirationDate)
         generatedURL = GCP_URL + generatedKey
-        dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
         flg = True
         dicData['URL'] = originalURL
         dicData['alias'] = generatedURL
-        dicData['expiration'] = dateSet
+        dicData['expiration'] = {'year': year, 'month': months[int(month)-1], 'date': date, 'hour': hour, 'minute': minute}
     else:
         if not date_check(dateSet): errors.append('Please enter a valid date')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
-    return render_template('index_exp.html', years = years, dicData = dicData, errors = errors, flg = flg)
+    return render_template('index_exp.html', years = years, months = months, dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
 
@@ -195,7 +191,7 @@ def short_expiration():
 def custom_expiration():
     years = get_date()
     if request.method == 'GET':
-        return render_template('custom_exp.html', years = years)
+        return render_template('custom_exp.html', years = years, months = months)
 
     dicData, errors, flg = {}, [], False
     year = request.form.get('year')
@@ -209,14 +205,12 @@ def custom_expiration():
 
     if date_check(dateSet) and key_check(customKey) and URL_check(originalURL):
         expirationDate = datetime.datetime.strptime(dateSet, '%Y/%m/%d %H:%M:%S%z')
-        dateSet = DB_customKey(originalURL, customKey, expirationDate)
-        if dateSet:
+        if DB_customKey(originalURL, customKey, expirationDate):
             generatedURL = GCP_URL + customKey
-            dateSet = dateSet.strftime('%Y/%m/%d %H:%M')
             flg = True
             dicData['URL'] = originalURL
             dicData['alias'] = generatedURL
-            dicData['expiration'] = dateSet
+            dicData['expiration'] = {'year': year, 'month': month, 'date': date, 'hour': hour, 'minute': minute}
         else:
             errors.append('Sorry, this alias is already taken')
             errors.append('Please try different characters')
@@ -224,7 +218,7 @@ def custom_expiration():
         if not date_check(dateSet): errors.append('Please enter a valid date')
         if not key_check(customKey): errors.append('Please enter valid characters')
         if not URL_check(originalURL): errors.append('Please enter a valid URL')
-    return render_template('custom_exp.html', years = years, dicData = dicData, errors = errors, flg = flg)
+    return render_template('custom_exp.html', years = years, months = months, dicData = dicData, errors = errors, flg = flg, GCP_URL = GCP_URL)
 
 # -----------------------------------------------------------------------------------
 
@@ -251,8 +245,10 @@ def expiration_check():
     URLs = db.collection(u'URLs').stream()
 
     for URL in URLs:
-        expirationDate = URL.to_dict()['expirationDate']
+        dic = URL.to_dict()
+        expirationDate = dic['expirationDate']
         if dateNow >= expirationDate:
+            originalURL = dic['originalURL']
             # add expired URL information to 'expiredURLs' collection
             data = db.collection(u'URLs').document(URL.id).get().to_dict()
             db.collection(u'expiredURLs').document(URL.id).set(data)
@@ -271,7 +267,6 @@ def expiration_check():
                 u'pageViews': firestore.DELETE_FIELD
             })
             db.collection(u'keys').document(URL.id).delete()
-            originalURL = URL.to_dict()['originalURL']
             db.collection(u'random').document(u'random').update({
                 u'list': firestore.ArrayRemove([originalURL]),
                 u'total': firestore.Increment(-1)

@@ -22,16 +22,18 @@
 		{% if not flg %}
 		<input class="url" type="text" name="originalURl" placeholder="URL" required>
 		{% else %}
-		<input class="url" type="text" name="originalURl" placeholder="{{ dicData['URL'] }}" required>
+		<input class="url" type="text" name="originalURl" placeholder="{{ dicData.URL }}" required>
 		{% endif %}
 		<input class="url" type="submit" value="create">
 	</form>
 </div>
 
+{% if flg %}
 {% include "result.html" %}
+{% endif %}
 
 <br>
-<div class="main-pdng">
+<div class="main-back">
 	<p>https&#x3a;//short-321807.an.r.appspot.com/ +&nbsp;<span class="link-main">5_characters</span></p>
 	<!-- <p>Hit the button to&nbsp;<span class="link-main">shorten</span>&nbsp;URL</p> -->
 	<p>Link will expire in&nbsp;<span class="link-main">14</span>&nbsp;days.
