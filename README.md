@@ -27,7 +27,7 @@ and is a very simple web application which shortens a URL by creating a short UR
 Instead of using a Web database, it stores all the information (original URLs and aliases) to a JSON file and uses a text file to check existing keys to avoid duplication.  
 
 ### GCP version  
-In addition to the short link feature, 1. default expiration time, 2. custom link feature and 3. custom expiration feature were added.  
+In addition to the short link feature, 1. default expiration time, 2. custom link feature, 3. custom expiration feature and 4. simple link analysis were added.  
 Users can create a custom URL alias with characters of their choice and can also set a custom expiration date to both short links and custom links.  
 
 Instead of using JSON, it uses a NoSQL document database [GCP Firestore][Firestore] to manage all the data by deploying the application to [GCP App Engine][App Engine].  
