@@ -3,7 +3,7 @@
 {% if flg %}
     <select class="exp exp2" name="year">
         {% for year in years %}
-        <option value="{{ year }}" {{ 'selected' if year|string == dicData.expirationDate.year else '' }}>{{ year }}</option>
+        <option value="{{ year }}" {{ 'selected' if year == dicData.expirationDate.year else '' }}>{{ year }}</option>
         {% endfor %}
     </select>
     <span class="exp-letter">/</span>

@@ -12,14 +12,14 @@
 - MAIN FLEX                     - 216
   - form-url                    - 217
   - form-path                   - 309
-  - form-exp                    - 413
-  - copy-btn                    - 550
+  - form-exp                    - 407
+  - copy-btn                    - 544
 
-- HOVER FONT                    - 647
-  - hover                       - 648
-  - font                        - 729
+- HOVER FONT                    - 641
+  - hover                       - 642
+  - font                        - 723
 
-- color-sample                  - 836
+- color-sample                  - 830
 
 */
 /*----------------------------------------------------------------------- BODY */
@@ -250,8 +250,8 @@ ul {
   border-color: initial;
 }
 .url:nth-child(3) {
-  color: #FFF;
-	/* background: rgba(155, 165, 158, 0.55); */
+  color: #FFFFFF;
+  /* background: rgba(155, 165, 158, 0.55); */
   background: linear-gradient(-18deg, #B4C1B8, #B4B7C1, #C1B4BD);
   text-align: center;
   font-weight: lighter;
@@ -277,33 +277,33 @@ ul {
   }
 }
 @media (max-width:767px) {
-	.url {
-		height: 33px;
-	}
+  .url {
+	  height: 33px;
+  }
 }
 @media (max-width:767px) {
-	.url:nth-child(1) {
-		min-width: 30px;
+  .url:nth-child(1) {
+    min-width: 30px;
     height: 27px;
     padding-top: 6px;
     padding-left: 4px;
     padding-right: 4px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.url:nth-child(2) {
-		font-size: 13px;
+  .url:nth-child(2) {
+    font-size: 13px;
     width: 400px;
     padding-left: 12px;
     padding-right: 10px;
     margin-right: 14px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.url:nth-child(3) {
-		font-size: 12px;
+  .url:nth-child(3) {
+	  font-size: 12px;
     width: 80px;
-	}
+  }
 }
 
 /*----------------------------------------------------------------------- form-path */
@@ -318,7 +318,7 @@ ul {
   padding: 0px;
 }
 .path:nth-child(1) {
-	background: rgba(155, 157, 165, 0.45);
+  background: rgba(155, 157, 165, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   min-width: 40px;
@@ -334,7 +334,6 @@ ul {
   font-weight: lighter;
   font-size: 16px;
   width: 119px;
-  /* flex-basis:  283px; */
   padding-left: 25px;
   padding-right: 0px;
   border-radius: 0px;
@@ -350,7 +349,6 @@ ul {
   font-weight: lighter;
   font-size: 18px;
   width: 481px;
-  /* flex-basis:  auto; */
   padding-left: 0px;
   padding-right: 23px;
   border-radius: 0px 6px 6px 0px;
@@ -363,7 +361,6 @@ ul {
   .path:nth-child(2) {
     font-size: 14px;
     width: 105px;
-    /* flex-basis:  253px; */
     padding-left: 12px;
     padding-right: 0px;
   }
@@ -372,42 +369,39 @@ ul {
   .path:nth-child(3) {
     font-size: 16px;
     width: 395px;
-    /* flex-basis:  auto; */
     padding-left: 0px;
     padding-right: 10px;
   }
 }
 @media (max-width:767px) {
-	.path {
-		height: 33px;
-	}
+  .path {
+    height: 33px;
+  }
 }
 @media (max-width:767px) {
-	.path:nth-child(1) {
-		min-width: 30px;
+  .path:nth-child(1) {
+    min-width: 30px;
     height: 29px;
     padding-top: 4px;
     padding-left: 4px;
     padding-right: 4px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.path:nth-child(2) {
-		font-size: 12px;
+  .path:nth-child(2) {
+    font-size: 12px;
     width: 92px;
-    /* flex-basis:  205px; */
     padding-left: 12px;
     padding-right: 0px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.path:nth-child(3) {
-		font-size: 13px;
+  .path:nth-child(3) {
+    font-size: 13px;
     width: 308px;
-    /* flex-basis:  auto; */
     padding-left: 0px;
     padding-right: 10px;
-	}
+  }
 }
 
 /*----------------------------------------------------------------------- form-exp */
@@ -434,7 +428,7 @@ ul {
   border-color: initial;
 }
 .exp-1 {
-	background: rgba(165, 155, 162, 0.45);
+  background: rgba(165, 155, 162, 0.45);
   text-align: center;
   border-radius: 6px 0px 0px 6px;
   min-width: 40px;
@@ -502,21 +496,21 @@ ul {
   }
 }
 @media (max-width:767px) {
-	.exp {
+  .exp {
     font-size: 13px;
-		height: 33px;
+    height: 33px;
     padding-left: 9px;
     padding-right: 8px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.exp-1 {
-		min-width: 30px;
+  .exp-1 {
+    min-width: 30px;
     height: 27px;
     padding-top: 4px;
     padding-left: 4px;
     padding-right: 4px;
-	}
+  }
 }
 @media (max-width:767px) {
   .exp2 {
@@ -540,11 +534,11 @@ ul {
   }
 }
 @media (max-width:767px) {
-	.exp-letter {
+  .exp-letter {
     font-size: 21px;
     margin-left: 6px;
     margin-right: 6px;
-	}
+  }
 }
 
 /*----------------------------------------------------------------------- copy-btn */
@@ -613,35 +607,35 @@ ul {
   }
 }
 @media (max-width:767px) {
-	.copy, .copy-btn {
-		height: 33px;
-	}
+  .copy, .copy-btn {
+    height: 33px;
+  }
 }
 @media (max-width:767px) {
-	.copy:nth-child(1) {
-		min-width: 30px;
+  .copy:nth-child(1) {
+    min-width: 30px;
     height: 24px;
     padding-top: 9px;
     padding-left: 4px;
     padding-right: 4px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.copy:nth-child(2) {
-		font-size: 13px;
+  .copy:nth-child(2) {
+    font-size: 13px;
     width: 400px;
     padding-left: 12px;
     padding-right: 10px;
     margin-right: 14px;
-	}
+  }
 }
 @media (max-width:767px) {
-	.copy-btn {
-		font-size: 12px;
+  .copy-btn {
+    font-size: 12px;
     width: 80px;
     height: 24px;
     padding-top: 9px;
-	}
+  }
 }
 
 /*----------------------------------------------------------------------- HOVER FONT */
