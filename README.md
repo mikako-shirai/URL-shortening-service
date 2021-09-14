@@ -4,7 +4,7 @@
 #### Latest files with updates including GCP and other new features are in the [GCP](https://github.com/mikako-shirai/URL-shortening-service/tree/master/GCP "GCP") folder.  
 #### For more information, check the [GCP version](#GCP-version) section below.  
 
-## Table of content
+## Table of contents  
 - [About this Project](#About-this-Project)  
     - [initial version](#initial-version)  
     - [GCP version](#GCP-version)  
