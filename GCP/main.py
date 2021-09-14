@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, abort, url_for
-
 from utils import generate_key, get_date, URL_check, key_check, date_check
 
 import random, string
@@ -10,8 +9,8 @@ import os
 from google.cloud import firestore
 
 
-db = firestore.Client()
 app = Flask(__name__)
+db = firestore.Client()
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
