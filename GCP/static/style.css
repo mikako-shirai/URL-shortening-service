@@ -1,3 +1,28 @@
+/*----------------------------------------------------------------------- CONTENTS */
+/*
+
+- BODY                          - 25
+  - body                        - 26
+  - header / main / footer      - 52
+
+- HEADER FLEX                   - 122
+  - header-title                - 123
+  - header-menu                 - 156
+
+- MAIN FLEX                     - 216
+  - form-url                    - 217
+  - form-path                   - 309
+  - form-exp                    - 413
+  - copy-btn                    - 550
+
+- HOVER FONT                    - 647
+  - hover                       - 648
+  - font                        - 729
+
+- color-sample                  - 836
+
+*/
+/*----------------------------------------------------------------------- BODY */
 /*----------------------------------------------------------------------- body */
 
 body {
@@ -737,7 +762,7 @@ main h1 {
 }
 @media (max-width:767px) {
   main h1 {
-    font-size: 21px;
+    font-size: 19px;
   }
 }
   
