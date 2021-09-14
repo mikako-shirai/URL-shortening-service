@@ -12,13 +12,9 @@ app = Flask(__name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
-keywords = ['custom', 'short', 'expiration', 'analysis', 'link', '404', 'cron', \
-            'index', 'custom_exp', 'short_exp', 'result']
+keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', \
+            'index', 'index_exp', 'custom_exp', 'result', 'selector']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-dicData = {}
-errors = []
-flg = False
 
 # -----------------------------------------------------------------------------------
 
@@ -37,9 +33,9 @@ def get_date():
         years = [str(year)]
     return years
 
-def URL_check(originalURL):
+def URL_check(URL):
     validFormat = "https?://[\w/:%#\$&\?\(\)~\.=\+\-]+"
-    return True if re.match(validFormat, originalURL) else False
+    return True if re.match(validFormat, URL) else False
 
 def key_check(customKey):
     if len(customKey) < 6 or len(customKey) > 30:
@@ -119,6 +115,7 @@ def short_link():
     if request.method == 'GET':
         return render_template('index.html')
 
+    dicData, errors, = {}, [], False
     originalURL = request.form.get('originalURl')
 
     if URL_check(originalURL):
@@ -138,6 +135,7 @@ def custom_link():
     if request.method == 'GET':
         return render_template('custom.html')
 
+    dicData, errors, flg = {}, [], False
     customKey = request.form.get('customKey')
     originalURL = request.form.get('originalURl')
 
@@ -163,6 +161,7 @@ def short_expiration():
     if request.method == 'GET':
         return render_template('index_exp.html', years = years, months = months)
 
+    dicData, errors, flg = {}, [], False
     year = request.form.get('year')
     month = request.form.get('month')
     date = request.form.get('date')
@@ -192,6 +191,7 @@ def custom_expiration():
     if request.method == 'GET':
         return render_template('custom_exp.html', years = years, months = months)
 
+    dicData, errors, flg = {}, [], False
     year = request.form.get('year')
     month = request.form.get('month')
     date = request.form.get('date')
@@ -225,39 +225,45 @@ def link_analysis():
     if request.method == 'GET':
         return render_template('analysis.html')
 
+    dicData, errors, flg = {}, [], False
     generatedURL = request.form.get('generatedURL')
-    key = generatedURL[38:]
-    URLActive = db.collection(u'URLs').document(key).get()
-    URLOld = db.collection(u'expiredURLs').document(key).get()
 
-    if URLActive.exists:
-        URLActive = URLActive.to_dict()
-        dateCreated = URLActive['dateCreated']
-        expirationDate = URLActive['expirationDate']
-        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
-        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
-        flg = True
-        dicData['expired'] = 'No'
-        dicData['originalURL'] = URLActive['originalURL']
-        dicData['dateCreated'] = dateCreated
-        dicData['expirationDate'] = expirationDate
-        dicData['pageViews'] = URLActive['pageViews']
+    if URL_check(generatedURL) and len(generatedURL) >= 43:
+        key = generatedURL[38:]
+        URLactive = db.collection(u'URLs').document(key).get()
+        URLold = db.collection(u'expiredURLs').document(key).get()
+        if URLactive.exists:
+            URLactive = URLactive.to_dict()
+            dateCreated = URLactive['dateCreated']
+            expirationDate = URLactive['expirationDate']
+            dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
+            expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+            flg = True
+            dicData['availability'] = 'Available'
+            dicData['originalURL'] = URLactive['originalURL']
+            dicData['generatedURL'] = generatedURL
+            dicData['dateCreated'] = dateCreated
+            dicData['expirationDate'] = expirationDate
+            dicData['pageViews'] = URLactive['pageViews']
 
-    elif URLOld.exists:
-        URLOld = URLOld.to_dict()
-        dateCreated = URLOld['dateCreated']
-        expirationDate = URLOld['expirationDate']
-        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
-        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
-        flg = True
-        dicData['expired'] = 'Yes'
-        dicData['originalURL'] = URLOld['originalURL']
-        dicData['dateCreated'] = dateCreated
-        dicData['expirationDate'] = expirationDate
-        dicData['pageViews'] = URLOld['pageViews']
-        
+        elif URLold.exists:
+            URLold = URLold.to_dict()
+            dateCreated = URLold['dateCreated']
+            expirationDate = URLold['expirationDate']
+            dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
+            expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+            flg = True
+            dicData['availability'] = 'Not Available'
+            dicData['originalURL'] = URLold['originalURL']
+            dicData['generatedURL'] = generatedURL
+            dicData['dateCreated'] = dateCreated
+            dicData['expirationDate'] = expirationDate
+            dicData['pageViews'] = URLold['pageViews']
+            
+        else:
+            errors.append('The requested link was not found')
     else:
-        errors.append('The requested link was not found')
+        errors.append('Please enter a valid URL')
     return render_template('analysis.html', dicData = dicData, errors = errors, flg = flg)
 
 # -----------------------------------------------------------------------------------
