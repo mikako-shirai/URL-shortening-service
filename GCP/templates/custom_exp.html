@@ -31,7 +31,7 @@
 		{% if not flg %}
 		<input class="path" type="text" name="customKey" placeholder="PATH&nbsp;&nbsp;*6 to 30 characters without slashes" minlength="6" maxlength="30" required>
 		{% else %}
-		<input class="path" type="text" name="customKey" placeholder="{{ dicData.generatedURL }}" minlength="6" maxlength="30" required>
+		<input class="path" type="text" name="customKey" placeholder="{{ dicData.generatedURL[38:] }}" minlength="6" maxlength="30" required>
 		{% endif %}
     </div>
 	<div class="form-url">
