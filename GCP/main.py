@@ -76,7 +76,7 @@ def short_link():
     if request.method == 'GET':
         return render_template('index.html')
 
-    dicData, errors, = {}, [], False
+    dicData, errors, flg = {}, [], False
     originalURL = request.form.get('originalURl')
 
     if URL_check(originalURL):
