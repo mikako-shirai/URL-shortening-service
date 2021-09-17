@@ -38,31 +38,31 @@ class TestMain(unittest.TestCase):
 
 # -------------------------------------------------------------
 
-# def append_data(originalURL, key, expirationDate=None):
-#     generatedURL = GCP_URL + key
-#     dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-#     if not expirationDate:
-#         expirationDate = dateCreated + datetime.timedelta(days=14)
+def append_data(originalURL, key, expirationDate=None):
+    generatedURL = GCP_URL + key
+    dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+    if not expirationDate:
+        expirationDate = dateCreated + datetime.timedelta(days=14)
     
-#     db.collection(u'mock_URLs').document(key).set({
-#         u'originalURL': originalURL,
-#         u'generatedURL': generatedURL,
-#         u'dateCreated': dateCreated,
-#         u'expirationDate': expirationDate,
-#         u'pageViews': 0
-#     })
-#     db.collection(u'mock_keys').document(key).set({
-#         u'originalURL': originalURL,
-#         u'pageViews': 0
-#     })
+    db.collection(u'mock_URLs').document(key).set({
+        u'originalURL': originalURL,
+        u'generatedURL': generatedURL,
+        u'dateCreated': dateCreated,
+        u'expirationDate': expirationDate,
+        u'pageViews': 0
+    })
+    db.collection(u'mock_keys').document(key).set({
+        u'originalURL': originalURL,
+        u'pageViews': 0
+    })
 
-#     dic = db.collection(u'mock_random').document(u'random').get().to_dict()
-#     URLs = dic['list']
-#     if originalURL not in URLs:
-#         db.collection(u'mock_random').document(u'random').update({
-#             u'list': firestore.ArrayUnion([originalURL]),
-#             u'total': firestore.Increment(1)
-#         })
+    dic = db.collection(u'mock_random').document(u'random').get().to_dict()
+    URLs = dic['list']
+    if originalURL not in URLs:
+        db.collection(u'mock_random').document(u'random').update({
+            u'list': firestore.ArrayUnion([originalURL]),
+            u'total': firestore.Increment(1)
+        })
 
 # -------------------------------------------------------------
 
