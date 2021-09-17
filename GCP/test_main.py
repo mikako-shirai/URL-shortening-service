@@ -24,7 +24,6 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 
 class TestMain(unittest.TestCase):
     # test class of main.py
-
     def setUpClass():
         print('============================== test_main START ===============================')
  

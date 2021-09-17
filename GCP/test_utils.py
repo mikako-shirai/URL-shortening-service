@@ -8,7 +8,6 @@ from dateutil.relativedelta import relativedelta
 
 class TestUtils(unittest.TestCase):
     # test class of utils.py
-    
     def setUpClass():
         print('============================== test_utils START ==============================')
  
