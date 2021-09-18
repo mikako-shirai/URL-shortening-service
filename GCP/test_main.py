@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import PropertyMock, MagicMock, patch
 from flask import Flask, render_template, request, redirect, abort, url_for
 from utils import generate_key, get_date, URL_check, key_check, date_check
 from main import append_data, DB_generatedKey, DB_customKey, URL_redirect, expiration_check
@@ -12,7 +13,7 @@ from google.cloud import firestore
 
 
 app = Flask(__name__)
-db = firestore.Client()
+db = MagicMock()
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
@@ -24,7 +25,7 @@ months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augus
 
 class TestMain(unittest.TestCase):
     # test class of main.py
-    
+
     def setUpClass():
         print('============================== test_main START ===============================')
  
@@ -35,34 +36,6 @@ class TestMain(unittest.TestCase):
     #     print(' before each test ')
     # def tearDown(self):
     #     print(' after each test ')
-
-# -------------------------------------------------------------
-
-def append_data(originalURL, key, expirationDate=None):
-    generatedURL = GCP_URL + key
-    dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    if not expirationDate:
-        expirationDate = dateCreated + datetime.timedelta(days=14)
-    
-    db.collection(u'mock_URLs').document(key).set({
-        u'originalURL': originalURL,
-        u'generatedURL': generatedURL,
-        u'dateCreated': dateCreated,
-        u'expirationDate': expirationDate,
-        u'pageViews': 0
-    })
-    db.collection(u'mock_keys').document(key).set({
-        u'originalURL': originalURL,
-        u'pageViews': 0
-    })
-
-    dic = db.collection(u'mock_random').document(u'random').get().to_dict()
-    URLs = dic['list']
-    if originalURL not in URLs:
-        db.collection(u'mock_random').document(u'random').update({
-            u'list': firestore.ArrayUnion([originalURL]),
-            u'total': firestore.Increment(1)
-        })
 
 # -------------------------------------------------------------
 
