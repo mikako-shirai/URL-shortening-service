@@ -48,7 +48,6 @@ def append_data(originalURL, key, expirationDate=None):
     dateCreated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
     if not expirationDate:
         expirationDate = dateCreated + datetime.timedelta(days=14)
-    
     db.collection(u'URLs').document(key).set({
         u'originalURL': originalURL,
         u'generatedURL': generatedURL,
