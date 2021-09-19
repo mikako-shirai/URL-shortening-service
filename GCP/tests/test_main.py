@@ -1,9 +1,7 @@
+from URLshortener.views import short_link, custom_link, short_expiration, custom_expiration, link_analysis, URL_redirect
+
 import unittest
 from unittest.mock import PropertyMock, MagicMock, patch
-from flask import Flask, render_template, request, redirect, abort, url_for
-from utils import generate_key, get_date, URL_check, key_check, date_check
-from main import append_data, DB_generatedKey, DB_customKey, URL_redirect, expiration_check
-
 import random, string
 import datetime
 from dateutil.relativedelta import relativedelta
@@ -12,7 +10,7 @@ import os
 from google.cloud import firestore
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 db = MagicMock()
 
 key_length = 5
