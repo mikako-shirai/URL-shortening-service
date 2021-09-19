@@ -40,7 +40,7 @@ This project is built using the following frameworks/services
 - [Flask][Flask]  
 - [GCP Firestore][Firestore]  
 - [GCP App Engine][App Engine]  
-- [unittest][unittest] (work in progress)  
+- [unittest][unittest]  
 - ~~[gRPC][gRPC]~~ (work in progress)  
   
 
@@ -101,21 +101,25 @@ $ . venv/bin/activate
 ```
 $ git clone https://github.com/mikako-shirai/URL-shortening-service.git
 ```  
-2. set up Firestore  
+1. move to GCP directory  
+```
+$ cd GCP
+```  
+3. set up Firestore  
 ```
 $ export GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```  
 &ensp;&ensp;*replace KEY_PATH with the path of the JSON file that contains your service account key  
 
-3. upload cron jobs to App Engine  
+4. upload cron jobs to App Engine  
 ```
 $ gcloud app deploy cron.yaml
 ```  
-4. deploy the application to App Engine  
+5. deploy the application to App Engine  
 ```
 $ gcloud app deploy
 ```  
-5. go to https://YOUR_PROJECT_ID.an.r.appspot.com/ to view the application  
+6. go to https://YOUR_PROJECT_ID.an.r.appspot.com/ to view the application  
   
 
 ## Usage  
