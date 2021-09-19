@@ -1,0 +1,210 @@
+/*----------------------------------------------------------------------- body footer */
+
+body {
+  background: #DAE5DD;
+  background: linear-gradient(-15deg, rgba(220, 206, 216, 0.8), rgba(206, 209, 220, 0.8), rgba(206, 220, 210, 0.8), rgba(220, 217, 206, 0.8));
+  animation: huerotator 4.5s infinite alternate;
+  font-family: 'Josefin Sans', "Helvetica Neue", "Arial", sans-serif;
+  font-weight: lighter;
+  padding-top: 20px;
+  word-wrap: break-word;
+  min-width: 0;
+}
+@keyframes huerotator {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    -webkit-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+}
+
+/*----------------------------------------------------------------------- main */
+
+.main-jump {
+  display: flex;
+  align-items: center;
+  padding-top: 140px;
+  justify-content: center;
+}
+.jump {
+  height: 40px;
+  word-wrap: break-word;
+}
+.jump:nth-child(1) {
+  border-radius: 15px 2px 2px 15px;
+  text-align: right;
+  padding-top: 34px;
+  width: 200px
+}
+.jump:nth-child(2) {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.jump:nth-child(3) {
+  border-radius: 2px 15px 15px 2px;
+  text-align: left;
+  padding-top: 4px;
+  width: 200px
+}
+.jump .link-main {
+  display: block;
+}
+@media (max-width:767px) {
+  .main-jump {
+    padding-top: 100px;
+  }
+}
+@media (max-width:767px) {
+  .jump:nth-child(1) {
+    padding-top: 35px;
+  }
+}
+@media (max-width:767px) {
+  .jump:nth-child(3) {
+    padding-top: 5px;
+  }
+}
+
+/*----------------------------------------------------------------------- hover */
+
+.link-main:link, .link-main:visited, .link-main:active {
+  font-size: 18px;
+  font-weight: 200;
+  color: #676E69;
+  opacity: 0.7;
+  text-decoration: none;
+}
+.link-main:hover {
+  font-size: 19px;
+  font-weight: 300;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+@media (max-width:767px) {
+  .link-main:link, .link-main:visited, .link-main:active {
+    font-size: 13px;
+    font-weight: 200;
+  }
+}
+@media (max-width:767px) {
+  .link-main:hover {
+    font-size: 14px;
+    font-weight: 200;
+  }
+}
+
+.GitHub:link, .GitHub:visited, .GitHub:active {
+  color: #676E69;
+  text-decoration: none;
+}
+.GitHub:hover {
+  color: #343735;
+  text-decoration: none;
+}
+
+/*----------------------------------------------------------------------- font */
+
+main span {
+  font-weight: 200;
+  font-size: 100px;
+  color: #676E69;
+  opacity: 1;
+}
+
+main p {
+  display: inline;
+  font-size: 25px;
+  color: #676E69;
+  opacity: 1;
+}
+@media (max-width:767px) {
+  main p {
+    font-size: 20px;
+  }
+}
+
+.icon-404 {
+  color: #676E69;
+  opacity: 1;
+  animation: icon-animation 9.3s infinite linear;
+}
+@keyframes icon-animation {
+  to { transform: rotate(360deg); }
+}
+.icon-home {
+  color: #676E69;
+  opacity: 0.95;
+}
+
+footer p {
+  font-size: 15px;
+  color: #676E69;
+}
+@media (min-width:768px) and (max-width:991px) {
+  footer p {
+    font-size: 13px;
+  }
+}
+@media (max-width:767px) {
+  footer p {
+    font-size: 12px;
+  }
+}
+
+/*----------------------------------------------------------------------- */
+
+.color-sample2 {
+  color: #FFFFFF; /* link-main:hover */
+  color: #F9FBF9;
+  color: #F3F6F4;
+  color: #E7EDE9;
+  color: #DAE5DD; /* body background */
+  color: #D4E0D8;
+  color: #CEDCD2;
+  color: #B4C1B8;
+  color: #9BA59E;
+  color: #818983;
+  color: #676E69; /* link-main / GitHub / main span / main a / icon-404 / icon-home / footer p */
+  color: #4D524F;
+  color: #343735; /* GitHub:hover */
+  color: #1A1B1A;
+  color: #898B8A;
+
+  color: #CEDCD2; /* ORIGINAL / body background */
+  color: #CED1DC;
+  color: #DCCED8;
+  color: #DCD9CE; /*            body background */
+
+  color: #B4C1B8;
+  color: #B4B7C1;
+  color: #C1B4BD;
+  color: #C1BEB4;
+
+  color: #9BA59E;
+  color: #9B9DA5;
+  color: #A59BA2;
+  color: #A5A39B;
+
+  color: #676E69; /* link-main / GitHub / main span / main a / icon-404 / icon-home / footer p */
+  color: #67696E;
+  color: #6E676C;
+  color: #6E6D67;
+
+  color: #4D524F;
+  color: #4D4E52;
+  color: #524D51;
+  color: #52514D;
+}
+  
