@@ -1,6 +1,7 @@
-import unittest
-from utils import generate_key, get_date, URL_check, key_check, date_check
+from URLshortener.views import get_date
+from URLshortener.utils import generate_key, URL_check, key_check, date_check
 
+import unittest
 import datetime
 from dateutil.relativedelta import relativedelta
 
@@ -22,6 +23,26 @@ class TestUtils(unittest.TestCase):
 
 # -------------------------------------------------------------
 
+    def test_get_date1(self):
+        years = get_date()
+        self.assertTrue(0 < len(years['years']) <= 2)
+        print(' Done: test_get_date1')
+
+    def test_get_date2(self):
+        years = get_date()
+        for year in years['years']:
+            self.assertIsInstance(year, str)
+        print(' Done: test_get_date2')
+
+    def test_get_date3(self):
+        dateNow = datetime.datetime.now()
+        yearNow = dateNow.strftime('%Y')
+        years = get_date()
+        self.assertTrue(yearNow in years['years'])
+        print(' Done: test_get_date3')
+
+# -------------------------------------------------------------
+
     def test_generate_key1(self):   
         key_length = 5
         generatedKey = generate_key(key_length)
@@ -39,26 +60,6 @@ class TestUtils(unittest.TestCase):
         generatedKey = generate_key(key_length)
         self.assertTrue(generatedKey.isalnum())
         print(' Done: test_generate_key3')
-
-# -------------------------------------------------------------
-
-    def test_get_date1(self):
-        years = get_date()
-        self.assertTrue(0 < len(years) <= 2)
-        print(' Done: test_get_date1')
-
-    def test_get_date2(self):
-        years = get_date()
-        for year in years:
-            self.assertIsInstance(year, str)
-        print(' Done: test_get_date2')
-
-    def test_get_date3(self):
-        dateNow = datetime.datetime.now()
-        year = dateNow.strftime('%Y')
-        years = get_date()
-        self.assertEqual(years[0], year)
-        print(' Done: test_get_date3')
 
 # -------------------------------------------------------------
 
