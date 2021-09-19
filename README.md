@@ -101,7 +101,7 @@ $ . venv/bin/activate
 ```
 $ git clone https://github.com/mikako-shirai/URL-shortening-service.git
 ```  
-1. move to GCP directory  
+2. move to GCP directory  
 ```
 $ cd GCP
 ```  
@@ -127,7 +127,7 @@ $ gcloud app deploy
 ![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/initial.png)  
 
 ### GCP version example
-![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/GCP.png)  
+![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/GCP2.png)  
 
 
 
