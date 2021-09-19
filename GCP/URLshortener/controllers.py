@@ -1,9 +1,5 @@
-from URLshortener.models import get_keys, append_data, error_handler
+from URLshortener.models import get_keys, append_data
 from URLshortener.utils import generate_key
-
-from flask import Blueprint, render_template
-import datetime
-import os
 
 
 key_length = 5
