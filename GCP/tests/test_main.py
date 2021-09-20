@@ -19,6 +19,21 @@ keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', 
             'index', 'index_exp', 'custom_exp', 'result', 'selector']
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
+# -----------------------------------------------------------------------------------
+
+    # DatabaseWrapper.set(u'URLs', {
+    #     u'originalURL': originalURL,
+    #     u'generatedURL': generatedURL,
+    #     u'dateCreated': dateCreated,
+    #     u'expirationDate': expirationDate,
+    #     u'pageViews': 0
+    # })
+    # DatabaseWrapper.set(u'keys', {
+    #     u'originalURL': originalURL,
+    #     u'pageViews': 0
+    # })
+    # assert(myDatabseWrapper.set).wasCalledWith()
+
 # -------------------------------------------------------------
 
 class TestMain(unittest.TestCase):
