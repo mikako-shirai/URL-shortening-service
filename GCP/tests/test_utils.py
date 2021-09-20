@@ -1,5 +1,5 @@
 from URLshortener.views import get_date
-from URLshortener.utils import generate_key, URL_check, key_check, date_check
+from URLshortener.utils import *
 
 import unittest
 import datetime

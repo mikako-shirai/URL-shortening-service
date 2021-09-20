@@ -1,4 +1,4 @@
-from URLshortener.controllers import DB_generatedKey, DB_customKey
+from URLshortener.controllers import *
 from URLshortener.models import get_analysis, get_redirect, cron_job, error_handler
 from URLshortener.utils import URL_check, key_check, date_check
 
@@ -11,23 +11,6 @@ app_views = Blueprint('views', __name__)
 
 key_length = 5
 GCP_URL = 'https://short-321807.an.r.appspot.com/'
-keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', \
-            'index', 'index_exp', 'custom_exp', 'result', 'selector']
-
-# -----------------------------------------------------------------------------------
-
-    # myDatabaseWrapper.set(u'URLs', {
-    #     u'originalURL': originalURL,
-    #     u'generatedURL': generatedURL,
-    #     u'dateCreated': dateCreated,
-    #     u'expirationDate': expirationDate,
-    #     u'pageViews': 0
-    # })
-    # myDatabaseWrapper.set(u'keys', {
-    #     u'originalURL': originalURL,
-    #     u'pageViews': 0
-    # })
-    # assert(myDatabseWrapper.set).wasCalledWith()
 
 # -----------------------------------------------------------------------------------
 
