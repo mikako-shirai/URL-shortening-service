@@ -26,7 +26,7 @@
 		{% if not flg %}
 		<input class="url" type="text" name="generatedURL" placeholder="URL" required>
 		{% else %}
-		<input class="url" type="text" name="generatedURL" placeholder="{{ dicData.generatedURL }}" required>
+		<input class="url" type="text" name="generatedURL" value="{{ dicData.generatedURL }}" required>
 		{% endif %}
 		<input class="url" type="submit" value="analyze">
 	</form>
