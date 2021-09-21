@@ -23,52 +23,52 @@ firestore.ArrayRemove([])
 
 # -----------------------------------------------------------------------------------
 
-def c_stream(collection):
+def collection_stream(collection):
     data = db.collection(collection).stream()
     return data
 
-def cd_get(collection, document):
+def collection_document_get(collection, document):
     data = db.collection(collection).document(document).get()
     return data
 
-def cd_get_toDict(collection, document):
+def collection_document_get_todict(collection, document):
     data = db.collection(collection).document(document).get().to_dict()
     return data
 
-def cd_set(collection, document, data):
+def collection_document_set(collection, document, data):
     db.collection(collection).document(document).set(data)
 
-def cd_update(collection, document, data):
+def collection_document_update(collection, document, data):
     db.collection(collection).document(document).update(data)
 
-def cd_delete(collection, document):
+def collection_document_delete(collection, document):
     db.collection(collection).document(document).delete()
 
-def cd_toDict(data):
+def data_todict(data):
     data = data.to_dict()
     return data
 
 def exists(data):
     return True if data.exists else False
 
-def fs_increment(collection, document, field, num):
+def firestore_Increment(collection, document, field, num):
     data = db.collection(collection).document(document)
     current = data.get().to_dict()[field]
     data.update({
         field: current + num
     })
 
-def fs_arrayUnion(collection, document, field, data):
+def firestore_ArrayUnion(collection, document, field, data):
     db.collection(collection).document(document).update({
         field: firestore.ArrayUnion([data])
     })
 
-def fs_arrayRemove(collection, document, field, data):
+def firestore_ArrayRemove(collection, document, field, data):
     db.collection(collection).document(document).update({
         field: firestore.ArrayRemove([data])
     })
 
-def fs_delete(collection, document, field):
+def firestore_DeleteField(collection, document, field):
     db.collection(collection).document(document).update({
         field: firestore.DELETE_FIELD
     })

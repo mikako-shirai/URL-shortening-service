@@ -12,7 +12,7 @@ keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', 
 # -----------------------------------------------------------------------------------
 
 def get_keys():
-    keysDB = c_stream(u'keys')
+    keysDB = collection_stream(u'keys')
     keys = [key.id for key in keysDB] + keywords
     return keys
 
@@ -22,33 +22,33 @@ def append_data(originalURL, key, expirationDate=None):
     if not expirationDate:
         expirationDate = dateCreated + relativedelta(days=+14)
 
-    cd_set(u'URLs', key, {
+    collection_document_set(u'URLs', key, {
         u'originalURL': originalURL,
         u'generatedURL': generatedURL,
         u'dateCreated': dateCreated,
         u'expirationDate': expirationDate,
         u'pageViews': 0
     })
-    cd_set(u'keys', key, {
+    collection_document_set(u'keys', key, {
         u'originalURL': originalURL,
         u'pageViews': 0
     })
 
-    dic = cd_get_toDict(u'random', u'random')
+    dic = collection_document_get_todict(u'random', u'random')
     URLs = dic['list']
     if originalURL not in URLs:
-        fs_arrayUnion(u'random', u'random', u'list', originalURL)
-        fs_increment(u'random', u'random', u'total', 1)
+        firestore_ArrayUnion(u'random', u'random', u'list', originalURL)
+        firestore_Increment(u'random', u'random', u'total', 1)
 
 # -----------------------------------------------------------------------------------
 
 def get_analysis(generatedURL, key):
     dicData = {}
-    URLactive = cd_get(u'URLs', key)
-    URLold = cd_get(u'expiredURLs', key)
+    URLactive = collection_document_get(u'URLs', key)
+    URLold = collection_document_get(u'expiredURLs', key)
     
     if exists(URLactive):
-        URLactive = cd_toDict(URLactive)
+        URLactive = data_todict(URLactive)
         dateCreated = URLactive['dateCreated']
         expirationDate = URLactive['expirationDate']
         dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
@@ -62,7 +62,7 @@ def get_analysis(generatedURL, key):
         dicData['pageViews'] = URLactive['pageViews']
 
     elif exists(URLold):
-        URLold = cd_toDict(URLold)
+        URLold = data_todict(URLold)
         dateCreated = URLold['dateCreated']
         expirationDate = URLold['expirationDate']
         dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
@@ -77,11 +77,11 @@ def get_analysis(generatedURL, key):
     return dicData
 
 def get_redirect(string):
-    key = cd_get(u'keys', string)
+    key = collection_document_get(u'keys', string)
     if exists(key):
-        fs_increment(u'URLs', string, u'pageViews', 1)
-        fs_increment(u'keys', string, u'pageViews', 1)
-        originalURL = cd_toDict(key)['originalURL']
+        firestore_Increment(u'URLs', string, u'pageViews', 1)
+        firestore_Increment(u'keys', string, u'pageViews', 1)
+        originalURL = data_todict(key)['originalURL']
         return originalURL
     return False
 
@@ -89,39 +89,39 @@ def get_redirect(string):
 
 def cron_job():
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
-    URLs = c_stream(u'URLs')
+    URLs = collection_stream(u'URLs')
 
     for URL in URLs:
-        dic = cd_toDict(URL)
+        dic = data_todict(URL)
         expirationDate = dic['expirationDate']
         if dateNow >= expirationDate:
             originalURL = dic['originalURL']
             # add expired URL information to 'expiredURLs' collection
-            data = cd_get_toDict(u'URLs', URL.id)
-            cd_set(u'expiredURLs', URL.id, data)
+            data = collection_document_get_todict(u'URLs', URL.id)
+            collection_document_set(u'expiredURLs', URL.id, data)
 
             # deletion
-            fs_delete(u'URLs', URL.id, u'originalURL')
-            fs_delete(u'URLs', URL.id, u'generatedURL')
-            fs_delete(u'URLs', URL.id, u'dateCreated')
-            fs_delete(u'URLs', URL.id, u'expirationDate')
-            fs_delete(u'URLs', URL.id, u'pageViews')
-            cd_delete(u'URLs', URL.id)
+            firestore_DeleteField(u'URLs', URL.id, u'originalURL')
+            firestore_DeleteField(u'URLs', URL.id, u'generatedURL')
+            firestore_DeleteField(u'URLs', URL.id, u'dateCreated')
+            firestore_DeleteField(u'URLs', URL.id, u'expirationDate')
+            firestore_DeleteField(u'URLs', URL.id, u'pageViews')
+            collection_document_delete(u'URLs', URL.id)
 
-            fs_delete(u'keys', URL.id, u'originalURL')
-            fs_delete(u'keys', URL.id, u'pageViews')
-            cd_delete(u'keys', URL.id)
+            firestore_DeleteField(u'keys', URL.id, u'originalURL')
+            firestore_DeleteField(u'keys', URL.id, u'pageViews')
+            collection_document_delete(u'keys', URL.id)
 
-        dic = cd_get_toDict(u'random', u'random')
+        dic = collection_document_get_todict(u'random', u'random')
         URLs = dic['list']
         if originalURL in URLs:
-            fs_arrayRemove(u'random', u'random', u'list', originalURL)
-            fs_increment(u'random', u'random', u'total', -1)
+            firestore_ArrayRemove(u'random', u'random', u'list', originalURL)
+            firestore_Increment(u'random', u'random', u'total', -1)
 
 # -----------------------------------------------------------------------------------
 
 def error_handler():
-    dic = cd_get_toDict(u'random', u'random')
+    dic = collection_document_get_todict(u'random', u'random')
     total = dic['total']
     if total == 0:
         URL = 'https://www.google.com/'
