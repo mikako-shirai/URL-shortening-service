@@ -51,8 +51,8 @@ def get_analysis(generatedURL, key):
         URLactive = cd_toDict(URLactive)
         dateCreated = URLactive['dateCreated']
         expirationDate = URLactive['expirationDate']
-        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
-        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+        dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
+        expirationDate = (expirationDate + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
 
         dicData['availability'] = 'Available'
         dicData['originalURL'] = URLactive['originalURL']
@@ -65,8 +65,8 @@ def get_analysis(generatedURL, key):
         URLold = cd_toDict(URLold)
         dateCreated = URLold['dateCreated']
         expirationDate = URLold['expirationDate']
-        dateCreated = dateCreated.strftime('%Y/%m/%d %H:%M')
-        expirationDate = expirationDate.strftime('%Y/%m/%d %H:%M')
+        dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
+        expirationDate = (expirationDate + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
 
         dicData['availability'] = 'Not Available'
         dicData['originalURL'] = URLold['originalURL']
@@ -112,6 +112,9 @@ def cron_job():
             fs_delete(u'keys', URL.id, u'pageViews')
             cd_delete(u'keys', URL.id)
 
+        dic = cd_get_toDict(u'random', u'random')
+        URLs = dic['list']
+        if originalURL in URLs:
             fs_arrayRemove(u'random', u'random', u'list', originalURL)
             fs_increment(u'random', u'random', u'total', -1)
 
