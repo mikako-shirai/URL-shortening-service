@@ -112,11 +112,11 @@ def cron_job():
             firestore_DeleteField(u'keys', URL.id, u'pageViews')
             collection_document_delete(u'keys', URL.id)
 
-        dic = collection_document_get_todict(u'random', u'random')
-        URLs = dic['list']
-        if originalURL in URLs:
-            firestore_ArrayRemove(u'random', u'random', u'list', originalURL)
-            firestore_Increment(u'random', u'random', u'total', -1)
+            dic = collection_document_get_todict(u'random', u'random')
+            URLs = dic['list']
+            if originalURL in URLs:
+                firestore_ArrayRemove(u'random', u'random', u'list', originalURL)
+                firestore_Increment(u'random', u'random', u'total', -1)
 
 # -----------------------------------------------------------------------------------
 
