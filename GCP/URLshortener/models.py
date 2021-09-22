@@ -54,7 +54,7 @@ def get_analysis(generatedURL, key):
         dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
         expirationDate = (expirationDate + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
 
-        dicData['availability'] = 'Available'
+        dicData['status'] = 'Available'
         dicData['originalURL'] = URLactive['originalURL']
         dicData['generatedURL'] = generatedURL
         dicData['dateCreated'] = dateCreated
@@ -68,7 +68,7 @@ def get_analysis(generatedURL, key):
         dateCreated = (dateCreated + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
         expirationDate = (expirationDate + relativedelta(hours=+9)).strftime('%Y/%m/%d %H:%M') + ' (UTC+09:00)'
 
-        dicData['availability'] = 'Not Available'
+        dicData['status'] = 'Not Available'
         dicData['originalURL'] = URLold['originalURL']
         dicData['generatedURL'] = generatedURL
         dicData['dateCreated'] = dateCreated

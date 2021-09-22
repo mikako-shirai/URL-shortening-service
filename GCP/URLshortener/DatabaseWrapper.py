@@ -16,9 +16,9 @@ db.collection().document().delete()
 .exists
 
 firestore.Increment()
-firestore.DELETE_FIELD
 firestore.ArrayUnion([])
 firestore.ArrayRemove([])
+firestore.DELETE_FIELD
 """
 
 # -----------------------------------------------------------------------------------
