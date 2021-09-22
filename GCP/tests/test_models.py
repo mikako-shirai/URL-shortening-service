@@ -23,7 +23,7 @@ db = MagicMock()
 
 # -------------------------------------------------------------
 
-class TestMain(unittest.TestCase):
+class TestModels(unittest.TestCase):
     # test class of main.py
 
     def setUpClass():
