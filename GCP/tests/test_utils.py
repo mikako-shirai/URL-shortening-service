@@ -43,21 +43,14 @@ class TestUtils(unittest.TestCase):
 
 # -------------------------------------------------------------
 
-    def test_generate_key1(self):   
+    def test_generate_key(self):   
         key_length = 5
         generatedKey = generate_key(key_length)
+
         self.assertEqual(len(generatedKey), key_length)
         print(' Done: test_generate_key1')
-
-    def test_generate_key2(self):
-        key_length = 5
-        generatedKey = generate_key(key_length)
         self.assertIsInstance(generatedKey, str)
         print(' Done: test_generate_key2')
-
-    def test_generate_key3(self):
-        key_length = 5
-        generatedKey = generate_key(key_length)
         self.assertTrue(generatedKey.isalnum())
         print(' Done: test_generate_key3')
 
