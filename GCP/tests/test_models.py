@@ -1,24 +1,14 @@
 from URLshortener.models import *
+import URLshortener.DatabaseWrapper
 
 import unittest
 from unittest.mock import PropertyMock, MagicMock, patch
 
 
-db = MagicMock()
+# db = MagicMock()
 
 # -----------------------------------------------------------------------------------
 
-    # DatabaseWrapper.set(u'URLs', {
-    #     u'originalURL': originalURL,
-    #     u'generatedURL': generatedURL,
-    #     u'dateCreated': dateCreated,
-    #     u'expirationDate': expirationDate,
-    #     u'pageViews': 0
-    # })
-    # DatabaseWrapper.set(u'keys', {
-    #     u'originalURL': originalURL,
-    #     u'pageViews': 0
-    # })
     # assert(myDatabseWrapper.set).wasCalledWith()
 
 # -------------------------------------------------------------
@@ -39,9 +29,13 @@ class TestModels(unittest.TestCase):
 
 # -------------------------------------------------------------
 
-    # def test_append_data1(self):
-    #     self.assertEqual(len(generatedKey), key_length)
-    #     print(' Done: test_generate_key1')
+    def test_get_keys1(self):
+        test = MagicMock()
+        test.id = 'test'
+        URLshortener.DatabaseWrapper.collection_stream = MagicMock(return_value=[test])
+        print(get_keys())
+        # self.assertEqual()
+        print(' Done: test_get_keys1')
 
 # -------------------------------------------------------------
 
