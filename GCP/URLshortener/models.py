@@ -131,3 +131,8 @@ def error_handler():
         URL = URLs[randomNum]
     return URL
 
+def test_functions():
+    dicData = collection_document_get_todict(u'random', u'random')
+    get_keys()
+    return dicData
+

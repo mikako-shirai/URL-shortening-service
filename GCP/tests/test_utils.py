@@ -50,9 +50,9 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(len(generatedKey), key_length)
         print(' Done: test_generate_key1')
         self.assertIsInstance(generatedKey, str)
-        print(' Done: test_generate_key2')
+        print('. Done: test_generate_key2')
         self.assertTrue(generatedKey.isalnum())
-        print(' Done: test_generate_key3')
+        print('. Done: test_generate_key3')
 
 # -------------------------------------------------------------
 
