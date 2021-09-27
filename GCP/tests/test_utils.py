@@ -5,13 +5,13 @@ import unittest
 import datetime
 from dateutil.relativedelta import relativedelta
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 class TestUtils(unittest.TestCase):
     # test class of utils.py
     
     def setUpClass():
-        print('============================== test_utils START ==============================')
+        print(' ============================== test_utils START ==============================')
  
     def tearDownClass():
         print('=============================== test_utils END ===============================')
@@ -21,7 +21,7 @@ class TestUtils(unittest.TestCase):
     # def tearDown(self):
     #     print(' after each test ')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
     def test_get_date1(self):
         years = get_date()
@@ -41,7 +41,7 @@ class TestUtils(unittest.TestCase):
         self.assertTrue(yearNow in years['years'])
         print(' Done: test_get_date3')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
     def test_generate_key(self):   
         key_length = 5
@@ -54,7 +54,7 @@ class TestUtils(unittest.TestCase):
         self.assertTrue(generatedKey.isalnum())
         print('. Done: test_generate_key3')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
     def test_URL_check1(self):
         URL = 'https://short-321807.an.r.appspot.com'
@@ -86,7 +86,7 @@ class TestUtils(unittest.TestCase):
         self.assertFalse(URL_check(URL))
         print(' Done: test_URL_check6')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
     def test_key_check1(self):
         key = 'short-321807'
@@ -118,7 +118,7 @@ class TestUtils(unittest.TestCase):
         self.assertFalse(key_check(key))
         print(' Done: test_key_check6')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
     def test_date_check1(self):
         date = '2021/2/31 00:00:00+0900'
@@ -146,7 +146,7 @@ class TestUtils(unittest.TestCase):
         self.assertFalse(date_check(date))
         print(' Done: test_date_check4')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':

@@ -1,21 +1,16 @@
 from URLshortener.models import *
-import URLshortener.DatabaseWrapper
+import URLshortener.DatabaseWrapper as DatabaseWrapper
 
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 # -----------------------------------------------------------------------------------
 
-    # assert(myDatabseWrapper.set).wasCalledWith()
-
-# -------------------------------------------------------------
-
 class TestModels(unittest.TestCase):
     # test class of models.py / DatabaseWrapper.py
-    URLshortener.DatabaseWrapper.db = MagicMock()
 
     def setUpClass():
-        print('============================== test_models START ===============================')
+        print(' ============================== test_models START ===============================')
         print(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
  
     def tearDownClass():
@@ -26,19 +21,17 @@ class TestModels(unittest.TestCase):
     def tearDown(self):
         print(' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
 
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
-    def test_get_keys1(self):
+    @patch('URLshortener.models.collection_stream')
+    @patch('URLshortener.models.id')
+    def test_get_keys1(self, mock_id, mock_stream):
+        mock_stream.return_value = [1, 2, 3]
+        mock_id.return_value = 'TEST'
         print(get_keys())
-        # self.assertEqual()
         print(' Done: test_get_keys1')
 
-    def test_test_functions1(self):
-        print(test_functions())
-        # self.assertEqual()
-        print(' Done: test_test_functions1')
-
-# -------------------------------------------------------------
+# -----------------------------------------------------------------------------------
 
 
 if __name__ == '__main__':
