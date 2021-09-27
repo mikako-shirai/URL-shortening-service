@@ -12,6 +12,7 @@ class TestUtils(unittest.TestCase):
     
     def setUpClass():
         print(' ============================== test_utils START ==============================')
+        print(' ')
  
     def tearDownClass():
         print('=============================== test_utils END ===============================')
@@ -39,7 +40,7 @@ class TestUtils(unittest.TestCase):
         yearNow = dateNow.strftime('%Y')
         years = get_date()
         self.assertTrue(yearNow in years['years'])
-        print(' Done: test_get_date3')
+        print(' Done: test_get_date3\n ')
 
 # -----------------------------------------------------------------------------------
 
@@ -52,14 +53,14 @@ class TestUtils(unittest.TestCase):
         self.assertIsInstance(generatedKey, str)
         print('. Done: test_generate_key2')
         self.assertTrue(generatedKey.isalnum())
-        print('. Done: test_generate_key3')
+        print('. Done: test_generate_key3\n ')
 
 # -----------------------------------------------------------------------------------
 
     def test_URL_check1(self):
         URL = 'https://short-321807.an.r.appspot.com'
         self.assertTrue(URL_check(URL))
-        print('  Done: test_URL_check1')
+        print(' Done: test_URL_check1')
 
     def test_URL_check2(self):
         URL = 'http://short-321807'
@@ -84,7 +85,7 @@ class TestUtils(unittest.TestCase):
     def test_URL_check6(self):
         URL = 'https.short-321807'
         self.assertFalse(URL_check(URL))
-        print(' Done: test_URL_check6')
+        print(' Done: test_URL_check6\n ')
 
 # -----------------------------------------------------------------------------------
 
@@ -116,7 +117,7 @@ class TestUtils(unittest.TestCase):
     def test_key_check6(self):
         key = 'short 321807'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check6')
+        print(' Done: test_key_check6\n ')
 
 # -----------------------------------------------------------------------------------
 
@@ -144,7 +145,29 @@ class TestUtils(unittest.TestCase):
         date7month = dateNow + relativedelta(months=+7)
         date = date7month.strftime('%Y/%m/%d %H:%M:%S%z')
         self.assertFalse(date_check(date))
-        print(' Done: test_date_check4')
+        print(' Done: test_date_check4\n ')
+
+# -----------------------------------------------------------------------------------
+
+    def test_GCPURL_check1(self):
+        URL = 'https://short-321807.an.r.appspot.com/TESTtest'
+        self.assertTrue(GCPURL_check(URL))
+        print('  Done: test_GCPURL_check1')
+
+    def test_GCPURL_check2(self):
+        URL = 'https://short-321807.an.r.appspot.com/'
+        self.assertFalse(GCPURL_check(URL))
+        print(' Done: test_GCPURL_check2')
+
+    def test_GCPURL_check3(self):
+        URL = 'https://short-321807.an.r.appspot.com/TESTtest TEST'
+        self.assertFalse(GCPURL_check(URL))
+        print(' Done: test_GCPURL_check3')
+
+    def test_GCPURL_check4(self):
+        URL = 'https://test-321807.test.test.test.com/TESTtest'
+        self.assertFalse(GCPURL_check(URL))
+        print(' Done: test_GCPURL_check4\n ')
 
 # -----------------------------------------------------------------------------------
 
