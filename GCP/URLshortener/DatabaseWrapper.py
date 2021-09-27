@@ -8,12 +8,14 @@ db.collection().stream()
 
 db.collection().document().get()
 db.collection().document().get().to_dict()
+.to_dict()
 
 db.collection().document().set()
 db.collection().document().update()
 db.collection().document().delete()
 
 .exists
+.id
 
 firestore.Increment()
 firestore.ArrayUnion([])
@@ -49,7 +51,10 @@ def data_todict(data):
     return data
 
 def exists(data):
-    return True if data.exists else False
+    return data.exists
+
+def id(data):
+    return data.id
 
 def firestore_Increment(collection, document, field, num):
     data = db.collection(collection).document(document)

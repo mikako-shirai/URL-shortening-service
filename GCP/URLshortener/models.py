@@ -13,7 +13,7 @@ keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', 
 
 def get_keys():
     keysDB = collection_stream(u'keys')
-    keys = [key.id for key in keysDB] + keywords
+    keys = [id(key) for key in keysDB] + keywords
     return keys
 
 def append_data(originalURL, key, expirationDate=None):
@@ -97,20 +97,20 @@ def cron_job():
         if dateNow >= expirationDate:
             originalURL = dic['originalURL']
             # add expired URL information to 'expiredURLs' collection
-            data = collection_document_get_todict(u'URLs', URL.id)
-            collection_document_set(u'expiredURLs', URL.id, data)
+            data = collection_document_get_todict(u'URLs', id(URL))
+            collection_document_set(u'expiredURLs', id(URL), data)
 
             # deletion
-            firestore_DeleteField(u'URLs', URL.id, u'originalURL')
-            firestore_DeleteField(u'URLs', URL.id, u'generatedURL')
-            firestore_DeleteField(u'URLs', URL.id, u'dateCreated')
-            firestore_DeleteField(u'URLs', URL.id, u'expirationDate')
-            firestore_DeleteField(u'URLs', URL.id, u'pageViews')
-            collection_document_delete(u'URLs', URL.id)
+            firestore_DeleteField(u'URLs', id(URL), u'originalURL')
+            firestore_DeleteField(u'URLs', id(URL), u'generatedURL')
+            firestore_DeleteField(u'URLs', id(URL), u'dateCreated')
+            firestore_DeleteField(u'URLs', id(URL), u'expirationDate')
+            firestore_DeleteField(u'URLs', id(URL), u'pageViews')
+            collection_document_delete(u'URLs', id(URL))
 
-            firestore_DeleteField(u'keys', URL.id, u'originalURL')
-            firestore_DeleteField(u'keys', URL.id, u'pageViews')
-            collection_document_delete(u'keys', URL.id)
+            firestore_DeleteField(u'keys', id(URL), u'originalURL')
+            firestore_DeleteField(u'keys', id(URL), u'pageViews')
+            collection_document_delete(u'keys', id(URL))
 
             dic = collection_document_get_todict(u'random', u'random')
             URLs = dic['list']
@@ -130,9 +130,4 @@ def error_handler():
         randomNum = random.randrange(0, total)
         URL = URLs[randomNum]
     return URL
-
-def test_functions():
-    dicData = collection_document_get_todict(u'random', u'random')
-    get_keys()
-    return dicData
 
