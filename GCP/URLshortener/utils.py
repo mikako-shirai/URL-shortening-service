@@ -5,6 +5,7 @@ import re
 
 
 key_length = 5
+GCP_URL = 'https://short-321807.an.r.appspot.com/'
 
 # -----------------------------------------------------------------------------------
 
@@ -37,4 +38,11 @@ def date_check(dateSet):
     if expirationDate < dateNow or expirationDate > date6months:
         return False
     return True
+
+def GCPURL_check(generatedURL):
+    if URL_check(generatedURL) and len(generatedURL) >= 43 and GCP_URL in generatedURL:
+        key = generatedURL[38:]
+    else:
+        key = False
+    return key
 

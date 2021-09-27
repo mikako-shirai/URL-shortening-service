@@ -1,6 +1,6 @@
 from URLshortener.controllers import *
 from URLshortener.models import get_analysis, get_redirect, cron_job, error_handler
-from URLshortener.utils import URL_check, key_check, date_check
+from URLshortener.utils import *
 
 from flask import Blueprint, render_template, request, redirect, abort, url_for
 import datetime
@@ -130,8 +130,8 @@ def link_analysis():
     dicData, errors, flg = {}, [], False
     generatedURL = request.form.get('generatedURL')
 
-    if GCP_URL in generatedURL and len(generatedURL) >= 43:
-        key = generatedURL[38:]
+    key = GCPURL_check(generatedURL)
+    if key:
         dicData = get_analysis(generatedURL, key)
         if dicData:
             flg = True
