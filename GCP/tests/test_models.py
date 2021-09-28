@@ -44,13 +44,11 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'collection_stream()' was called :", f"{mock_stream.call_count} times")
         print(u"  \u2713 'id()' was called                :", f"{mock_id.call_count} times\n")
 
-        call_id = mock_id.call_args_list
-        self.assertEqual(len(call_id), 3)
-        call1, call2, call3 = call_id
-        call1, call2, call3 = call1[0][0], call2[0][0], call3[0][0]
-        expected = [1, 2, 3]
-        self.assertEqual([call1, call2, call3], expected)
-        print(u"  \u2713 'id()' was called with :", f"{[call1, call2, call3]}\n")
+        mock_id.assert_any_call(1)
+        mock_id.assert_any_call(2)
+        mock_id.assert_any_call(3)
+        expected = (1, 2, 3)
+        print(u"  \u2713 'id()' was called with :", f"{(expected)}\n")
 
         for element in keys:
             self.assertIsInstance(element, str)
@@ -132,6 +130,12 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'exists()' was called                  :", f"{mock_exists.call_count} times")
         print(u"  \u2713 'data_todict()' was called             :", f"{mock_todict.call_count} times\n")
 
+        mock_exists.assert_any_call(None)
+        mock_todict.assert_any_call(None)
+        expected = None
+        print(u"  \u2713 'exists()' was called with      :", f"{(expected)}")
+        print(u"  \u2713 'data_todict()' was called with :", f"{(expected)}\n")
+
         for value in dicData.values():
             self.assertIsInstance(value, str)
         print(u"  \u2713 class type of each value in the dictionary :", f"{type(list(dicData.values())[0])}\n")
@@ -171,6 +175,10 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'exists()' was called                  :", f"{mock_exists.call_count} times")
         print(u"  \u2713 'data_todict()' was called             :", f"{mock_todict.call_count} times\n")
 
+        mock_exists.assert_any_call(None)
+        expected = None
+        print(u"  \u2713 'exists()' was called with :", f"{(expected)}")
+
         print("\n Done: test_get_analysis2")
 
 # -----------------------------------------------------------------------------------
@@ -201,6 +209,10 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'firestore_Increment()' was called     :", f"{mock_exists.call_count} times")
         print(u"  \u2713 'data_todict()' was called             :", f"{mock_todict.call_count} times\n")
 
+        mock_exists.assert_any_call(None)
+        expected = None
+        print(u"  \u2713 'exists()' was called with :", f"{(expected)}")
+
         print("\n Done: test_get_redirect1")
 
 # -----------------------------------------------------------------------------------
@@ -230,6 +242,10 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'exists()' was called                  :", f"{mock_exists.call_count} times")
         print(u"  \u2713 'firestore_Increment()' was called     :", f"{mock_exists.call_count} times")
         print(u"  \u2713 'data_todict()' was called             :", f"{mock_todict.call_count} times\n")
+
+        mock_exists.assert_any_call(None)
+        expected = None
+        print(u"  \u2713 'exists()' was called with :", f"{(expected)}")
 
         print("\n Done: test_get_redirect2")
 
@@ -277,13 +293,9 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'firestore_ArrayRemove()' was called          :", f"{mock_arrayremove.call_count} times")
         print(u"  \u2713 'firestore_Increment()' was called            :", f"{mock_increment.call_count} times\n")
 
-        call_set = mock_set.call_args_list[0][0][2]
-        self.assertEqual(len(call_set), 1)
-        print(u"  \u2713 length of the dictionary passed into collection_document_set() :", f"{len(call_set)}\n")
-
-        expected = {'list': ['TEST_original']}
-        self.assertEqual(call_set, expected)
-        print(u"  \u2713 the dictionary should be equal to :", f"{call_set}\n")
+        mock_set.assert_any_call(u'expiredURLs', 'TEST_key', {'list': ['TEST_original']})
+        expected = (u'expiredURLs', 'TEST_key', {'list': ['TEST_original']})
+        print(u"  \u2713 'collection_document_set()' was called with :", f"{expected}\n")
 
         print("\n Done: test_cron_job")
 
