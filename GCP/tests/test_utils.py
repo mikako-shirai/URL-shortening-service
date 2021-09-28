@@ -27,20 +27,20 @@ class TestUtils(unittest.TestCase):
     def test_get_date1(self):
         years = get_date()
         self.assertTrue(0 < len(years['years']) <= 2)
-        print(' Done: test_get_date1')
+        print(u' \u2713 Done: test_get_date1')
 
     def test_get_date2(self):
         years = get_date()
         for year in years['years']:
             self.assertIsInstance(year, str)
-        print(' Done: test_get_date2')
+        print(u' \u2713 Done: test_get_date2')
 
     def test_get_date3(self):
         dateNow = datetime.datetime.now()
         yearNow = dateNow.strftime('%Y')
         years = get_date()
         self.assertTrue(yearNow in years['years'])
-        print(' Done: test_get_date3\n ')
+        print(u' \u2713 Done: test_get_date3\n')
 
 # -----------------------------------------------------------------------------------
 
@@ -49,125 +49,125 @@ class TestUtils(unittest.TestCase):
         generatedKey = generate_key(key_length)
 
         self.assertEqual(len(generatedKey), key_length)
-        print(' Done: test_generate_key1')
+        print(u' \u2713 Done: test_generate_key1')
         self.assertIsInstance(generatedKey, str)
-        print('. Done: test_generate_key2')
+        print(u'. \u2713 Done: test_generate_key2')
         self.assertTrue(generatedKey.isalnum())
-        print('. Done: test_generate_key3\n ')
+        print(u'. \u2713 Done: test_generate_key3\n')
 
 # -----------------------------------------------------------------------------------
 
     def test_URL_check1(self):
         URL = 'https://short-321807.an.r.appspot.com'
         self.assertTrue(URL_check(URL))
-        print(' Done: test_URL_check1')
+        print(u' \u2713 Done: test_URL_check1')
 
     def test_URL_check2(self):
         URL = 'http://short-321807'
         self.assertTrue(URL_check(URL))
-        print(' Done: test_URL_check2')
+        print(u' \u2713 Done: test_URL_check2')
     
     def test_URL_check3(self):
         URL = 'https://short 321807.an.r.appspot.com'
         self.assertFalse(URL_check(URL))
-        print(' Done: test_URL_check3')
+        print(u' \u2713 Done: test_URL_check3')
 
     def test_URL_check4(self):
         URL = 'https:/short-321807.an.r.appspot.com'
         self.assertFalse(URL_check(URL))
-        print(' Done: test_URL_check4')
+        print(u' \u2713 Done: test_URL_check4')
 
     def test_URL_check5(self):
         URL = 'https://'
         self.assertFalse(URL_check(URL))
-        print(' Done: test_URL_check5')
+        print(u' \u2713 Done: test_URL_check5')
 
     def test_URL_check6(self):
         URL = 'https.short-321807'
         self.assertFalse(URL_check(URL))
-        print(' Done: test_URL_check6\n ')
+        print(u' \u2713 Done: test_URL_check6\n')
 
 # -----------------------------------------------------------------------------------
 
     def test_key_check1(self):
         key = 'short-321807'
         self.assertTrue(key_check(key))
-        print(' Done: test_key_check1')
+        print(u' \u2713 Done: test_key_check1')
     
     def test_key_check2(self):
         key = 'short'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check2')
+        print(u' \u2713 Done: test_key_check2')
 
     def test_key_check3(self):
         key = 'https:short-321807.an.r.appspot.com'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check3')
+        print(u' \u2713 Done: test_key_check3')
 
     def test_key_check4(self):
         key = 'short/321807'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check4')
+        print(u' \u2713 Done: test_key_check4')
 
     def test_key_check5(self):
         key = 'short\\321807'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check5')
+        print(u' \u2713 Done: test_key_check5')
 
     def test_key_check6(self):
         key = 'short 321807'
         self.assertFalse(key_check(key))
-        print(' Done: test_key_check6\n ')
+        print(u' \u2713 Done: test_key_check6\n')
 
 # -----------------------------------------------------------------------------------
 
     def test_date_check1(self):
         date = '2021/2/31 00:00:00+0900'
         self.assertFalse(date_check(date))
-        print(' Done: test_date_check1')
+        print(u' \u2713 Done: test_date_check1')
     
     def test_date_check2(self):
         dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
         date1month = dateNow + relativedelta(months=+1)
         date = date1month.strftime('%Y/%m/%d %H:%M:%S%z')
         self.assertTrue(date_check(date))
-        print(' Done: test_date_check2')
+        print(u' \u2713 Done: test_date_check2')
     
     def test_date_check3(self):
         dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
         date1month = dateNow + relativedelta(months=-1)
         date = date1month.strftime('%Y/%m/%d %H:%M:%S%z')
         self.assertFalse(date_check(date))
-        print(' Done: test_date_check3')
+        print(u' \u2713 Done: test_date_check3')
 
     def test_date_check4(self):
         dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
         date7month = dateNow + relativedelta(months=+7)
         date = date7month.strftime('%Y/%m/%d %H:%M:%S%z')
         self.assertFalse(date_check(date))
-        print(' Done: test_date_check4\n ')
+        print(u' \u2713 Done: test_date_check4\n')
 
 # -----------------------------------------------------------------------------------
 
     def test_GCPURL_check1(self):
         URL = 'https://short-321807.an.r.appspot.com/TESTtest'
         self.assertTrue(GCPURL_check(URL))
-        print('  Done: test_GCPURL_check1')
+        print(u'  \u2713 Done: test_GCPURL_check1')
 
     def test_GCPURL_check2(self):
         URL = 'https://short-321807.an.r.appspot.com/'
         self.assertFalse(GCPURL_check(URL))
-        print(' Done: test_GCPURL_check2')
+        print(u' \u2713 Done: test_GCPURL_check2')
 
     def test_GCPURL_check3(self):
         URL = 'https://short-321807.an.r.appspot.com/TESTtest TEST'
         self.assertFalse(GCPURL_check(URL))
-        print(' Done: test_GCPURL_check3')
+        print(u' \u2713 Done: test_GCPURL_check3')
 
     def test_GCPURL_check4(self):
         URL = 'https://test-321807.test.test.test.com/TESTtest'
         self.assertFalse(GCPURL_check(URL))
-        print(' Done: test_GCPURL_check4\n ')
+        print(u' \u2713 Done: test_GCPURL_check4\n')
 
 # -----------------------------------------------------------------------------------
 
