@@ -1,13 +1,12 @@
 from URLshortener.models import *
-import URLshortener.DatabaseWrapper as DatabaseWrapper
 
 import unittest
-from unittest.mock import patch, call
+from unittest.mock import patch
 
 # -----------------------------------------------------------------------------------
 
 class TestModels(unittest.TestCase):
-    # test class of models.py / DatabaseWrapper.py
+    # test class of models.py
 
     GCP_URL = 'https://short-321807.an.r.appspot.com/'
     keywords = ['custom', 'expiration', 'analysis', 'link', '404', 'error', 'cron', \
@@ -44,6 +43,7 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'collection_stream()' was called :", f"{mock_stream.call_count} times")
         print(u"  \u2713 'id()' was called                :", f"{mock_id.call_count} times\n")
 
+        self.assertEqual(len(keys), len(keywords) + 3)
         mock_id.assert_any_call(1)
         mock_id.assert_any_call(2)
         mock_id.assert_any_call(3)
@@ -53,9 +53,6 @@ class TestModels(unittest.TestCase):
         for element in keys:
             self.assertIsInstance(element, str)
         print(u"  \u2713 class type of each element in the list :", f"{type(keys[0])}\n")
-
-        self.assertEqual(len(keys), len(keywords) + 3)
-        print(u"  \u2713 number of elements that were added to the list :", f"{len(keys) - len(keywords)}\n")
 
         expected = ['TEST_key', 'TEST_key', 'TEST_key']
         self.assertEqual(keys[:3], expected)
@@ -119,6 +116,8 @@ class TestModels(unittest.TestCase):
         print(f" {dicData}\n")
 
         self.assertIsInstance(dicData, dict)
+        for value in dicData.values():
+            self.assertIsInstance(value, str)
         print(u"  \u2713 class type of the return value :", f"{type(dicData)}")
         self.assertEqual(len(dicData), 6)
         print(u"  \u2713 length of the return value :", f"{len(dicData)}\n")
@@ -135,10 +134,6 @@ class TestModels(unittest.TestCase):
         expected = None
         print(u"  \u2713 'exists()' was called with      :", f"{(expected)}")
         print(u"  \u2713 'data_todict()' was called with :", f"{(expected)}\n")
-
-        for value in dicData.values():
-            self.assertIsInstance(value, str)
-        print(u"  \u2713 class type of each value in the dictionary :", f"{type(list(dicData.values())[0])}\n")
 
         self.assertEqual(dicData['originalURL'], 'TEST_original')
         self.assertEqual(dicData['generatedURL'], 'TEST_url')
