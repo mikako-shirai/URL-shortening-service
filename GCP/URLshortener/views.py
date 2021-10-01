@@ -1,5 +1,5 @@
 from URLshortener.controllers import *
-from URLshortener.models import get_analysis, get_redirect, cron_job, error_handler
+from URLshortener.models import get_analysis, get_redirect, cron_expiration, cron_random, error_handler
 from URLshortener.utils import *
 
 from flask import Blueprint, render_template, request, redirect, abort, url_for
@@ -155,7 +155,14 @@ def URL_redirect(string):
 
 @app_views.route('/cron', methods=['GET'])
 def expiration_check():
-    cron_job()
+    cron_expiration()
+    return '', 200
+
+# -----------------------------------------------------------------------------------
+
+@app_views.route('/cron/random', methods=['GET'])
+def random_check():
+    cron_random()
     return '', 200
 
 # -----------------------------------------------------------------------------------
