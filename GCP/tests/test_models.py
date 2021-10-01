@@ -205,8 +205,11 @@ class TestModels(unittest.TestCase):
         print(u"  \u2713 'data_todict()' was called             :", f"{mock_todict.call_count} times\n")
 
         mock_exists.assert_any_call(None)
+        mock_todict.assert_any_call(None)
         expected = None
-        print(u"  \u2713 'exists()' was called with :", f"{(expected)}")
+        print(u"  \u2713 'exists()' was called with      :", f"{(expected)}")
+        print(u"  \u2713 'data_todict()' was called with :", f"{(expected)}")
+
 
         print("\n Done: test_get_redirect1")
 
@@ -240,7 +243,7 @@ class TestModels(unittest.TestCase):
 
         mock_exists.assert_any_call(None)
         expected = None
-        print(u"  \u2713 'exists()' was called with :", f"{(expected)}")
+        print(u"  \u2713 'exists()' was called with      :", f"{(expected)}")
 
         print("\n Done: test_get_redirect2")
 
@@ -255,7 +258,7 @@ class TestModels(unittest.TestCase):
     @patch('URLshortener.models.collection_document_delete')
     @patch('URLshortener.models.firestore_ArrayRemove')
     @patch('URLshortener.models.firestore_Increment')
-    def test_cron_job(self, mock_increment, mock_arrayremove, mock_delete, mock_deletefield, \
+    def test_cron_expiration(self, mock_increment, mock_arrayremove, mock_delete, mock_deletefield, \
                       mock_set, mock_id, mock_get_todict, mock_todict, mock_stream):
         expirationDate = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))) + relativedelta(months=-1)
         mock_stream.return_value = ['TEST_key']
@@ -267,7 +270,7 @@ class TestModels(unittest.TestCase):
         mock_delete.return_value = None
         mock_arrayremove.return_value = None
         mock_increment.return_value = None
-        cron_job()
+        cron_expiration()
 
         self.assertEqual(mock_stream.call_count, 1)
         self.assertEqual(mock_todict.call_count, 1)
@@ -292,7 +295,42 @@ class TestModels(unittest.TestCase):
         expected = (u'expiredURLs', 'TEST_key', {'list': ['TEST_original']})
         print(u"  \u2713 'collection_document_set()' was called with :", f"{expected}\n")
 
-        print("\n Done: test_cron_job")
+        print("\n Done: test_cron_expiration")
+
+# -----------------------------------------------------------------------------------
+
+    @patch('URLshortener.models.collection_stream')
+    @patch('URLshortener.models.collection_document_get_todict')
+    @patch('URLshortener.models.data_todict')
+    @patch('URLshortener.models.firestore_ArrayUnion')
+    @patch('URLshortener.models.firestore_Increment')
+    def test_cron_random(self, mock_increment, mock_arrayunion, mock_todict, mock_get_todict, mock_stream):
+        mock_stream.return_value = ['TEST_key', 'TEST_key']
+        mock_get_todict.return_value = {'list': ['TEST_url'], 'total': 1}
+        mock_todict.return_value = {'originalURL': 'TEST_original'}
+        mock_arrayunion.return_value = None
+        mock_increment.return_value = None
+        cron_random()
+
+        self.assertEqual(mock_stream.call_count, 1)
+        self.assertEqual(mock_get_todict.call_count, 1)
+        self.assertEqual(mock_todict.call_count, 2)
+        self.assertEqual(mock_arrayunion.call_count, 2)
+        self.assertEqual(mock_increment.call_count, 2)
+        print(u"  \u2713 'collection_stream()' was called              :", f"{mock_stream.call_count} times")
+        print(u"  \u2713 'collection_document_get_todict()' was called :", f"{mock_get_todict.call_count} times")
+        print(u"  \u2713 'data_todict()' was called                    :", f"{mock_todict.call_count} times")
+        print(u"  \u2713 'firestore_ArrayUnion()' was called           :", f"{mock_arrayunion.call_count} times")
+        print(u"  \u2713 'firestore_Increment()' was called            :", f"{mock_increment.call_count} times\n")
+
+        mock_todict.assert_any_call('TEST_key')
+        mock_arrayunion.assert_any_call(u'random', u'random', u'list', 'TEST_original')
+        expected_todict = 'TEST_key'
+        expected_arrayunion = (u'random', u'random', u'list', 'TEST_original')
+        print(u"  \u2713 'data_todict()' was called with          :", f"'{expected_todict}'")
+        print(u"  \u2713 'firestore_ArrayUnion()' was called with :", f"{expected_arrayunion}\n")
+
+        print("\n Done: test_cron_random")
 
 # -----------------------------------------------------------------------------------
 
