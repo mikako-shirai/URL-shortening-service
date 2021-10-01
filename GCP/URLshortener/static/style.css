@@ -13,13 +13,13 @@
   - form-url                    - 217
   - form-path                   - 309
   - form-exp                    - 407
-  - copy-btn                    - 544
+  - copy-btn                    - 543
 
-- HOVER FONT                    - 641
-  - hover                       - 642
-  - font                        - 723
+- HOVER FONT                    - 640
+  - hover                       - 641
+  - font                        - 722
 
-- color-sample                  - 830
+- color-sample                  - 829
 
 */
 /*----------------------------------------------------------------------- BODY */
@@ -415,11 +415,10 @@ ul {
   min-width: 0;
   background: #F6F3F5;
   color: #818983;
-  text-align: center;
   font-weight: lighter;
   font-size: 18px;
   height: 40px;
-  padding-left: 16px;
+  padding-left: 25px;
   padding-right: 15px;
   -webkit-appearance:none;
   border-radius: 6px;
