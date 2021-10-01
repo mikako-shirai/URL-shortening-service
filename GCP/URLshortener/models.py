@@ -87,7 +87,7 @@ def get_redirect(string):
 
 # -----------------------------------------------------------------------------------
 
-def cron_job():
+def cron_expiration():
     dateNow = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
     URLs = collection_stream(u'URLs')
 
@@ -117,6 +117,17 @@ def cron_job():
             if originalURL in URLs:
                 firestore_ArrayRemove(u'random', u'random', u'list', originalURL)
                 firestore_Increment(u'random', u'random', u'total', -1)
+
+def cron_random():
+    URLs = collection_stream(u'keys')
+    dic = collection_document_get_todict(u'random', u'random')
+    URL_list = dic['list']
+    for URL in URLs:
+        dic = data_todict(URL)
+        originalURL = dic['originalURL']
+        if originalURL not in URL_list:
+            firestore_ArrayUnion(u'random', u'random', u'list', originalURL)
+            firestore_Increment(u'random', u'random', u'total', 1)
 
 # -----------------------------------------------------------------------------------
 
