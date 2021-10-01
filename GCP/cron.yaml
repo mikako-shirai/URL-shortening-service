@@ -1,6 +1,11 @@
 cron:
-- description: "daily expiration check"
+- description: "half-hourly expiration check"
   url: /cron
   schedule: every 30 minutes synchronized
+  timezone: Asia/Tokyo
+
+- description: "add URLs to the 'random' collection"
+  url: /cron/random
+  schedule: every monday 00:00
   timezone: Asia/Tokyo
 
