@@ -2,6 +2,7 @@ from URLshortener import db
 
 from google.cloud import firestore
 
+# -----------------------------------------------------------------------------------
 
 """
 db.collection().stream()
