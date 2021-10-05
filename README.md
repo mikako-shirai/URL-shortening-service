@@ -121,7 +121,12 @@ $ gcloud app deploy
 ```  
 6. go to https://YOUR_PROJECT_ID.an.r.appspot.com/ to view the application  
   
-
+&ensp;&ensp;(to run unit tests)  
+```
+$ python3 -m unittest tests/suite.py
+```  
+  
+  
 ## Usage  
 ### initial version example  
 ![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/initial.png)  
