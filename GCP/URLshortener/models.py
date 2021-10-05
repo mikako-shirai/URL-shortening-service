@@ -138,7 +138,6 @@ def error_handler():
         URL = 'https://www.google.com/'
     else:
         URLs = dic['list']
-        randomNum = random.randrange(0, total)
-        URL = URLs[randomNum]
+        URL = random.choice(URLs)
     return URL
 
