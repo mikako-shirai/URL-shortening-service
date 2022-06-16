@@ -129,10 +129,10 @@ $ python3 -m unittest tests/suite.py
   
 ## Usage  
 ### initial version example  
-![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/initial.png)  
+![example](https://github.com/mikako-shirai/dump/blob/master/URL-shortening-service/initial.png)  
 
 ### GCP version example
-![example](https://github.com/mikako-shirai/dump/blob/main/URL-shortening-service/GCP2.png)  
+![example](https://github.com/mikako-shirai/dump/blob/master/URL-shortening-service/GCP2.png)  
 
 
 
